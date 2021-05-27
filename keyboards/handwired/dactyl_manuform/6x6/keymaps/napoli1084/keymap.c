@@ -23,6 +23,18 @@
 #define WINCTLL LCTL(LGUI(KC_LEFT))
 #define WINCTLR LCTL(LGUI(KC_RIGHT))
 
+enum unicode_names {
+    BANG,
+    IRONY,
+    SNEK
+};
+
+const uint32_t PROGMEM unicode_map[] = {
+    [BANG]  = 0x203D,  // ‽
+    [IRONY] = 0x2E2E,  // ⸮
+    [SNEK]  = 0x1F40D, // 🐍
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [WORKMAN] = LAYOUT_6x6(
