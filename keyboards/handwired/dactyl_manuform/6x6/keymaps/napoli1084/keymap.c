@@ -26,14 +26,125 @@
 enum unicode_names {
     BANG,
     IRONY,
-    SNEK
+    SNEK,
+    uni_a_CIRCUMFLEX,
+    uni_a_DIAERESIS,
+    uni_a_GRAVE,
+    uni_c_CEDILLA,
+    uni_e_ACUTE,
+    uni_e_CIRCUMFLEX,
+    uni_e_DIAERESIS,
+    uni_e_GRAVE,
+    uni_i_CIRCUMFLEX,
+    uni_i_DIAERESIS,
+    uni_n_TILDE,
+    uni_o_CIRCUMFLEX,
+    uni_o_DIAERESIS,
+    uni_s_SHARP,
+    uni_u_CIRCUMFLEX,
+    uni_u_DIAERESIS,
+    uni_u_GRAVE,
+    uni_y_DIAERESIS,
+    uni_A_CIRCUMFLEX,
+    uni_A_DIAERESIS,
+    uni_A_GRAVE,
+    uni_C_CEDILLA,
+    uni_E_ACUTE,
+    uni_E_CIRCUMFLEX,
+    uni_E_DIAERESIS,
+    uni_E_GRAVE,
+    uni_I_CIRCUMFLEX,
+    uni_I_DIAERESIS,
+    uni_N_TILDE,
+    uni_O_CIRCUMFLEX,
+    uni_O_DIAERESIS,
+    uni_S_SHARP,
+    uni_U_CIRCUMFLEX,
+    uni_U_DIAERESIS,
+    uni_U_GRAVE,
+    uni_Y_DIAERESIS
 };
 
 const uint32_t PROGMEM unicode_map[] = {
     [BANG]  = 0x203D,  // ‽
     [IRONY] = 0x2E2E,  // ⸮
     [SNEK]  = 0x1F40D, // 🐍
+    [uni_a_CIRCUMFLEX] = 0x00E2, // â
+    [uni_a_DIAERESIS] = 0x00E4, // ä
+    [uni_a_GRAVE] = 0x00E0, // à
+    [uni_c_CEDILLA] = 0x00E7, // ç
+    [uni_e_ACUTE] = 0x00E9, // é
+    [uni_e_CIRCUMFLEX] = 0x00EA, // ê
+    [uni_e_DIAERESIS] = 0x00EB, // ë
+    [uni_e_GRAVE] = 0x00E8, // è
+    [uni_i_CIRCUMFLEX] = 0x00EE, // î
+    [uni_i_DIAERESIS] = 0x00EF, // ï
+    [uni_n_TILDE] = 0x00F1, // ñ
+    [uni_o_CIRCUMFLEX] = 0x00F4, // ô
+    [uni_o_DIAERESIS] = 0x00F6, // ö
+    [uni_s_SHARP] = 0x00DF, // ß
+    [uni_u_CIRCUMFLEX] = 0x00FB, // û
+    [uni_u_DIAERESIS] = 0x00FC, // ü
+    [uni_u_GRAVE] = 0x00F9, // ù
+    [uni_y_DIAERESIS] = 0x00FF, // ÿ
+    [uni_A_CIRCUMFLEX] = 0x00C2, // Â
+    [uni_A_DIAERESIS] = 0x00C4, // Ä
+    [uni_A_GRAVE] = 0x00C0, // À
+    [uni_C_CEDILLA] = 0x00C7, // Ç
+    [uni_E_ACUTE] = 0x00C9, // É
+    [uni_E_CIRCUMFLEX] = 0x00CA, // Ê
+    [uni_E_DIAERESIS] = 0x00CB, // Ë
+    [uni_E_GRAVE] = 0x00C8, // È
+    [uni_I_CIRCUMFLEX] = 0x00CE, // Î
+    [uni_I_DIAERESIS] = 0x00CF, // Ï
+    [uni_N_TILDE] = 0x00D1, // Ñ
+    [uni_O_CIRCUMFLEX] = 0x00D4, // Ô
+    [uni_O_DIAERESIS] = 0x00D6, // Ö
+    [uni_S_SHARP] = 0x1E9E, // ẞ
+    [uni_U_CIRCUMFLEX] = 0x00DB, // Û
+    [uni_U_DIAERESIS] = 0x00DC, // Ü
+    [uni_U_GRAVE] = 0x00D9, // Ù
+    [uni_Y_DIAERESIS] = 0x0178, // Ÿ
 };
+
+#define a_CIRCM XP(uni_a_CIRCUMFLEX, uni_A_CIRCUMFLEX)
+#define a_DIAER XP(uni_a_DIAERESIS, uni_A_DIAERESIS)
+#define a_GRAVE XP(uni_a_GRAVE, uni_A_GRAVE)
+#define c_CEDIL XP(uni_c_CEDILLA, uni_C_CEDILLA)
+#define e_ACUTE XP(uni_e_ACUTE, uni_E_ACUTE)
+#define e_CIRCM XP(uni_e_CIRCUMFLEX, uni_E_CIRCUMFLEX)
+//#define e_CIRCM X(uni_e_CIRCUMFLEX)
+#define e_GRAVE XP(uni_e_GRAVE, uni_E_GRAVE)
+#define e_DIAER XP(uni_e_DIAERESIS, uni_E_DIAERESIS)
+#define i_CIRCM XP(uni_i_CIRCUMFLEX, uni_I_CIRCUMFLEX)
+#define i_DIAER XP(uni_i_DIAERESIS, uni_I_DIAERESIS)
+#define n_TILDE XP(uni_n_TILDE, uni_N_TILDE)
+#define o_CIRCM XP(uni_o_CIRCUMFLEX, uni_O_CIRCUMFLEX)
+#define o_DIAER XP(uni_o_DIAERESIS, uni_O_DIAERESIS)
+#define s_SHARP XP(uni_s_SHARP, uni_S_SHARP)
+#define u_CIRCM XP(uni_u_CIRCUMFLEX, uni_U_CIRCUMFLEX)
+#define u_DIAER XP(uni_u_DIAERESIS, uni_U_DIAERESIS)
+#define u_GRAVE XP(uni_u_GRAVE, uni_U_GRAVE)
+#define y_DIAER XP(uni_y_DIAERESIS, uni_Y_DIAERESIS)
+
+#define A_CIRCM X(uni_A_CIRCUMFLEX)
+#define A_DIAER X(uni_A_DIAERESIS)
+#define A_GRAVE X(uni_A_GRAVE)
+#define C_CEDIL X(uni_C_CEDILLA)
+#define E_ACUTE X(uni_E_ACUTE)
+#define E_CIRCM X(uni_E_CIRCUMFLEX)
+#define E_GRAVE X(uni_E_GRAVE)
+#define E_DIAER X(uni_E_DIAERESIS)
+#define I_CIRCM X(uni_I_CIRCUMFLEX)
+#define I_DIAER X(uni_I_DIAERESIS)
+#define N_TILDE X(uni_N_TILDE)
+#define O_CIRCM X(uni_O_CIRCUMFLEX)
+#define O_DIAER X(uni_O_DIAERESIS)
+#define S_SHARP X(uni_S_SHARP)
+#define U_CIRCM X(uni_U_CIRCUMFLEX)
+#define U_DIAER X(uni_U_DIAERESIS)
+#define U_GRAVE X(uni_U_GRAVE)
+#define Y_DIAER X(uni_Y_DIAERESIS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -61,10 +172,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [FRSYMBOL] = LAYOUT_6x6(
         KC_F12 , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                        KC_N   , KC_A  , KC_P  , KC_F9 ,KC_F10 ,RESET ,
-        _______, KC_NO , KC_AT ,KC_HASH,KC_DLR ,KC_PERC,                        KC_CIRC,_______,_______,_______,_______,_______,
-        _______,KC_NO  ,KC_RCBR,KC_LCBR,KC_GRV ,KC_CIRC,                        KC_PERC,_______,_______,_______,_______,_______,
-        _______,_______,KC_RPRN,KC_LPRN,KC_UNDS,KC_AMPR,                        KC_DLR ,_______,_______,KC_DQUO,KC_QUOT,_______,
-        _______,KC_EXLM,KC_RBRC,KC_LBRC,_______,KC_TILD,                        KC_HASH,KC_ASTR,_______,KC_BSLS,KC_PIPE,_______,
+        n_TILDE,a_DIAER, KC_AT ,KC_HASH,KC_DLR ,KC_PERC,                        y_DIAER,u_DIAER,e_DIAER,o_DIAER,i_DIAER,_______,
+        s_SHARP,a_CIRCM,KC_RCBR,KC_LCBR,KC_GRV ,KC_CIRC,                        KC_PERC,u_CIRCM,e_CIRCM,o_CIRCM,i_CIRCM,_______,
+        _______,a_GRAVE,KC_RPRN,KC_LPRN,KC_UNDS,KC_AMPR,                        KC_DLR ,u_GRAVE,e_ACUTE,KC_DQUO,KC_QUOT,_______,
+        _______,KC_EXLM,KC_RBRC,KC_LBRC,c_CEDIL,KC_TILD,                        KC_HASH,KC_ASTR,e_GRAVE,KC_BSLS,KC_PIPE,_______,
                         _______,_______,                                                        _______,_______,
                                         OSL(FRCAPS),_______,                _______,_______,
                                                 _______,_______,        _______,_______,
@@ -72,10 +183,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [FRCAPS] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                        _______,_______,LSFT(KC_E),_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+        N_TILDE,A_DIAER,_______,_______,_______,_______,                        Y_DIAER,U_DIAER,E_DIAER,O_DIAER,I_DIAER,_______,
+        S_SHARP,A_CIRCM,_______,_______,_______,_______,                        _______,U_CIRCM,E_CIRCM,O_CIRCM,I_CIRCM,_______,
+        _______,A_GRAVE,_______,_______,_______,_______,                        _______,U_GRAVE,E_ACUTE,_______,_______,_______,
+        _______,_______,_______,_______,C_CEDIL,_______,                        _______,_______,_______,_______,_______,_______,
                         _______,_______,                                                        _______,_______,
                                             _______,_______,                _______,_______,
                                                 _______,_______,        _______,_______,
