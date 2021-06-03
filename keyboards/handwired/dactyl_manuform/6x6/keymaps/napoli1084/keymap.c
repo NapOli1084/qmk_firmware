@@ -1,12 +1,13 @@
 #include QMK_KEYBOARD_H
 
-
-#define WORKMAN 0
-#define NAVNUM 1
-#define FRSYMBOL 2
-#define FRCAPS 3
-#define F1F12 4
-#define WINDOWS 5
+enum layer_names {
+    WORKMAN,
+    NAVNUM,
+    FRSYMBOL,
+    FRCAPS,
+    F1F12,
+    WINDOWS
+};
 
 #define HOLDLYR _______
 #define TTNVNUM TT(NAVNUM)
