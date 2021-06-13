@@ -2,14 +2,18 @@
 
 enum layer_names {
     WORKMAN,
+    GAME,
     NAVNUM,
     FRSYMBOL,
     FRCAPS,
+    MOUSE,
     F1F12,
     WINDOWS
 };
 
 #define HOLDLYR _______
+#define TTGAME TT(GAME)
+#define TTMOUSE TT(MOUSE)
 #define TTNVNUM TT(NAVNUM)
 #define TTF1F12 TT(F1F12)
 #define LTWIN_T LT(WINDOWS,KC_T)
@@ -150,15 +154,26 @@ const uint32_t PROGMEM unicode_map[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [WORKMAN] = LAYOUT_6x6(
-        KC_NO  , KC_NO , KC_NO ,KC_HYPR,TTNVNUM,TT(WINDOWS),                    TTF1F12,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
+        KC_NO  , KC_NO , KC_NO ,TTGAME ,KC_HYPR,TT(WINDOWS),                    TTF1F12,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
         KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                        KC_TAB ,KC_DEL ,KC_SPC ,KC_BSPC, KC_0  ,KC_DELETE,
         KC_TAB , KC_Q  , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,KC_SCLN,KC_BSPC,
         KC_LSFT, KC_A  , KC_S  , KC_H  ,LTWIN_T, KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,KC_I   ,KC_RSFT,
         KC_LCTL, KC_Z  , KC_X  , KC_M  , KC_C  , KC_V  ,                         KC_K  , KC_L  ,KC_COMM,KC_DOT ,KC_SLSH,KC_RCTL,
                         KC_LCTL,KC_LSFT,                                                        KC_LALT,KC_LWIN,
                                         OSL(NAVNUM),KC_SPACE,                KC_ENTER,OSL(FRSYMBOL),
-                                                KC_TAB ,KC_WH_U,        KC_PGUP, KC_DEL,
+                                                TTMOUSE,KC_WH_U,        KC_PGUP,TTMOUSE,
                                                 KC_BSPC,KC_WH_D,        KC_PGDN,KC_LALT
+    ),
+    [GAME] = LAYOUT_6x6(
+        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+        _______,KC_T   ,KC_1   ,KC_2   ,KC_3   ,KC_4   ,                        KC_6   ,KC_7   ,KC_8   ,KC_9   ,_______,_______,
+        _______,KC_LCTL,KC_Q   ,KC_W   ,KC_E   ,KC_R   ,                        _______,KC_H   ,_______,_______,_______,_______,
+        _______,KC_LSFT,KC_A   ,KC_S   ,KC_D   ,KC_F   ,                        _______,_______,KC_M   ,_______,_______,_______,
+        _______,KC_LCTL,KC_Z   ,KC_X   ,KC_C   ,KC_V   ,                        _______,_______,_______,_______,_______,_______,
+                        _______,KC_LALT,                                                        _______,_______,
+                                            KC_SPACE,OSL(F1F12),            _______,_______,
+                                                KC_G   ,KC_B   ,        _______,_______,
+                                                _______,_______,        _______,_______
     ),
     [NAVNUM] = LAYOUT_6x6(
         KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 , KC_F6  ,                         KC_F7 , KC_F8 , KC_F9 ,KC_F10 ,KC_F11 ,KC_F12 ,
@@ -189,6 +204,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,A_GRAVE,_______,_______,_______,_______,                        _______,U_GRAVE,E_ACUTE,_______,_______,_______,
         _______,_______,_______,_______,C_CEDIL,_______,                        _______,_______,E_GRAVE,_______,_______,_______,
                         _______,_______,                                                        _______,_______,
+                                            _______,_______,                _______,_______,
+                                                _______,_______,        _______,_______,
+                                                _______,_______,        _______,_______
+    ),
+    [MOUSE] = LAYOUT_6x6(
+        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+        _______,_______,_______,KC_BTN3,_______,_______,                        _______,_______,_______,_______,_______,_______,
+        _______,_______,KC_BTN1,KC_MS_U,KC_BTN2,_______,                        _______,KC_BTN1,KC_MS_U,KC_BTN2,_______,_______,
+        _______,LCTL(KC_A),KC_MS_L,KC_MS_D,KC_MS_R,KC_WH_U,                     KC_WH_U,KC_MS_L,KC_MS_D,KC_MS_R,LCTL(KC_A),_______,
+        _______,LCTL(KC_Z),LCTL(KC_X),LCTL(KC_C),LCTL(KC_V),KC_WH_D,            KC_WH_D,LCTL(KC_V),LCTL(KC_C),LCTL(KC_X),LCTL(KC_Z),_______,
+                        KC_BTN1,KC_BTN2,                                                        KC_BTN1,KC_BTN2,
                                             _______,_______,                _______,_______,
                                                 _______,_______,        _______,_______,
                                                 _______,_______,        _______,_______
