@@ -12,8 +12,8 @@ enum layer_names {
 #define HOLDLYR _______
 #define TTNVNUM TT(NAVNUM)
 #define TTF1F12 TT(F1F12)
-#define LTF1_T LT(F1F12,KC_T)
-#define LTWIN_N LT(WINDOWS,KC_N)
+#define LTWIN_T LT(WINDOWS,KC_T)
+#define LTF1_N LT(F1F12,KC_N)
 #define WINSFTL LGUI(LSFT(KC_LEFT))
 #define WINSFTR LGUI(LSFT(KC_RIGHT))
 #define WINDOWN LGUI(KC_DOWN)
@@ -153,7 +153,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO  , KC_NO , KC_NO ,KC_HYPR,TTNVNUM,TT(WINDOWS),                    TTF1F12,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
         KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                        KC_TAB ,KC_DEL ,KC_SPC ,KC_BSPC, KC_0  ,KC_DELETE,
         KC_TAB , KC_Q  , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,KC_SCLN,KC_BSPC,
-        KC_LSFT, KC_A  , KC_S  , KC_H  ,LTF1_T , KC_G  ,                         KC_Y  ,LTWIN_N, KC_E  , KC_O  ,KC_I   ,KC_RSFT,
+        KC_LSFT, KC_A  , KC_S  , KC_H  ,LTWIN_T, KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,KC_I   ,KC_RSFT,
         KC_LCTL, KC_Z  , KC_X  , KC_M  , KC_C  , KC_V  ,                         KC_K  , KC_L  ,KC_COMM,KC_DOT ,KC_SLSH,KC_RCTL,
                         KC_LCTL,KC_LSFT,                                                        KC_LALT,KC_LWIN,
                                         OSL(NAVNUM),KC_SPACE,                KC_ENTER,OSL(FRSYMBOL),
@@ -195,10 +195,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [F1F12] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
-        _______,_______,_______,_______,_______,_______,                        _______,KC_F10 ,KC_F11 ,KC_F12 ,_______,_______,
-        _______,_______,_______,_______,_______,_______,                        _______,KC_F7  ,KC_F8  ,KC_F9  ,_______,_______,
-        _______,_______,_______,HOLDLYR,_______,_______,                        _______,KC_F4  ,KC_F5  ,KC_F6  ,_______,_______,
-        _______,_______,_______,_______,_______,_______,                        _______,KC_F1  ,KC_F2  ,KC_F3  ,_______,_______,
+        KC_F20 ,KC_F21 ,KC_F10 ,KC_F11 ,KC_F12 ,KC_F22 ,                        _______,KC_F10 ,KC_F11 ,KC_F12 ,_______,_______,
+        KC_F17 ,KC_F18 ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F19 ,                        _______,KC_F7  ,KC_F8  ,KC_F9  ,_______,_______,
+        KC_F14 ,KC_F15 ,KC_F4  ,KC_F5  ,KC_F6  ,KC_F16 ,                        _______,HOLDLYR,KC_F5  ,KC_F6  ,_______,_______,
+        KC_F23 ,KC_F24 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F13 ,                        _______,KC_F1  ,KC_F2  ,KC_F3  ,_______,_______,
                         _______,_______,                                                        _______,_______,
                                             _______,_______,                _______,_______,
                                                 _______,_______,        _______,_______,
@@ -207,9 +207,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [WINDOWS] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
-        _______,_______,WINLEFT,WINUP  ,WINRGHT,_______,                        _______,_______,_______,_______,_______,_______,
-        _______,ALT_F4 ,WINSFTL,WINDOWN,WINSFTR,_______,                        _______,_______,_______,_______,_______,_______,
-        _______,_______,WINCTLL,_______,WINCTLR,_______,                        _______,_______,_______,_______,_______,_______,
+        _______,_______,KC_MPRV,KC_VOLU,_______,_______,                        _______,WINLEFT,WINUP  ,WINRGHT,_______,_______,
+        _______,_______,KC_MNXT,KC_VOLD,HOLDLYR,_______,                        _______,WINSFTL,WINDOWN,WINSFTR,ALT_F4 ,_______,
+        _______,_______,KC_MPLY,KC_MUTE,_______,_______,                        _______,WINCTLL,_______,WINCTLR,_______,_______,
                         _______,_______,                                                        _______,_______,
                                             _______,_______,                _______,_______,
                                                 _______,_______,        _______,_______,
