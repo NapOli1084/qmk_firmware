@@ -16,6 +16,7 @@ enum layer_names {
 #define TTMOUSE TT(MOUSE)
 #define TTNVNUM TT(NAVNUM)
 #define TTF1F12 TT(F1F12)
+#define TTWIN TT(WINDOWS)
 #define LTWIN_T LT(WINDOWS,KC_T)
 #define LTF1_N LT(F1F12,KC_N)
 #define WINSFTL LGUI(LSFT(KC_LEFT))
@@ -154,7 +155,7 @@ const uint32_t PROGMEM unicode_map[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [WORKMAN] = LAYOUT_6x6(
-        KC_NO  , KC_NO , KC_NO ,TTGAME ,KC_HYPR,TT(WINDOWS),                    TTF1F12,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
+        KC_NO  , KC_NO , KC_NO ,TTGAME ,KC_HYPR,TTF1F12,                        TTWIN  ,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
         KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                        KC_TAB ,KC_DEL ,KC_SPC ,KC_BSPC, KC_0  ,KC_DELETE,
         KC_TAB , KC_Q  , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,KC_SCLN,KC_BSPC,
         KC_LSFT, KC_A  , KC_S  , KC_H  ,LTWIN_T, KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,KC_I   ,KC_RSFT,
