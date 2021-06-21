@@ -19,6 +19,12 @@ enum layer_names {
 #define TTWIN TT(WINDOWS)
 #define LTWIN_T LT(WINDOWS,KC_T)
 #define LTF1_N LT(F1F12,KC_N)
+#define LCTL_Q LCTL_T(KC_Q)
+#define LSFT_A LSFT_T(KC_A)
+#define LCTL_Z LCTL_T(KC_Z)
+#define RCTL_SC RCTL_T(KC_SCOLON)
+#define RSFT_I RSFT_T(KC_I)
+#define RCTL_SL RCTL_T(KC_SLASH)
 #define WINSFTL LGUI(LSFT(KC_LEFT))
 #define WINSFTR LGUI(LSFT(KC_RIGHT))
 #define WINDOWN LGUI(KC_DOWN)
@@ -29,6 +35,7 @@ enum layer_names {
 #define WINCTLL LCTL(LGUI(KC_LEFT))
 #define WINCTLR LCTL(LGUI(KC_RIGHT))
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 enum unicode_names {
     BANG,
     IRONY,
@@ -119,7 +126,6 @@ const uint32_t PROGMEM unicode_map[] = {
 #define c_CEDIL XP(uni_c_CEDILLA, uni_C_CEDILLA)
 #define e_ACUTE XP(uni_e_ACUTE, uni_E_ACUTE)
 #define e_CIRCM XP(uni_e_CIRCUMFLEX, uni_E_CIRCUMFLEX)
-//#define e_CIRCM X(uni_e_CIRCUMFLEX)
 #define e_GRAVE XP(uni_e_GRAVE, uni_E_GRAVE)
 #define e_DIAER XP(uni_e_DIAERESIS, uni_E_DIAERESIS)
 #define i_CIRCM XP(uni_i_CIRCUMFLEX, uni_I_CIRCUMFLEX)
@@ -152,14 +158,30 @@ const uint32_t PROGMEM unicode_map[] = {
 #define U_GRAVE X(uni_U_GRAVE)
 #define Y_DIAER X(uni_Y_DIAERESIS)
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Tap Dance declarations
+enum tap_dance_id{
+    tap_dance_h_esc,
+};
+
+// Tap Dance definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for H, twice for Escape
+    [tap_dance_h_esc] = ACTION_TAP_DANCE_DOUBLE(KC_H, KC_ESC),
+};
+
+#define TD_H_ESC TD(tap_dance_h_esc)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [WORKMAN] = LAYOUT_6x6(
         KC_NO  , KC_NO , KC_NO ,TTGAME ,KC_HYPR,TTF1F12,                        TTWIN  ,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
         KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                        KC_TAB ,KC_DEL ,KC_SPC ,KC_BSPC, KC_0  ,KC_DELETE,
-        KC_TAB , KC_Q  , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,KC_SCLN,KC_BSPC,
-        KC_LSFT, KC_A  , KC_S  , KC_H  ,LTWIN_T, KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,KC_I   ,KC_RSFT,
-        KC_LCTL, KC_Z  , KC_X  , KC_M  , KC_C  , KC_V  ,                         KC_K  , KC_L  ,KC_COMM,KC_DOT ,KC_SLSH,KC_RCTL,
+        KC_TAB ,LCTL_Q , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,RCTL_SC,KC_BSPC,
+        KC_LSFT,LSFT_A , KC_S  ,TD_H_ESC,LTWIN_T, KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,RSFT_I ,KC_RSFT,
+        KC_LCTL,LCTL_Z , KC_X  , KC_M  , KC_C  , KC_V  ,                         KC_K  , KC_L  ,KC_COMM,KC_DOT ,RCTL_SL,KC_RCTL,
                         KC_LCTL,KC_LSFT,                                                        KC_LALT,KC_LWIN,
                                         OSL(NAVNUM),KC_SPACE,                KC_ENTER,OSL(FRSYMBOL),
                                                 TTMOUSE,KC_WH_U,        KC_PGUP,TTMOUSE,
