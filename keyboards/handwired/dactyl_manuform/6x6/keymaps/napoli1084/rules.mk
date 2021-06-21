@@ -3,3 +3,4 @@ RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
 BOOTMAGIC_ENABLE = lite
 LTO_ENABLE = yes
 UNICODEMAP_ENABLE = yes
+TAP_DANCE_ENABLE = yes
