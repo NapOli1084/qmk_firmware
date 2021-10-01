@@ -180,26 +180,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO  , KC_NO , KC_NO ,TTGAME ,KC_HYPR,TTF1F12,                        TTWIN  ,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
         KC_ESC , KC_1  , KC_2  , KC_3  , KC_4  , KC_5  ,                        KC_TAB ,KC_DEL ,KC_SPC ,KC_BSPC, KC_0  ,KC_DELETE,
         KC_TAB ,LCTL_Q , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,RCTL_SC,KC_BSPC,
-        KC_LSFT,LSFT_A , KC_S  ,TD_H_ESC,LTWIN_T, KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,RSFT_I ,KC_RSFT,
+        KC_LSFT,LSFT_A , KC_S  ,TD_H_ESC,LTWIN_T,KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,RSFT_I ,KC_RSFT,
         KC_LCTL,LCTL_Z , KC_X  , KC_M  , KC_C  , KC_V  ,                         KC_K  , KC_L  ,KC_COMM,KC_DOT ,RCTL_SL,KC_RCTL,
-                        KC_LCTL,KC_LSFT,                                                        KC_LALT,KC_LWIN,
+                        KC_LCTL,KC_LALT,                                                        KC_LALT,KC_LWIN,
                                         OSL(NAVNUM),KC_SPACE,                KC_ENTER,OSL(FRSYMBOL),
-                                                TTMOUSE,KC_WH_U,        KC_PGUP,TTMOUSE,
-                                                KC_BSPC,KC_WH_D,        KC_PGDN,KC_LALT
+                                                 TTGAME,KC_WH_U,        KC_PGUP,TTMOUSE,
+                                             OSL(F1F12),KC_WH_D,        KC_PGDN,KC_LALT
     ),
     [GAME] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,KC_T   ,KC_1   ,KC_2   ,KC_3   ,KC_4   ,                        KC_6   ,KC_7   ,KC_8   ,KC_9   ,_______,_______,
         _______,KC_H   ,KC_Q   ,KC_W   ,KC_E   ,KC_R   ,                        _______,_______,_______,_______,_______,_______,
-        _______,KC_LSFT,KC_A   ,KC_S   ,KC_D   ,KC_F   ,                        _______,_______,_______,_______,_______,_______,
-        _______,KC_LCTL,KC_Z   ,KC_X   ,KC_C   ,KC_V   ,                        _______,_______,_______,_______,_______,_______,
+         KC_K  ,KC_LSFT,KC_A   ,KC_S   ,KC_D   ,KC_F   ,                        _______,_______,_______,_______,_______,_______,
+         KC_P  ,KC_LCTL,KC_Z   ,KC_X   ,KC_C   ,KC_V   ,                        _______,_______,_______,_______,_______,_______,
                         KC_M   ,KC_LALT,                                                        _______,_______,
-                                            KC_SPACE,OSL(F1F12),            _______,_______,
-                                                KC_G   ,KC_B   ,        _______,_______,
-                                                _______,_______,        _______,_______
+                                            KC_SPACE,OSL(NAVNUM),            _______,_______,
+                                                _______,KC_B   ,        _______,_______,
+                                                _______,KC_G   ,        _______,_______
     ),
     [NAVNUM] = LAYOUT_6x6(
-        KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 , KC_F6  ,                         KC_F7 , KC_F8 , KC_F9 ,KC_F10 ,KC_F11 ,KC_F12 ,
+        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,KC_NO,KC_SYSREQ,KC_SLCK,KC_PAUS,KC_INS ,                        KC_CIRC,KC_NLCK,KC_SLSH,KC_ASTR,KC_MINUS,_______,
         _______,KC_NO  ,KC_HOME,KC_UP  ,KC_PGUP,KC_WH_U,                        KC_PERC, KC_7  , KC_8  , KC_9  ,KC_MINUS,_______,
         _______,KC_WH_L,KC_LEFT,KC_DOWN,KC_RGHT,KC_WH_R,                        KC_DLR , KC_4  , KC_5  , KC_6  ,KC_PLUS,_______,
@@ -210,7 +210,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______
     ),
     [FRSYMBOL] = LAYOUT_6x6(
-        KC_F12 , KC_F1 , KC_F2 , KC_F3 , KC_F4 , KC_F5 ,                        KC_N   , KC_A  , KC_P  , KC_F9 ,KC_F10 ,RESET ,
+        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______, RESET ,
         n_TILDE,a_DIAER, KC_AT ,KC_HASH,KC_DLR ,KC_PERC,                        y_DIAER,u_DIAER,e_DIAER,o_DIAER,i_DIAER,_______,
         s_SHARP,a_CIRCM,KC_RCBR,KC_LCBR,KC_GRV ,KC_CIRC,                        KC_PERC,u_CIRCM,e_CIRCM,o_CIRCM,i_CIRCM,_______,
         _______,a_GRAVE,KC_RPRN,KC_LPRN,KC_UNDS,KC_AMPR,                        KC_DLR ,u_GRAVE,e_ACUTE,KC_DQUO,KC_QUOT,_______,
