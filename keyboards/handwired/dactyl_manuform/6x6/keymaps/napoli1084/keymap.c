@@ -28,6 +28,7 @@ enum layer_names {
 #define CTL_X LCTL(KC_X)
 #define CTL_C LCTL(KC_C)
 #define CTL_V LCTL(KC_V)
+#define CTL_F7 LCTL(KC_F7)
 
 // Hold for CTL/SFT, tap for char
 #define LCTL_Q LCTL_T(KC_Q)
@@ -174,21 +175,27 @@ const uint32_t PROGMEM unicode_map[] = {
 // Tap Dance declarations
 enum tap_dance_id{
     tap_dance_h_esc,
-    tap_dance_ctl_x_ctl_s,
     tap_dance_ctl_z_ctl_a,
+    tap_dance_ctl_x_ctl_s,
+    tap_dance_ctl_c_F5,
+    tap_dance_F7_ctl_F7,
 };
 
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for H, twice for Escape
     [tap_dance_h_esc] = ACTION_TAP_DANCE_DOUBLE(KC_H, KC_ESC),
-    [tap_dance_ctl_x_ctl_s] = ACTION_TAP_DANCE_DOUBLE(CTL_X, CTL_S),
     [tap_dance_ctl_z_ctl_a] = ACTION_TAP_DANCE_DOUBLE(CTL_Z, CTL_A),
+    [tap_dance_ctl_x_ctl_s] = ACTION_TAP_DANCE_DOUBLE(CTL_X, CTL_S),
+    [tap_dance_ctl_c_F5] = ACTION_TAP_DANCE_DOUBLE(CTL_C, KC_F5),
+    [tap_dance_F7_ctl_F7] = ACTION_TAP_DANCE_DOUBLE(KC_F7, CTL_F7),
 };
 
 #define TD_H_ESC TD(tap_dance_h_esc)
-#define TD_CTLX TD(tap_dance_ctl_x_ctl_s)
 #define TD_CTLZ TD(tap_dance_ctl_z_ctl_a)
+#define TD_CTLX TD(tap_dance_ctl_x_ctl_s)
+#define TD_CTLC TD(tap_dance_ctl_c_F5)
+#define TD_F7 TD(tap_dance_F7_ctl_F7)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -196,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [WORKMAN] = LAYOUT_6x6(
         KC_NO  , KC_NO , KC_NO ,TTGAME ,KC_HYPR,TTF1F12,                        TTWIN  ,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
-        KC_ESC ,TD_CTLZ,TD_CTLX, CTL_C , CTL_V , KC_5  ,                        KC_TAB ,KC_DEL ,KC_SPC ,KC_BSPC, KC_0  ,KC_DELETE,
+        KC_ESC ,TD_CTLZ,TD_CTLX,TD_CTLC, CTL_V , TD_F7 ,                        KC_TAB ,KC_DEL ,KC_SPC ,KC_BSPC, KC_0  ,KC_DELETE,
         KC_TAB ,LCTL_Q , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,RCTL_SC,KC_BSPC,
         KC_LSFT,LSFT_A , KC_S  ,TD_H_ESC,LTWIN_T,KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,RSFT_I ,KC_RSFT,
         KC_LCTL,LCTL_Z , KC_X  , KC_M  , KC_C  , KC_V  ,                         KC_K  , KC_L  ,KC_COMM,KC_DOT ,RCTL_SL,KC_RCTL,
