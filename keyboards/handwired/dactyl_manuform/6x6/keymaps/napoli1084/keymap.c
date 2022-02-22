@@ -28,6 +28,9 @@ enum layer_names {
 #define CTL_X LCTL(KC_X)
 #define CTL_C LCTL(KC_C)
 #define CTL_V LCTL(KC_V)
+#define CTL_F LCTL(KC_F)
+#define CTL_P LCTL(KC_P)
+#define CTL_O LCTL(KC_O)
 #define CTL_F7 LCTL(KC_F7)
 
 // Hold for CTL/SFT, tap for char
@@ -176,9 +179,11 @@ const uint32_t PROGMEM unicode_map[] = {
 enum tap_dance_id{
     tap_dance_h_esc,
     tap_dance_ctl_z_ctl_a,
-    tap_dance_ctl_x_ctl_s,
+    tap_dance_ctl_s_ctl_x,
     tap_dance_ctl_c_F5,
     tap_dance_F7_ctl_F7,
+    tap_dance_ctl_f_F3,
+    tap_dance_ctl_p_ctl_o,
 };
 
 // Tap Dance definitions
@@ -186,16 +191,20 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for H, twice for Escape
     [tap_dance_h_esc] = ACTION_TAP_DANCE_DOUBLE(KC_H, KC_ESC),
     [tap_dance_ctl_z_ctl_a] = ACTION_TAP_DANCE_DOUBLE(CTL_Z, CTL_A),
-    [tap_dance_ctl_x_ctl_s] = ACTION_TAP_DANCE_DOUBLE(CTL_X, CTL_S),
+    [tap_dance_ctl_s_ctl_x] = ACTION_TAP_DANCE_DOUBLE(CTL_S, CTL_X),
     [tap_dance_ctl_c_F5] = ACTION_TAP_DANCE_DOUBLE(CTL_C, KC_F5),
-    [tap_dance_F7_ctl_F7] = ACTION_TAP_DANCE_DOUBLE(KC_F7, CTL_F7),
+    [tap_dance_F7_ctl_F7] = ACTION_TAP_DANCE_DOUBLE(CTL_F7, KC_F7),
+    [tap_dance_ctl_f_F3] = ACTION_TAP_DANCE_DOUBLE(KC_F3, CTL_F),
+    [tap_dance_ctl_p_ctl_o] = ACTION_TAP_DANCE_DOUBLE(CTL_P, CTL_O),
 };
 
 #define TD_H_ESC TD(tap_dance_h_esc)
 #define TD_CTLZ TD(tap_dance_ctl_z_ctl_a)
-#define TD_CTLX TD(tap_dance_ctl_x_ctl_s)
+#define TD_CTLS TD(tap_dance_ctl_s_ctl_x)
 #define TD_CTLC TD(tap_dance_ctl_c_F5)
+#define TD_CTLF TD(tap_dance_ctl_f_F3)
 #define TD_F7 TD(tap_dance_F7_ctl_F7)
+#define TD_CTLP TD(tap_dance_ctl_p_ctl_o)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -203,7 +212,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [WORKMAN] = LAYOUT_6x6(
         KC_NO  , KC_NO , KC_NO ,TTGAME ,KC_HYPR,TTF1F12,                        TTWIN  ,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
-        KC_ESC ,TD_CTLZ,TD_CTLX,TD_CTLC, CTL_V , TD_F7 ,                        KC_TAB ,KC_DEL ,KC_SPC ,KC_BSPC, KC_0  ,KC_DELETE,
+        KC_ESC ,TD_CTLZ,TD_CTLS,TD_CTLC, CTL_V , TD_F7 ,                        KC_TAB ,TD_CTLF,KC_SPC ,TD_CTLP, KC_0  ,KC_DELETE,
         KC_TAB ,LCTL_Q , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,RCTL_SC,KC_BSPC,
         KC_LSFT,LSFT_A , KC_S  ,TD_H_ESC,LTWIN_T,KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,RSFT_I ,KC_RSFT,
         KC_LCTL,LCTL_Z , KC_X  , KC_M  , KC_C  , KC_V  ,                         KC_K  , KC_L  ,KC_COMM,KC_DOT ,RCTL_SL,KC_RCTL,
