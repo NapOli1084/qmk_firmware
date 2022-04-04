@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_BSLS, KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,     KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC,
     KC_F1  , KC_CAPS, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   ,     KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT, KC_ENT ,
     KC_F2  , KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,     KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, KC_EQL ,
-    LOWER  , KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT, LOWER  , KC_SPC ,     KC_SPC , KC_F5  , KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL
+    LOWER  , KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT, LOWER  , KC_SPC ,     KC_SPC , RAISE  , KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL
   ),
 
 /* Lower
@@ -93,6 +93,64 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+// Light LEDs 6 to 9 and 12 to 15 red when caps lock is active. Hard to ignore!
+const rgblight_segment_t PROGMEM my_capslock_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 3, HSV_WHITE},       // Light 3 LEDs, starting with LED 0
+    {11, 3, HSV_WHITE}       // Light 3 LEDs, starting with LED 11
+);
+// Light LEDs 9 & 10 in cyan when keyboard layer 1 is active
+const rgblight_segment_t PROGMEM my_qwerty_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
+    // Left hand
+    {0, 1, HSV_MAGENTA}, // 213
+    {1, 1, 234, 255, 255}, //HSV_PINK},
+    {2, 1, HSV_RED}, // 0
+    {3, 1, 5, 255, 255}, //
+    {4, 1, 10, 255, 255}, // Coral
+    {5, 1, 15, 255, 255}, //
+    {6, 1, 21, 255, 255}, // Orange
+    // Right hand
+    {7, 1, HSV_YELLOW}, // 43
+    {8, 1, HSV_CHARTREUSE},
+    {9, 1, HSV_GREEN},
+    {10, 1, HSV_SPRINGGREEN},
+    {11, 1, HSV_CYAN},
+    {12, 1, HSV_BLUE},
+    {13, 1, HSV_PURPLE}
+);
+const rgblight_segment_t PROGMEM my_numnav_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 14, HSV_CYAN}
+);
+const rgblight_segment_t PROGMEM my_fkeys_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 14, HSV_MAGENTA}
+);
+
+const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+    my_capslock_rgblayer,
+    my_qwerty_rgblayer,    // Overrides caps lock layer
+    my_numnav_rgblayer,    // Overrides other layers
+    my_fkeys_rgblayer     // Overrides other layers
+);
+
+void keyboard_post_init_user(void) {
+    // Enable the LED layers
+    rgblight_layers = my_rgb_layers;
+}
+
+bool led_update_user(led_t led_state) {
+    rgblight_set_layer_state(0, led_state.caps_lock);
+    return true;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
+    return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    rgblight_set_layer_state(2, layer_state_cmp(state, _LOWER));
+    rgblight_set_layer_state(3, layer_state_cmp(state, _RAISE));
+    return state;
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
