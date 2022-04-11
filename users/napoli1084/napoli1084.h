@@ -3,6 +3,7 @@
 enum napoli1084_layers {
 #ifdef NAPOLI1084_QWERTY_ENABLE
     LYR_QWERTY, // Default layer on keyboards I share with other people
+    LYR_QNAVNUM, // Navigation/numpad layer for qwerty users
 #endif
     LYR_WORKNAP, // My main default layer, based on Workman layout
     LYR_GAME, // Game layer
@@ -12,14 +13,21 @@ enum napoli1084_layers {
 #ifdef MOUSEKEY_ENABLE
     LYR_MOUSE, // Mouse layer
 #endif
+#ifdef NAPOLI1084_QWERTY_ENABLE
+    LYR_FN, // Function keys layer
+#endif
     LYR_F1F12, // F keys layer
     LYR_WINDOWS // Windows combos layers
 };
 
+#define OSQNVNUM OSL(LYR_QNAVNUM)
+#define OSFN OSL(LYR_FN)
+#define TOQWERT TO(LYR_QWERTY)
 #define TTGAME TT(LYR_GAME)
 #define TTNVNUM TT(LYR_NAVNUM)
 #define TTF1F12 TT(LYR_F1F12)
 #define TTWIN TT(LYR_WINDOWS)
+#define TTWKNAP TT(LYR_WORKNAP)
 #define LTWIN_T LT(LYR_WINDOWS,KC_T)
 #define LTF1_N LT(LYR_F1F12,KC_N)
 
