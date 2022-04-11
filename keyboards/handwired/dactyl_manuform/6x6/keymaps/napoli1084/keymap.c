@@ -1,238 +1,32 @@
 #include QMK_KEYBOARD_H
+#include "napoli1084.h" // users/napoli1084
 
-enum layer_names {
-    WORKMAN,
-    GAME,
-    NAVNUM,
-    FRSYMBOL,
-    FRCAPS,
-    MOUSE,
-    F1F12,
-    WINDOWS
-};
-
-// Placeholder for key being held to toggle layer
-#define HOLDLYR _______
-
-#define TTGAME TT(GAME)
-#define TTMOUSE TT(MOUSE)
-#define TTNVNUM TT(NAVNUM)
-#define TTF1F12 TT(F1F12)
-#define TTWIN TT(WINDOWS)
-#define LTWIN_T LT(WINDOWS,KC_T)
-#define LTF1_N LT(F1F12,KC_N)
-
-#define CTL_A LCTL(KC_A)
-#define CTL_S LCTL(KC_S)
-#define CTL_Z LCTL(KC_Z)
-#define CTL_X LCTL(KC_X)
-#define CTL_C LCTL(KC_C)
-#define CTL_V LCTL(KC_V)
-#define CTL_F LCTL(KC_F)
-#define CTL_P LCTL(KC_P)
-#define CTL_O LCTL(KC_O)
-#define CTL_F7 LCTL(KC_F7)
-
-// Hold for CTL/SFT, tap for char
-#define LCTL_Q LCTL_T(KC_Q)
-#define LSFT_A LSFT_T(KC_A)
-#define LCTL_Z LCTL_T(KC_Z)
-#define RCTL_SC RCTL_T(KC_SCOLON)
-#define RSFT_I RSFT_T(KC_I)
-#define RCTL_SL RCTL_T(KC_SLASH)
-
-#define WINSFTL LGUI(LSFT(KC_LEFT))
-#define WINSFTR LGUI(LSFT(KC_RIGHT))
-#define WINDOWN LGUI(KC_DOWN)
-#define ALT_F4  LALT(KC_F4)
-#define WINLEFT LGUI(KC_LEFT)
-#define WINUP LGUI(KC_UP)
-#define WINRGHT LGUI(KC_RIGHT)
-#define WINCTLL LCTL(LGUI(KC_LEFT))
-#define WINCTLR LCTL(LGUI(KC_RIGHT))
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-enum unicode_names {
-    BANG,
-    IRONY,
-    SNEK,
-    uni_a_CIRCUMFLEX,
-    uni_a_DIAERESIS,
-    uni_a_GRAVE,
-    uni_c_CEDILLA,
-    uni_e_ACUTE,
-    uni_e_CIRCUMFLEX,
-    uni_e_DIAERESIS,
-    uni_e_GRAVE,
-    uni_i_CIRCUMFLEX,
-    uni_i_DIAERESIS,
-    uni_n_TILDE,
-    uni_o_CIRCUMFLEX,
-    uni_o_DIAERESIS,
-    uni_s_SHARP,
-    uni_u_CIRCUMFLEX,
-    uni_u_DIAERESIS,
-    uni_u_GRAVE,
-    uni_y_DIAERESIS,
-    uni_A_CIRCUMFLEX,
-    uni_A_DIAERESIS,
-    uni_A_GRAVE,
-    uni_C_CEDILLA,
-    uni_E_ACUTE,
-    uni_E_CIRCUMFLEX,
-    uni_E_DIAERESIS,
-    uni_E_GRAVE,
-    uni_I_CIRCUMFLEX,
-    uni_I_DIAERESIS,
-    uni_N_TILDE,
-    uni_O_CIRCUMFLEX,
-    uni_O_DIAERESIS,
-    uni_S_SHARP,
-    uni_U_CIRCUMFLEX,
-    uni_U_DIAERESIS,
-    uni_U_GRAVE,
-    uni_Y_DIAERESIS
-};
-
-const uint32_t PROGMEM unicode_map[] = {
-    [BANG]  = 0x203D,  // ‽
-    [IRONY] = 0x2E2E,  // ⸮
-    [SNEK]  = 0x1F40D, // 🐍
-    [uni_a_CIRCUMFLEX] = 0x00E2, // â
-    [uni_a_DIAERESIS] = 0x00E4, // ä
-    [uni_a_GRAVE] = 0x00E0, // à
-    [uni_c_CEDILLA] = 0x00E7, // ç
-    [uni_e_ACUTE] = 0x00E9, // é
-    [uni_e_CIRCUMFLEX] = 0x00EA, // ê
-    [uni_e_DIAERESIS] = 0x00EB, // ë
-    [uni_e_GRAVE] = 0x00E8, // è
-    [uni_i_CIRCUMFLEX] = 0x00EE, // î
-    [uni_i_DIAERESIS] = 0x00EF, // ï
-    [uni_n_TILDE] = 0x00F1, // ñ
-    [uni_o_CIRCUMFLEX] = 0x00F4, // ô
-    [uni_o_DIAERESIS] = 0x00F6, // ö
-    [uni_s_SHARP] = 0x00DF, // ß
-    [uni_u_CIRCUMFLEX] = 0x00FB, // û
-    [uni_u_DIAERESIS] = 0x00FC, // ü
-    [uni_u_GRAVE] = 0x00F9, // ù
-    [uni_y_DIAERESIS] = 0x00FF, // ÿ
-    [uni_A_CIRCUMFLEX] = 0x00C2, // Â
-    [uni_A_DIAERESIS] = 0x00C4, // Ä
-    [uni_A_GRAVE] = 0x00C0, // À
-    [uni_C_CEDILLA] = 0x00C7, // Ç
-    [uni_E_ACUTE] = 0x00C9, // É
-    [uni_E_CIRCUMFLEX] = 0x00CA, // Ê
-    [uni_E_DIAERESIS] = 0x00CB, // Ë
-    [uni_E_GRAVE] = 0x00C8, // È
-    [uni_I_CIRCUMFLEX] = 0x00CE, // Î
-    [uni_I_DIAERESIS] = 0x00CF, // Ï
-    [uni_N_TILDE] = 0x00D1, // Ñ
-    [uni_O_CIRCUMFLEX] = 0x00D4, // Ô
-    [uni_O_DIAERESIS] = 0x00D6, // Ö
-    [uni_S_SHARP] = 0x1E9E, // ẞ
-    [uni_U_CIRCUMFLEX] = 0x00DB, // Û
-    [uni_U_DIAERESIS] = 0x00DC, // Ü
-    [uni_U_GRAVE] = 0x00D9, // Ù
-    [uni_Y_DIAERESIS] = 0x0178, // Ÿ
-};
-
-#define a_CIRCM XP(uni_a_CIRCUMFLEX, uni_A_CIRCUMFLEX)
-#define a_DIAER XP(uni_a_DIAERESIS, uni_A_DIAERESIS)
-#define a_GRAVE XP(uni_a_GRAVE, uni_A_GRAVE)
-#define c_CEDIL XP(uni_c_CEDILLA, uni_C_CEDILLA)
-#define e_ACUTE XP(uni_e_ACUTE, uni_E_ACUTE)
-#define e_CIRCM XP(uni_e_CIRCUMFLEX, uni_E_CIRCUMFLEX)
-#define e_GRAVE XP(uni_e_GRAVE, uni_E_GRAVE)
-#define e_DIAER XP(uni_e_DIAERESIS, uni_E_DIAERESIS)
-#define i_CIRCM XP(uni_i_CIRCUMFLEX, uni_I_CIRCUMFLEX)
-#define i_DIAER XP(uni_i_DIAERESIS, uni_I_DIAERESIS)
-#define n_TILDE XP(uni_n_TILDE, uni_N_TILDE)
-#define o_CIRCM XP(uni_o_CIRCUMFLEX, uni_O_CIRCUMFLEX)
-#define o_DIAER XP(uni_o_DIAERESIS, uni_O_DIAERESIS)
-#define s_SHARP XP(uni_s_SHARP, uni_S_SHARP)
-#define u_CIRCM XP(uni_u_CIRCUMFLEX, uni_U_CIRCUMFLEX)
-#define u_DIAER XP(uni_u_DIAERESIS, uni_U_DIAERESIS)
-#define u_GRAVE XP(uni_u_GRAVE, uni_U_GRAVE)
-#define y_DIAER XP(uni_y_DIAERESIS, uni_Y_DIAERESIS)
-
-#define A_CIRCM X(uni_A_CIRCUMFLEX)
-#define A_DIAER X(uni_A_DIAERESIS)
-#define A_GRAVE X(uni_A_GRAVE)
-#define C_CEDIL X(uni_C_CEDILLA)
-#define E_ACUTE X(uni_E_ACUTE)
-#define E_CIRCM X(uni_E_CIRCUMFLEX)
-#define E_GRAVE X(uni_E_GRAVE)
-#define E_DIAER X(uni_E_DIAERESIS)
-#define I_CIRCM X(uni_I_CIRCUMFLEX)
-#define I_DIAER X(uni_I_DIAERESIS)
-#define N_TILDE X(uni_N_TILDE)
-#define O_CIRCM X(uni_O_CIRCUMFLEX)
-#define O_DIAER X(uni_O_DIAERESIS)
-#define S_SHARP X(uni_S_SHARP)
-#define U_CIRCM X(uni_U_CIRCUMFLEX)
-#define U_DIAER X(uni_U_DIAERESIS)
-#define U_GRAVE X(uni_U_GRAVE)
-#define Y_DIAER X(uni_Y_DIAERESIS)
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Tap Dance declarations
-enum tap_dance_id{
-    tap_dance_h_esc,
-    tap_dance_ctl_z_ctl_a,
-    tap_dance_ctl_s_ctl_x,
-    tap_dance_ctl_c_F5,
-    tap_dance_F7_ctl_F7,
-    tap_dance_ctl_f_F3,
-    tap_dance_ctl_p_ctl_o,
-};
-
-// Tap Dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for H, twice for Escape
-    [tap_dance_h_esc] = ACTION_TAP_DANCE_DOUBLE(KC_H, KC_ESC),
-    [tap_dance_ctl_z_ctl_a] = ACTION_TAP_DANCE_DOUBLE(CTL_Z, CTL_A),
-    [tap_dance_ctl_s_ctl_x] = ACTION_TAP_DANCE_DOUBLE(CTL_S, CTL_X),
-    [tap_dance_ctl_c_F5] = ACTION_TAP_DANCE_DOUBLE(CTL_C, KC_F5),
-    [tap_dance_F7_ctl_F7] = ACTION_TAP_DANCE_DOUBLE(CTL_F7, KC_F7),
-    [tap_dance_ctl_f_F3] = ACTION_TAP_DANCE_DOUBLE(KC_F3, CTL_F),
-    [tap_dance_ctl_p_ctl_o] = ACTION_TAP_DANCE_DOUBLE(CTL_P, CTL_O),
-};
-
-#define TD_H_ESC TD(tap_dance_h_esc)
-#define TD_CTLZ TD(tap_dance_ctl_z_ctl_a)
-#define TD_CTLS TD(tap_dance_ctl_s_ctl_x)
-#define TD_CTLC TD(tap_dance_ctl_c_F5)
-#define TD_CTLF TD(tap_dance_ctl_f_F3)
-#define TD_F7 TD(tap_dance_F7_ctl_F7)
-#define TD_CTLP TD(tap_dance_ctl_p_ctl_o)
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-    [WORKMAN] = LAYOUT_6x6(
+    [LYR_WORKNAP] = LAYOUT_6x6(
         KC_NO  , KC_NO , KC_NO ,TTGAME ,KC_HYPR,TTF1F12,                        TTWIN  ,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
         KC_ESC ,TD_CTLZ,TD_CTLS,TD_CTLC, CTL_V , TD_F7 ,                        KC_TAB ,TD_CTLF,KC_SPC ,TD_CTLP, KC_0  ,KC_DELETE,
         KC_TAB ,LCTL_Q , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,RCTL_SC,KC_BSPC,
         KC_LSFT,LSFT_A , KC_S  ,TD_H_ESC,LTWIN_T,KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,RSFT_I ,KC_RSFT,
         KC_LCTL,LCTL_Z , KC_X  , KC_M  , KC_C  , KC_V  ,                         KC_K  , KC_L  ,KC_COMM,KC_DOT ,RCTL_SL,KC_RCTL,
                         KC_LCTL,KC_LALT,                                                        KC_LALT,KC_LWIN,
-                                        OSL(NAVNUM),KC_SPACE,                KC_ENTER,OSL(FRSYMBOL),
+                                        OSL(LYR_NAVNUM),KC_SPACE,                KC_ENTER,OSL(LYR_FRSYMBOL),
                                                  TTGAME,KC_WH_U,        KC_PGUP,TTMOUSE,
-                                             OSL(F1F12),KC_WH_D,        KC_PGDN,KC_LALT
+                                             OSL(LYR_F1F12),KC_WH_D,        KC_PGDN,OSL(LYR_WINDOWS)
     ),
-    [GAME] = LAYOUT_6x6(
+    [LYR_GAME] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,KC_T   ,KC_1   ,KC_2   ,KC_3   ,KC_4   ,                        KC_6   ,KC_7   ,KC_8   ,KC_9   ,_______,_______,
         _______,KC_H   ,KC_Q   ,KC_W   ,KC_E   ,KC_R   ,                        _______,_______,_______,_______,_______,_______,
          KC_K  ,KC_LSFT,KC_A   ,KC_S   ,KC_D   ,KC_F   ,                        _______,_______,_______,_______,_______,_______,
          KC_P  ,KC_LCTL,KC_Z   ,KC_X   ,KC_C   ,KC_V   ,                        _______,_______,_______,_______,_______,_______,
                         KC_M   ,KC_LALT,                                                        _______,_______,
-                                            KC_SPACE,OSL(NAVNUM),            _______,_______,
+                                            KC_SPACE,OSL(LYR_NAVNUM),            _______,_______,
                                                 _______,KC_B   ,        _______,_______,
                                                 _______,KC_G   ,        _______,_______
     ),
-    [NAVNUM] = LAYOUT_6x6(
+    [LYR_NAVNUM] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,KC_NO  ,KC_PSCR,KC_SLCK,KC_PAUS,KC_INS ,                        KC_CIRC,KC_NLCK,KC_SLSH,KC_ASTR,KC_MINUS,_______,
         _______,KC_WH_L,KC_HOME,KC_UP  ,KC_PGUP,KC_WH_R,                        KC_PERC, KC_7  , KC_8  , KC_9  ,KC_MINUS,_______,
@@ -243,18 +37,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______,
                                                 _______,_______,        _______,_______
     ),
-    [FRSYMBOL] = LAYOUT_6x6(
+    [LYR_FRSYMBOL] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______, RESET ,
         n_TILDE,a_DIAER, KC_AT ,KC_HASH,KC_DLR ,KC_PERC,                        y_DIAER,u_DIAER,e_DIAER,o_DIAER,i_DIAER,_______,
         s_SHARP,a_CIRCM,KC_RCBR,KC_LCBR,KC_GRV ,KC_CIRC,                        KC_PERC,u_CIRCM,e_CIRCM,o_CIRCM,i_CIRCM,_______,
         _______,a_GRAVE,KC_RPRN,KC_LPRN,KC_UNDS,KC_AMPR,                        KC_DLR ,u_GRAVE,e_ACUTE,KC_DQUO,KC_QUOT,_______,
         _______,KC_EXLM,KC_RBRC,KC_LBRC,c_CEDIL,KC_TILD,                        KC_HASH,KC_ASTR,e_GRAVE,KC_BSLS,KC_PIPE,_______,
                         _______,_______,                                                        _______,_______,
-                                        OSL(FRCAPS),_______,                _______,_______,
+                                        OSL(LYR_FRCAPS),_______,                _______,HOLDLYR,
                                                 _______,_______,        _______,_______,
                                                 _______,_______,        _______,_______
     ),
-    [FRCAPS] = LAYOUT_6x6(
+    [LYR_FRCAPS] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         N_TILDE,A_DIAER,_______,_______,_______,_______,                        Y_DIAER,U_DIAER,E_DIAER,O_DIAER,I_DIAER,_______,
         S_SHARP,A_CIRCM,_______,_______,_______,_______,                        _______,U_CIRCM,E_CIRCM,O_CIRCM,I_CIRCM,_______,
@@ -265,7 +59,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______,
                                                 _______,_______,        _______,_______
     ),
-    [MOUSE] = LAYOUT_6x6(
+#ifdef MOUSEKEY_ENABLE
+    [LYR_MOUSE] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,_______,_______,KC_BTN3,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,_______,KC_BTN1,KC_MS_U,KC_BTN2,_______,                        _______,KC_BTN1,KC_MS_U,KC_BTN2,_______,_______,
@@ -276,7 +71,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______,
                                                 _______,_______,        _______,_______
     ),
-    [F1F12] = LAYOUT_6x6(
+#endif // MOUSEKEY_ENABLE
+    [LYR_F1F12] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         KC_F20 ,KC_F21 ,KC_F10 ,KC_F11 ,KC_F12 ,KC_F22 ,                        _______,KC_F10 ,KC_F11 ,KC_F12 ,_______,_______,
         KC_F17 ,KC_F18 ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F19 ,                        _______,KC_F7  ,KC_F8  ,KC_F9  ,_______,_______,
@@ -287,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______,
                                                 _______,_______,        _______,_______
     ),
-    [WINDOWS] = LAYOUT_6x6(
+    [LYR_WINDOWS] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,_______,KC_MPRV,KC_VOLU,_______,_______,                        KC_WAKE,WINLEFT,WINUP  ,WINRGHT,_______,_______,
