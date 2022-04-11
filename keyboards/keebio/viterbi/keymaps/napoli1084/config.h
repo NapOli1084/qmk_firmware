@@ -1,5 +1,5 @@
 /*
-Copyright 2017 Danny Nguyen <danny@hexwire.com>
+Copyright 2022 NapOli1084
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,15 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 // #define USE_I2C
-
-/* Select hand configuration */
-
-// #define MASTER_RIGHT
-// #define EE_HANDS
-
-#define ONESHOT_TAP_TOGGLE 2
-#define TAPPING_TOGGLE 1
-#define IGNORE_MOD_TAP_INTERRUPT
 
 #define RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_HUE_STEP 8
