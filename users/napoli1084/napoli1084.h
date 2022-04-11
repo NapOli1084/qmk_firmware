@@ -17,12 +17,17 @@ enum napoli1084_layers {
 };
 
 #define TTGAME TT(LYR_GAME)
-#define TTMOUSE TT(LYR_MOUSE)
 #define TTNVNUM TT(LYR_NAVNUM)
 #define TTF1F12 TT(LYR_F1F12)
 #define TTWIN TT(LYR_WINDOWS)
 #define LTWIN_T LT(LYR_WINDOWS,KC_T)
 #define LTF1_N LT(LYR_F1F12,KC_N)
+
+#ifdef MOUSEKEY_ENABLE
+#define TTMOUSE TT(LYR_MOUSE)
+#else
+#define TTMOUSE KC_NO
+#endif
 
 // Placeholder for key being held to toggle current layer.
 #define HOLDLYR KC_TRANSPARENT
