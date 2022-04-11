@@ -1,14 +1,8 @@
 #include QMK_KEYBOARD_H
 
+#define NAPOLI1084_QWERTY_ENABLE
+#include "napoli1084.h" // users/napoli1084
 
-// Each layer gets a name for readability, which is then used in the keymap matrix below.
-// The underscores don't mean anything - you can have a layer called STUFF or any other name.
-// Layer names don't all need to be of the same length, obviously, and you can also skip them
-// entirely and just use numbers.
-#define _QWERTY 0
-#define _NAVNUM 1
-#define _FN 16
-#define _WORKNAP 2
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -17,9 +11,6 @@ enum custom_keycodes {
   ADJUST,
 };
 
-#define HOLDLYR _______
-#define TOQWERT TO(_QWERTY)
-#define OSNAVNUM OSL(_NAVNUM)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -36,12 +27,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |Qwerty| Ctrl |  \"" | GUI  | Alt  | Num  |Space |      |Space |  F5  | RAlt | RGui | App  | Ctl  | Del  |
  * `------------------------------------------------'      `------------------------------------------------'
  */
-  [_QWERTY] = LAYOUT_ortho_5x14(
+  [LYR_QWERTY] = LAYOUT_ortho_5x14(
     KC_ESC,  KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,     KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_BSPC,
     KC_BSLS, KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,     KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC,
-    TG(_WORKNAP), KC_CAPS, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   ,     KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT, KC_ENT ,
+    TTWKNAP, KC_CAPS, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   ,     KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT, KC_ENT ,
     KC_F2  , KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,     KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, KC_EQL ,
-    TOQWERT, KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT,OSNAVNUM, KC_SPC ,     KC_SPC ,OSL(_FN), KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL
+    TOQWERT, KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT,OSQNVNUM, KC_SPC ,     KC_SPC , OSFN   , KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL
   ),
 
 /* Lower
@@ -57,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |      |      |      |   0  |   0  |   .  |   =  |      |      |
  * `------------------------------------------------'      `------------------------------------------------'
  */
-  [_NAVNUM] = LAYOUT_ortho_5x14(
+  [LYR_QNAVNUM] = LAYOUT_ortho_5x14(
     _______, _______, KC_NO  , KC_PSCR, KC_SLCK, KC_PAUS, KC_INS ,     KC_CIRC, KC_NLCK, KC_PSLS, KC_ASTR,KC_MINUS, _______, _______,
     _______, _______, KC_WH_L, KC_HOME, KC_UP  , KC_PGUP, KC_WH_R,     KC_PERC, KC_7   , KC_8   , KC_9   , KC_PLUS, _______, _______,
     _______, _______, KC_WH_U, KC_LEFT, KC_DOWN, KC_RGHT, KC_WH_U,     KC_DLR , KC_4   , KC_5   , KC_6   , KC_PLUS, _______, _______,
@@ -65,13 +56,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,     _______, KC_0   , KC_0   , KC_DOT , KC_EQL , _______, _______
   ),
 
-  [_WORKNAP] = LAYOUT_ortho_5x14(
+  [LYR_WORKNAP] = LAYOUT_ortho_5x14(
     _______, KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  , KC_NO  ,       KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______,
     _______, KC_ESC , KC_NO  , KC_D   , KC_R   , KC_W   , KC_B   ,     RGB_SAD, RGB_SAI, RGB_VAD, RGB_VAI, _______, KC_DEL,  _______,
     HOLDLYR, KC_TAB , KC_Q   , KC_S   , KC_H   , KC_T   , KC_G   ,     AG_SWAP, QWERTY,  _______, _______, _______, _______, _______,
     _______, _______, KC_A   , KC_X   , KC_M   , KC_C   , KC_V   ,     _______, _______, _______, _______, _______, _______, _______,
     _______, _______, KC_Z   , _______, _______, _______,KC_SPACE,     _______, _______, _______, _______, _______, _______, _______
-  )
+  ),
 
 /* Fn
  * ,------------------------------------------------.      ,------------------------------------------------.
@@ -86,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |
  * `------------------------------------------------'      `------------------------------------------------'
  */
-  [_FN] = LAYOUT_ortho_5x14(
+  [LYR_FN] = LAYOUT_ortho_5x14(
     _______, KC_ESC , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
     _______, _______,RGB_M_SW, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD,     BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_MPRV, _______, _______,
     _______, _______, RGB_M_P, RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD,     BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MNXT, _______, _______,
@@ -142,52 +133,54 @@ bool led_update_user(led_t led_state) {
 }
 
 layer_state_t default_layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(1, layer_state_cmp(state, _QWERTY));
+    rgblight_set_layer_state(1, layer_state_cmp(state, LYR_QWERTY));
     return state;
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-    rgblight_set_layer_state(2, layer_state_cmp(state, _NAVNUM));
-    rgblight_set_layer_state(3, layer_state_cmp(state, _FN));
+    rgblight_set_layer_state(2, layer_state_cmp(state, LYR_QNAVNUM));
+    rgblight_set_layer_state(3, layer_state_cmp(state, LYR_FN));
     return state;
 }
 
+#if 0
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_QWERTY);
+        set_single_persistent_default_layer(LYR_QWERTY);
       }
       return false;
       break;
     case LOWER:
       if (record->event.pressed) {
-        layer_on(_NAVNUM);
-        update_tri_layer(_NAVNUM, _FN, _WORKNAP);
+        layer_on(LYR_QNAVNUM);
+        update_tri_layer(LYR_QNAVNUM, LYR_FN, LYR_WORKNAP);
       } else {
-        layer_off(_NAVNUM);
-        update_tri_layer(_NAVNUM, _FN, _WORKNAP);
+        layer_off(LYR_QNAVNUM);
+        update_tri_layer(LYR_QNAVNUM, LYR_FN, LYR_WORKNAP);
       }
       return false;
       break;
     case RAISE:
       if (record->event.pressed) {
-        layer_on(_FN);
-        update_tri_layer(_NAVNUM, _FN, _WORKNAP);
+        layer_on(LYR_FN);
+        update_tri_layer(LYR_QNAVNUM, LYR_FN, LYR_WORKNAP);
       } else {
-        layer_off(_FN);
-        update_tri_layer(_NAVNUM, _FN, _WORKNAP);
+        layer_off(LYR_FN);
+        update_tri_layer(LYR_QNAVNUM, LYR_FN, LYR_WORKNAP);
       }
       return false;
       break;
     case ADJUST:
       if (record->event.pressed) {
-        layer_on(_WORKNAP);
+        layer_on(LYR_WORKNAP);
       } else {
-        layer_off(_WORKNAP);
+        layer_off(LYR_WORKNAP);
       }
       return false;
       break;
   }
   return true;
 }
+#endif // trilayer
