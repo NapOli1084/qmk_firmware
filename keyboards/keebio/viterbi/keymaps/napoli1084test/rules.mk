@@ -1,3 +1,4 @@
 BOOTLOADER = atmel-dfu  # Elite-C
-RGBLIGHT_ENABLE = yes
 LTO_ENABLE = yes
+RGBLIGHT_ENABLE = yes
+TAP_DANCE_ENABLE = yes
