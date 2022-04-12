@@ -5,15 +5,15 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [LYR_WORKNAP] = LAYOUT_6x6(
-        KC_NO  , KC_NO , KC_NO ,TTGAME ,KC_HYPR,TTF1F12,                        TTWIN  ,TTNVNUM,KC_MEH , KC_NO , KC_NO ,KC_APP ,
-        KC_ESC ,TD_CTLZ,TD_CTLS,TD_CTLC, CTL_V , TD_F7 ,                        KC_TAB ,TD_CTLF,KC_SPC ,TD_CTLP, KC_0  ,KC_DELETE,
-        KC_TAB ,LCTL_Q , KC_D  , KC_R  , KC_W  , KC_B  ,                         KC_J  , KC_F  , KC_U  , KC_P  ,RCTL_SC,KC_BSPC,
-        KC_LSFT,LSFT_A , KC_S  ,TD_H_ESC,LTWIN_T,KC_G  ,                         KC_Y  ,LTF1_N , KC_E  , KC_O  ,RSFT_I ,KC_RSFT,
-        KC_LCTL,LCTL_Z , KC_X  , KC_M  , KC_C  , KC_V  ,                         KC_K  , KC_L  ,KC_COMM,KC_DOT ,RCTL_SL,KC_RCTL,
-                        KC_LCTL,KC_LALT,                                                        KC_LALT,KC_LWIN,
-                                        OSL(LYR_NAVNUM),KC_SPACE,                KC_ENTER,OSL(LYR_FRSYMBOL),
-                                                 TTGAME,KC_WH_U,        KC_PGUP,TTMOUSE,
-                                             OSL(LYR_F1F12),KC_WH_D,        KC_PGDN,OSL(LYR_WINDOWS)
+        KC_NO   , KC_NO  , KC_NO  , TTGAME , KC_HYPR, TTF1F12,                TTWIN  , TTNVNUM, KC_MEH , KC_NO  , KC_NO  , WN_APP ,
+        WN_ESC  , WN_1   , WN_2   , WN_3   , WN_4   , WN_5   ,                WN_6   , WN_7   , WN_8   , WN_9   , WN_0   , WN_DEL ,
+        WN_TAB  , WN_Q   , WN_D   , WN_R   , WN_W   , WN_B   ,                WN_J   , WN_F   , WN_U   , WN_P   , WN_SCOL, WN_BSPC,
+        WN_LSFT , WN_A   , WN_S   , WN_H   , WN_T   , WN_G   ,                WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , WN_RSFT,
+        WN_LCTL , WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   ,                WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, WN_RCTL,
+                           WN_LWIN, WN_LALT,                                                    WN_RALT, WN_RWIN,
+                                             WN_LTB1, WN_LTB2,                WN_RTB2, WN_RTB1,
+                                                    WN_LTB4, KC_WH_U,  KC_PGUP, WN_RTB4,
+                                                 WN_LTB3, KC_WH_D,        KC_PGDN, WN_RTB3
     ),
     [LYR_GAME] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
