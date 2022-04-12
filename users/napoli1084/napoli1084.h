@@ -20,22 +20,29 @@ enum napoli1084_layers {
     LYR_WINDOWS // Windows combos layers
 };
 
+// One-shot layer keys
 #define OSQNVNUM OSL(LYR_QNAVNUM)
 #define OSFN OSL(LYR_FN)
+
+// Layer TO keys
 #define TOQWERT TO(LYR_QWERTY)
+
+// Layer Tap-Toggle keys
 #define TTGAME TT(LYR_GAME)
 #define TTNVNUM TT(LYR_NAVNUM)
 #define TTF1F12 TT(LYR_F1F12)
 #define TTWIN TT(LYR_WINDOWS)
-#define TTWKNAP TT(LYR_WORKNAP)
-#define LTWIN_T LT(LYR_WINDOWS,KC_T)
-#define LTF1_N LT(LYR_F1F12,KC_N)
+#define TTWRKNP TT(LYR_WORKNAP)
 
 #ifdef MOUSEKEY_ENABLE
-#define TTMOUSE TT(LYR_MOUSE)
+    #define TTMOUSE TT(LYR_MOUSE)
 #else
-#define TTMOUSE KC_NO
+    #define TTMOUSE KC_NO
 #endif
+
+// Layer-tap (layer when held, key code when tapped)
+#define LTWIN_T LT(LYR_WINDOWS,KC_T)
+#define LTF1_N LT(LYR_F1F12,KC_N)
 
 // Placeholder for key being held to toggle current layer.
 #define HOLDLYR KC_TRANSPARENT
@@ -234,3 +241,77 @@ const uint32_t PROGMEM unicode_map[] = {
 #endif // #ifdef UNICODEMAP_ENABLE
 
 ////////////////////////////////////////////////////////////////////////////////
+
+// Worknap Keys
+
+#define WN_ESC KC_ESC
+#define WN_1 TD_CTLZ
+#define WN_2 TD_CTLS
+#define WN_3 TD_CTLC
+#define WN_4 CTL_V
+#define WN_5 TD_F7
+
+#define WN_6 KC_TAB
+#define WN_7 TD_CTLF
+#define WN_8 KC_SPACE
+#define WN_9 TD_CTLP
+#define WN_0 KC_0
+#define WN_DEL KC_DELETE
+#define WN_APP KC_APP
+
+#define WN_TAB KC_TAB
+#define WN_Q LCTL_Q
+#define WN_D KC_D
+#define WN_R KC_R
+#define WN_W KC_W
+#define WN_B KC_B
+
+#define WN_J KC_J
+#define WN_F KC_F
+#define WN_U KC_U
+#define WN_P KC_P
+#define WN_SCOL RCTL_SC
+#define WN_BSPC KC_BSPC
+
+#define WN_LSFT KC_LSFT
+#define WN_A LSFT_A
+#define WN_S KC_S
+#define WN_H TD_H_ESC
+#define WN_T LTWIN_T
+#define WN_G KC_G
+
+#define WN_Y KC_Y
+#define WN_N LTF1_N
+#define WN_E KC_E
+#define WN_O KC_O
+#define WN_I RSFT_I
+#define WN_RSFT KC_RSFT
+
+#define WN_LCTL KC_LCTL
+#define WN_Z LCTL_Z
+#define WN_X KC_X
+#define WN_M KC_M
+#define WN_C KC_C
+#define WN_V KC_V
+
+#define WN_K KC_K
+#define WN_L KC_L
+#define WN_COMM KC_COMM
+#define WN_DOT KC_DOT
+#define WN_SLSH RCTL_SL
+#define WN_RCTL KC_RCTL
+
+#define WN_LWIN KC_LCTL
+#define WN_LALT KC_LALT
+#define WN_RALT KC_LALT
+#define WN_RWIN KC_LWIN
+
+// Thumb keys
+#define WN_LTB1 OSL(LYR_NAVNUM)
+#define WN_LTB2 KC_SPACE
+#define WN_LTB3 OSL(LYR_F1F12)
+#define WN_LTB4 TTGAME
+#define WN_RTB1 OSL(LYR_FRSYMBOL)
+#define WN_RTB2 KC_ENTER
+#define WN_RTB3 OSL(LYR_WINDOWS)
+#define WN_RTB4 TTMOUSE
