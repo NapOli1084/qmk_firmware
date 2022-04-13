@@ -38,13 +38,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______
     ),
     [LYR_FRSYMBOL] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______, RESET ,
+         RESET ,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______, RESET ,
         n_TILDE,a_DIAER, KC_AT ,KC_HASH,KC_DLR ,KC_PERC,                        y_DIAER,u_DIAER,e_DIAER,o_DIAER,i_DIAER,_______,
         s_SHARP,a_CIRCM,KC_RCBR,KC_LCBR,KC_GRV ,KC_CIRC,                        KC_PERC,u_CIRCM,e_CIRCM,o_CIRCM,i_CIRCM,_______,
         _______,a_GRAVE,KC_RPRN,KC_LPRN,KC_UNDS,KC_AMPR,                        KC_DLR ,u_GRAVE,e_ACUTE,KC_DQUO,KC_QUOT,_______,
         _______,KC_EXLM,KC_RBRC,KC_LBRC,c_CEDIL,KC_TILD,                        KC_HASH,KC_ASTR,e_GRAVE,KC_BSLS,KC_PIPE,_______,
                         _______,_______,                                                        _______,_______,
-                                        OSL(LYR_FRCAPS),_______,                _______,HOLDLYR,
+                                        OSFRCAPS,_______,                       _______,HOLDLYR,
                                                 _______,_______,        _______,_______,
                                                 _______,_______,        _______,_______
     ),
@@ -76,8 +76,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         KC_F20 ,KC_F21 ,KC_F10 ,KC_F11 ,KC_F12 ,KC_F22 ,                        _______,KC_F10 ,KC_F11 ,KC_F12 ,_______,_______,
         KC_F17 ,KC_F18 ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F19 ,                        _______,KC_F7  ,KC_F8  ,KC_F9  ,_______,_______,
-        KC_F14 ,KC_F15 ,KC_F4  ,KC_F5  ,KC_F6  ,KC_F16 ,                        _______,HOLDLYR,KC_F5  ,KC_F6  ,_______,_______,
-        KC_F23 ,KC_F24 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F13 ,                        _______,KC_F1  ,KC_F2  ,KC_F3  ,_______,_______,
+        _______,KC_F15 ,KC_F4  ,KC_F5  ,KC_F6  ,KC_F16 ,                        _______,HOLDLYR,KC_F5  ,KC_F6  ,_______,_______,
+        _______,KC_F14 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F13 ,                        _______,KC_F1  ,KC_F2  ,KC_F3  ,_______,_______,
                         _______,_______,                                                        _______,_______,
                                             _______,_______,                _______,_______,
                                                 _______,_______,        _______,_______,
