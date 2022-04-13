@@ -1,5 +1,7 @@
 #pragma once
 
+#include "quantum.h"
+
 enum napoli1084_layers {
 #ifdef NAPOLI1084_QWERTY_ENABLE
     LYR_QWERTY, // Default layer on keyboards I share with other people
@@ -23,6 +25,7 @@ enum napoli1084_layers {
 // One-shot layer keys
 #define OSQNVNUM OSL(LYR_QNAVNUM)
 #define OSFN OSL(LYR_FN)
+#define OSFRCAPS OSL(LYR_FRCAPS)
 
 // Layer TO keys
 #define TOQWERT TO(LYR_QWERTY)
@@ -91,18 +94,6 @@ enum tap_dance_id{
     tap_dance_ctl_p_ctl_o,
 };
 
-// Tap Dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // Tap once for H, twice for Escape
-    [tap_dance_h_esc] = ACTION_TAP_DANCE_DOUBLE(KC_H, KC_ESC),
-    [tap_dance_ctl_z_ctl_a] = ACTION_TAP_DANCE_DOUBLE(CTL_Z, CTL_A),
-    [tap_dance_ctl_s_ctl_x] = ACTION_TAP_DANCE_DOUBLE(CTL_S, CTL_X),
-    [tap_dance_ctl_c_F5] = ACTION_TAP_DANCE_DOUBLE(CTL_C, KC_F5),
-    [tap_dance_F7_ctl_F7] = ACTION_TAP_DANCE_DOUBLE(CTL_F7, KC_F7),
-    [tap_dance_ctl_f_F3] = ACTION_TAP_DANCE_DOUBLE(KC_F3, CTL_F),
-    [tap_dance_ctl_p_ctl_o] = ACTION_TAP_DANCE_DOUBLE(CTL_P, CTL_O),
-};
-
 #define TD_H_ESC TD(tap_dance_h_esc)
 #define TD_CTLZ TD(tap_dance_ctl_z_ctl_a)
 #define TD_CTLS TD(tap_dance_ctl_s_ctl_x)
@@ -158,47 +149,6 @@ enum unicode_names {
     uni_Y_DIAERESIS
 };
 
-const uint32_t PROGMEM unicode_map[] = {
-    [BANG]  = 0x203D,  // ‽
-    [IRONY] = 0x2E2E,  // ⸮
-    [SNEK]  = 0x1F40D, // 🐍
-    [uni_a_CIRCUMFLEX] = 0x00E2, // â
-    [uni_a_DIAERESIS] = 0x00E4, // ä
-    [uni_a_GRAVE] = 0x00E0, // à
-    [uni_c_CEDILLA] = 0x00E7, // ç
-    [uni_e_ACUTE] = 0x00E9, // é
-    [uni_e_CIRCUMFLEX] = 0x00EA, // ê
-    [uni_e_DIAERESIS] = 0x00EB, // ë
-    [uni_e_GRAVE] = 0x00E8, // è
-    [uni_i_CIRCUMFLEX] = 0x00EE, // î
-    [uni_i_DIAERESIS] = 0x00EF, // ï
-    [uni_n_TILDE] = 0x00F1, // ñ
-    [uni_o_CIRCUMFLEX] = 0x00F4, // ô
-    [uni_o_DIAERESIS] = 0x00F6, // ö
-    [uni_s_SHARP] = 0x00DF, // ß
-    [uni_u_CIRCUMFLEX] = 0x00FB, // û
-    [uni_u_DIAERESIS] = 0x00FC, // ü
-    [uni_u_GRAVE] = 0x00F9, // ù
-    [uni_y_DIAERESIS] = 0x00FF, // ÿ
-    [uni_A_CIRCUMFLEX] = 0x00C2, // Â
-    [uni_A_DIAERESIS] = 0x00C4, // Ä
-    [uni_A_GRAVE] = 0x00C0, // À
-    [uni_C_CEDILLA] = 0x00C7, // Ç
-    [uni_E_ACUTE] = 0x00C9, // É
-    [uni_E_CIRCUMFLEX] = 0x00CA, // Ê
-    [uni_E_DIAERESIS] = 0x00CB, // Ë
-    [uni_E_GRAVE] = 0x00C8, // È
-    [uni_I_CIRCUMFLEX] = 0x00CE, // Î
-    [uni_I_DIAERESIS] = 0x00CF, // Ï
-    [uni_N_TILDE] = 0x00D1, // Ñ
-    [uni_O_CIRCUMFLEX] = 0x00D4, // Ô
-    [uni_O_DIAERESIS] = 0x00D6, // Ö
-    [uni_S_SHARP] = 0x1E9E, // ẞ
-    [uni_U_CIRCUMFLEX] = 0x00DB, // Û
-    [uni_U_DIAERESIS] = 0x00DC, // Ü
-    [uni_U_GRAVE] = 0x00D9, // Ù
-    [uni_Y_DIAERESIS] = 0x0178, // Ÿ
-};
 
 #define a_CIRCM XP(uni_a_CIRCUMFLEX, uni_A_CIRCUMFLEX)
 #define a_DIAER XP(uni_a_DIAERESIS, uni_A_DIAERESIS)
