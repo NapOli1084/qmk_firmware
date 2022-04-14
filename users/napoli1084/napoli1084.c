@@ -1,5 +1,7 @@
 #include "napoli1084.h"
 
+#include <assert.h> // static_assert
+
 #ifdef TAP_DANCE_ENABLE
 // Tap Dance definitions
 // Limited to 256, see #define TD(n) (QK_TAP_DANCE | ((n)&0xFF))
@@ -67,7 +69,7 @@ const uint32_t PROGMEM unicode_map[] = {
 #ifdef RGBLIGHT_LAYERS
 
 const rgblight_segment_t PROGMEM my_capslock_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 3, HSV_WHITE}       // Light 3 LEDs, starting with LED 0
+    {0, RGBLED_NUM / 4, HSV_WHITE}       // Light 3 LEDs, starting with LED 0
 );
 
 #ifdef NAPOLI1084_QWERTY_ENABLE
@@ -90,36 +92,36 @@ const rgblight_segment_t PROGMEM my_qwerty_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {13, 1, HSV_PURPLE}
 );
 const rgblight_segment_t PROGMEM my_qnavnum_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 14, HSV_CYAN}
+    {0, RGBLED_NUM, HSV_BLUE}
 );
 #endif // NAPOLI1084_QWERTY_ENABLE
 
 const rgblight_segment_t PROGMEM my_worknap_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 14, HSV_SPRINGGREEN}
+    {0, RGBLED_NUM, HSV_GREEN}
 );
 const rgblight_segment_t PROGMEM my_game_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 14, HSV_RED}
+    {0, RGBLED_NUM, HSV_RED}
 );
 const rgblight_segment_t PROGMEM my_navnum_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {2, 10, HSV_CYAN}
+    {RGBLED_NUM / 4, RGBLED_NUM - 2*(RGBLED_NUM / 4), HSV_BLUE}
 );
 const rgblight_segment_t PROGMEM my_frsymbol_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 14, HSV_YELLOW}
+    {0, RGBLED_NUM, HSV_YELLOW}
 );
 const rgblight_segment_t PROGMEM my_frcaps_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 14, 21, 255, 255} // orange
+    {0, RGBLED_NUM, 15, 255, 255} // orange
 );
 const rgblight_segment_t PROGMEM my_fn_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 14, HSV_MAGENTA}
+    {0, RGBLED_NUM, HSV_MAGENTA}
 );
 const rgblight_segment_t PROGMEM my_f1f12_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 14, 234, 255, 255} // pink
+    {0, RGBLED_NUM, 234, 255, 255} // pink
 );
 const rgblight_segment_t PROGMEM my_windows_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, 3, HSV_BLUE},
-    {3, 4, HSV_RED},
-    {7, 4, HSV_YELLOW},
-    {13,3, HSV_GREEN}
+    {0, RGBLED_NUM / 4, HSV_BLUE},
+    {RGBLED_NUM / 4, (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_RED},
+    {(RGBLED_NUM / 2) - (RGBLED_NUM / 4), (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_YELLOW},
+    {RGBLED_NUM - (RGBLED_NUM / 4), RGBLED_NUM / 4, HSV_GREEN}
 );
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
@@ -152,6 +154,7 @@ enum napoli1084_rgblayers {
     RGBLYR_FN,
     RGBLYR_F1F12,
     RGBLYR_WINDOWS,
+    RGBLYR_COUNT // not a layer, only serves to count number of layers
 };
 
 #endif // RGBLIGHT_LAYERS
@@ -181,8 +184,14 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
     return state;
 }
 
+// static_assert available in C11
+#ifndef static_assert
+#define static_assert(constant_expression, string_literal)
+#endif
+
 layer_state_t layer_state_set_user(layer_state_t state) {
 #ifdef RGBLIGHT_LAYERS
+    static_assert(RGBLIGHT_MAX_LAYERS >= RGBLYR_COUNT, "Max RGB layers must be greater or equal to number of layers");
   #ifdef NAPOLI1084_QWERTY_ENABLE
     rgblight_set_layer_state(RGBLYR_QNAVNUM, layer_state_cmp(state, LYR_QNAVNUM));
     rgblight_set_layer_state(RGBLYR_WORKNAP, layer_state_cmp(state, LYR_WORKNAP));
