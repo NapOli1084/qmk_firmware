@@ -1,4 +1,6 @@
 
+#define RGBLIGHT_MAX_LAYERS 12
+
 // how many taps before oneshot toggle is triggered
 // https://docs.qmk.fm/#/one_shot_keys?id=one-shot-keys
 #define ONESHOT_TAP_TOGGLE 2
