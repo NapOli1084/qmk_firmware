@@ -120,7 +120,7 @@ const rgblight_segment_t PROGMEM my_f1f12_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t PROGMEM my_windows_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM / 4, HSV_BLUE},
     {RGBLED_NUM / 4, (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_RED},
-    {(RGBLED_NUM / 2) - (RGBLED_NUM / 4), (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_YELLOW},
+    {RGBLED_NUM / 2, (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_YELLOW},
     {RGBLED_NUM - (RGBLED_NUM / 4), RGBLED_NUM / 4, HSV_GREEN}
 );
 
