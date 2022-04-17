@@ -25,6 +25,19 @@ const uint32_t PROGMEM unicode_map[] = {
     [BANG]  = 0x203D,  // ‽
     [IRONY] = 0x2E2E,  // ⸮
     [SNEK]  = 0x1F40D, // 🐍
+    [uni_QUOTATION] = 0x0022, // "
+    [uni_HASH] = 0x0023, // #
+    [uni_APOSTROPHE] = 0x0027, // '
+    [uni_AT] = 0x0040, // @
+    [uni_LEFTBRACKET] = 0x005B, // [
+    [uni_BACKSLASH] = 0x005C, // `\`
+    [uni_RIGHTBRACKET] = 0x005D, // ]
+    [uni_CIRCUMFLEX] = 0x005E, // ^
+    [uni_GRAVE] = 0x0060, // `
+    [uni_LEFTCURLYBRACKET] = 0x007B, // {
+    [uni_PIPE] = 0x007C, // |
+    [uni_RIGHTCURLYBRACKET] = 0x007D, // }
+    [uni_TILDE] = 0x007E, // ~
     [uni_a_CIRCUMFLEX] = 0x00E2, // â
     [uni_a_DIAERESIS] = 0x00E4, // ä
     [uni_a_GRAVE] = 0x00E0, // à
@@ -62,7 +75,12 @@ const uint32_t PROGMEM unicode_map[] = {
     [uni_U_GRAVE] = 0x00D9, // Ù
     [uni_Y_DIAERESIS] = 0x0178, // Ÿ
 };
+
+static uint8_t symbol_mode = SYMD_UNICODE;
+#else
+static uint8_t symbol_mode = SYMD_US;
 #endif // #ifdef UNICODEMAP_ENABLE
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -159,6 +177,10 @@ enum napoli1084_rgblayers {
 
 #endif // RGBLIGHT_LAYERS
 
+void napoli1084_cycle_symbol_mode(void) {
+    symbol_mode = (symbol_mode + 1) % SYMD_COUNT;
+}
+
 void keyboard_post_init_user(void) {
 #ifdef RGBLIGHT_LAYERS
     // Enable the LED layers
@@ -205,4 +227,23 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(RGBLYR_WINDOWS, layer_state_cmp(state, LYR_WINDOWS));
 #endif // RGBLIGHT_LAYERS
     return state;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case NC_SYMD:
+        if (record->event.pressed) {
+            napoli1084_cycle_symbol_mode();
+        }
+        return false;
+        break;
+    case QK_UNICODEMAP ... QK_UNICODEMAP_PAIR_MAX:
+        if (symbol_mode == SYMD_UNICODE) {
+            process_unicodemap(keycode, record);
+        } else if (record->event.pressed) {
+        }
+        return false;
+        break;
+    }
+    return true;
 }
