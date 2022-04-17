@@ -22,13 +22,36 @@ enum napoli1084_layers {
     LYR_WINDOWS // Windows combos layers
 };
 
+enum napoli1084_keycodes {
+    // NC = NapOli1084 Code
+    NC_SYMD = SAFE_RANGE, // Symbol Mode
+    NC_SYMBOL_BEGIN,
+    NC_AT = NC_SYMBOL_BEGIN,
+    NC_SYMBOL_END,
+};
+
+enum napoli1084_symbol_mode {
+#ifdef UNICODEMAP_ENABLE
+    SYMD_UNICODE, // Default, uses currently selected Unicode mode as per get_unicode_input_mode()
+#endif
+    SYMD_US, // US QWERTY
+    SYMD_FRCA, // French Canada
+    SYMD_CMS, // Canada Multilingual Standard
+    SYMD_COUNT // Number of modes (not a mode)
+};
+
 // One-shot layer keys
 #define OSQNVNUM OSL(LYR_QNAVNUM)
 #define OSFN OSL(LYR_FN)
 #define OSFRCAPS OSL(LYR_FRCAPS)
 
 // Layer TO keys
-#define TOQWERT TO(LYR_QWERTY)
+#ifdef NAPOLI1084_QWERTY_ENABLE
+    // To Default layer
+    #define TODEFLT TO(LYR_QWERTY)
+#else
+    #define TODEFLT TO(LYR_WORKNAP)
+#endif
 
 // Layer Tap-Toggle keys
 #define TTGAME TT(LYR_GAME)
@@ -111,6 +134,19 @@ enum unicode_names {
     BANG,
     IRONY,
     SNEK,
+    uni_QUOTATION,
+    uni_HASH,
+    uni_APOSTROPHE,
+    uni_AT,
+    uni_LEFTBRACKET,
+    uni_BACKSLASH,
+    uni_RIGHTBRACKET,
+    uni_CIRCUMFLEX,
+    uni_GRAVE,
+    uni_LEFTCURLYBRACKET,
+    uni_PIPE,
+    uni_RIGHTCURLYBRACKET,
+    uni_TILDE,
     uni_a_CIRCUMFLEX,
     uni_a_DIAERESIS,
     uni_a_GRAVE,
@@ -149,7 +185,17 @@ enum unicode_names {
     uni_Y_DIAERESIS
 };
 
-
+#define UN_HASH X(uni_HASH)
+#define UN_APOS XP(uni_APOSTROPHE, uni_QUOTATION)
+#define UN_AT X(uni_AT)
+#define UN_LBRC XP(uni_LEFTBRACKET, uni_LEFTCURLYBRACKET)
+#define UN_RBRC XP(uni_RIGHTBRACKET, uni_RIGHTCURLYBRACKET)
+#define UN_BSLS XP(uni_BACKSLASH, uni_PIPE)
+#define UN_CIRC X(uni_CIRCUMFLEX)
+#define UN_GRAV XP(uni_GRAVE, uni_TILDE)
+#define UN_LCBR X(uni_LEFTCURLYBRACKET)
+#define UN_RCBR X(uni_RIGHTCURLYBRACKET)
+#define UN_TILD X(uni_TILDE)
 #define a_CIRCM XP(uni_a_CIRCUMFLEX, uni_A_CIRCUMFLEX)
 #define a_DIAER XP(uni_a_DIAERESIS, uni_A_DIAERESIS)
 #define a_GRAVE XP(uni_a_GRAVE, uni_A_GRAVE)

@@ -20,3 +20,4 @@
 #define UNICODE_SELECTED_MODES UC_WINC
 // https://docs.qmk.fm/#/feature_unicode?id=input-key-configuration
 #define UNICODE_KEY_WINC KC_APPLICATION
+#define UNICODE_CYCLE_PERSIST 0
