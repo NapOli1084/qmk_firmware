@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_BSLS, KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,     KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC,
     TTWRKNP, KC_CAPS, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   ,     KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT, KC_ENT ,
     KC_F2  , KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,     KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, KC_EQL ,
-    TOQWERT, KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT,OSQNVNUM, KC_SPC ,     KC_SPC , OSFN   , KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL
+    TODEFLT, KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT,OSQNVNUM, KC_SPC ,     KC_SPC , OSFN   , KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL
   ),
 
 /* Lower
@@ -49,10 +49,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [LYR_WORKNAP] = LAYOUT_ortho_5x14(
     _______, KC_NO  , KC_NO  , WN_2   , WN_3   , WN_4   , WN_5   ,     WN_6   , WN_7   , WN_8   , WN_9   , KC_NO  , WN_APP , _______,
-    _______, WN_ESC , WN_1   , WN_D   , WN_R   , WN_W   , WN_B   ,     WN_J   , WN_F   , WN_U   , WN_P   , WN_0   , WN_DEL , _______,
+    WN_LTB4, WN_ESC , WN_1   , WN_D   , WN_R   , WN_W   , WN_B   ,     WN_J   , WN_F   , WN_U   , WN_P   , WN_0   , WN_DEL , WN_RTB4,
     HOLDLYR, WN_TAB , WN_Q   , WN_S   , WN_H   , WN_T   , WN_G   ,     WN_Y   , WN_N   , WN_E   , WN_O   , WN_SCOL, WN_BSPC, _______,
-    _______, WN_LSFT, WN_A   , WN_X   , WN_M   , WN_C   , WN_V   ,     WN_K   , WN_L   , WN_COMM, WN_DOT , WN_I   , WN_RSFT, _______,
-    TOQWERT, WN_LCTL, WN_Z   , WN_LWIN, WN_LALT, WN_LTB1, WN_LTB2,     WN_RTB2, WN_RTB1, WN_RALT, WN_RWIN, WN_SLSH, WN_RCTL, _______
+    WN_LTB3, WN_LSFT, WN_A   , WN_X   , WN_M   , WN_C   , WN_V   ,     WN_K   , WN_L   , WN_COMM, WN_DOT , WN_I   , WN_RSFT, WN_RTB3,
+    TODEFLT, WN_LCTL, WN_Z   , WN_LWIN, WN_LALT, WN_LTB1, WN_LTB2,     WN_RTB2, WN_RTB1, WN_RALT, WN_RWIN, WN_SLSH, WN_RCTL, _______
   ),
   [LYR_NAVNUM] = LAYOUT_ortho_5x14(
     _______, _______, KC_NO  , KC_PSCR, KC_SLCK, KC_PAUS, KC_INS ,     KC_CIRC, KC_NLCK, KC_PSLS, KC_ASTR,KC_MINUS, _______, _______,
