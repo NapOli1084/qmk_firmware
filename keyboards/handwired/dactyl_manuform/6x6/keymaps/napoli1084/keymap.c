@@ -5,7 +5,7 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [LYR_WORKNAP] = LAYOUT_6x6(
-        KC_NO   , KC_NO  , KC_NO  , TTGAME , KC_HYPR, TTF1F12,                TTWIN  , TTNVNUM, KC_MEH , KC_NO  , KC_NO  , WN_APP ,
+        TODEFLT , KC_NO  , KC_NO  , TTGAME , KC_HYPR, TTF1F12,                TODEFLT, TTNVNUM, KC_MEH , KC_NO  , KC_NO  , WN_APP ,
         WN_ESC  , WN_1   , WN_2   , WN_3   , WN_4   , WN_5   ,                WN_6   , WN_7   , WN_8   , WN_9   , WN_0   , WN_DEL ,
         WN_TAB  , WN_Q   , WN_D   , WN_R   , WN_W   , WN_B   ,                WN_J   , WN_F   , WN_U   , WN_P   , WN_SCOL, WN_BSPC,
         WN_LSFT , WN_A   , WN_S   , WN_H   , WN_T   , WN_G   ,                WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , WN_RSFT,
@@ -38,8 +38,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______
     ),
     [LYR_FRSYMBOL] = LAYOUT_6x6(
-         RESET ,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______, RESET ,
-        n_TILDE,a_DIAER, KC_AT ,KC_HASH,KC_DLR ,KC_PERC,                        y_DIAER,u_DIAER,e_DIAER,o_DIAER,i_DIAER,_______,
+        _______,_______,_______,_______,_______, RESET ,                        _______,_______,_______,_______,_______, RESET ,
+        n_TILDE,a_DIAER, UN_AT ,KC_HASH,KC_DLR ,KC_PERC,                        y_DIAER,u_DIAER,e_DIAER,o_DIAER,i_DIAER,_______,
         s_SHARP,a_CIRCM,KC_RCBR,KC_LCBR,KC_GRV ,KC_CIRC,                        KC_PERC,u_CIRCM,e_CIRCM,o_CIRCM,i_CIRCM,_______,
         _______,a_GRAVE,KC_RPRN,KC_LPRN,KC_UNDS,KC_AMPR,                        KC_DLR ,u_GRAVE,e_ACUTE,KC_DQUO,KC_QUOT,_______,
         _______,KC_EXLM,KC_RBRC,KC_LBRC,c_CEDIL,KC_TILD,                        KC_HASH,KC_ASTR,e_GRAVE,KC_BSLS,KC_PIPE,_______,
