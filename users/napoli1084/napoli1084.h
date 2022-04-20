@@ -129,9 +129,6 @@ enum tap_dance_id{
 #ifdef UNICODEMAP_ENABLE
 
 enum unicode_names {
-    BANG,
-    IRONY,
-    SNEK,
     uni_QUOTATION,
     uni_HASH,
     uni_APOSTROPHE,
