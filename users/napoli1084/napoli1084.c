@@ -78,9 +78,43 @@ const uint32_t PROGMEM unicode_map[] = {
 
 static uint8_t symbol_mode = SYMD_UNICODE;
 #else
-static uint8_t symbol_mode = SYMD_US;
+static uint8_t symbol_mode = SYMD_KB_CAFR;
 #endif // #ifdef UNICODEMAP_ENABLE
 
+enum napoli1084_symbols_constants {
+    SYMBOL_STRING_MAX_LENGTH = 8
+};
+
+typedef struct {
+    const char string[SYMBOL_STRING_MAX_LENGTH];
+} napoli1084_symbol_string_t;
+
+static const napoli1084_symbol_string_t PROGMEM cafr_symbol_string_map[] = {
+    [uni_QUOTATION] = {""}, // "
+    [uni_HASH] = {""}, // #
+    [uni_APOSTROPHE] = {""}, // '
+    [uni_AT] = {SS_RALT("2")}, // @
+};
+
+static const napoli1084_symbol_string_t PROGMEM cms_symbol_string_map[] = {
+    [uni_QUOTATION] = {""}, // "
+    [uni_HASH] = {""}, //
+    [uni_APOSTROPHE] = {""}, // '
+    [uni_AT] = {SS_LSFT("2")}, // @
+};
+
+static const napoli1084_symbol_string_t PROGMEM us_symbol_string_map[] = {
+    [uni_QUOTATION] = {""}, // "
+    [uni_HASH] = {""}, //
+    [uni_APOSTROPHE] = {""}, // '
+    [uni_AT] = {SS_LSFT("2")}, // @
+};
+
+static const napoli1084_symbol_string_t* const PROGMEM nap_symbol_string_maps[] = {
+    cafr_symbol_string_map,
+    cms_symbol_string_map,
+    us_symbol_string_map,
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -177,6 +211,8 @@ enum napoli1084_rgblayers {
 
 #endif // RGBLIGHT_LAYERS
 
+////////////////////////////////////////////////////////////////////////////////
+
 void napoli1084_cycle_symbol_mode(void) {
     symbol_mode = (symbol_mode + 1) % SYMD_COUNT;
 }
@@ -238,11 +274,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
         break;
     case QK_UNICODEMAP ... QK_UNICODEMAP_PAIR_MAX:
-        if (symbol_mode == SYMD_UNICODE) {
-            process_unicodemap(keycode, record);
-        } else if (record->event.pressed) {
+        if (symbol_mode < SYMD_KB_COUNT) {
+            if (record->event.pressed) {
+                const napoli1084_symbol_string_t *const *map_ptr = nap_symbol_string_maps + symbol_mode;
+                //TODO: get index from keycode
+                uint16_t map_index = unicodemap_index(keycode);
+                //uint32_t code_point = pgm_read_dword(unicode_map + unicodemap_index(keycode));
+                const napoli1084_symbol_string_t *entry_ptr = pgm_read_ptr(map_ptr);
+                entry_ptr += map_index;
+                napoli1084_symbol_string_t entry;
+                memcpy_P(&entry, entry_ptr, sizeof(napoli1084_symbol_string_t));
+                send_string(entry.string);
+                //send_string_P(entry_ptr->string);
+            }
+            return false;
         }
-        return false;
+#ifdef UNICODEMAP_ENABLE
+        if (symbol_mode == SYMD_UNICODE) {
+            // Let default unicode map processing take place
+            return true;
+
+            //process_unicodemap(keycode, record);
+        }
+#endif // UNICODEMAP_ENABLE
+        return true;
         break;
     }
     return true;
