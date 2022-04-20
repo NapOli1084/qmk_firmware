@@ -15,29 +15,27 @@ enum napoli1084_layers {
 #ifdef MOUSEKEY_ENABLE
     LYR_MOUSE, // Mouse layer
 #endif
-#ifdef NAPOLI1084_QWERTY_ENABLE
     LYR_FN, // Function keys layer
-#endif
     LYR_F1F12, // F keys layer
     LYR_WINDOWS // Windows combos layers
 };
 
 enum napoli1084_keycodes {
     // NC = NapOli1084 Code
-    NC_SYMD = SAFE_RANGE, // Symbol Mode
-    NC_SYMBOL_BEGIN,
-    NC_AT = NC_SYMBOL_BEGIN,
-    NC_SYMBOL_END,
+    NC_SYMD = SAFE_RANGE, // Symbol Mode cycle
 };
 
 enum napoli1084_symbol_mode {
+    SYMD_KB_CAFR, // Canadian French
+    SYMD_KB_CMS, // Canadian Multilingual Standard
+    SYMD_KB_US, // US QWERTY
+    SYMD_KB_COUNT, // Number of keyboard symbol modes (not a mode)
 #ifdef UNICODEMAP_ENABLE
-    SYMD_UNICODE, // Default, uses currently selected Unicode mode as per get_unicode_input_mode()
+    SYMD_UNICODE = SYMD_KB_COUNT, // Default, uses currently selected Unicode mode as per get_unicode_input_mode()
+    SYMD_COUNT // Number of symbol modes (not a mode)
+#else
+    SYMD_COUNT = SYMD_KB_COUNT
 #endif
-    SYMD_US, // US QWERTY
-    SYMD_FRCA, // French Canada
-    SYMD_CMS, // Canada Multilingual Standard
-    SYMD_COUNT // Number of modes (not a mode)
 };
 
 // One-shot layer keys
