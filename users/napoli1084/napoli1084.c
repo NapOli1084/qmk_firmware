@@ -22,9 +22,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #ifdef UNICODEMAP_ENABLE
 
 const uint32_t PROGMEM unicode_map[] = {
-    [BANG]  = 0x203D,  // ‽
-    [IRONY] = 0x2E2E,  // ⸮
-    [SNEK]  = 0x1F40D, // 🐍
     [uni_QUOTATION] = 0x0022, // "
     [uni_HASH] = 0x0023, // #
     [uni_APOSTROPHE] = 0x0027, // '
@@ -82,7 +79,7 @@ static uint8_t symbol_mode = SYMD_KB_CAFR;
 #endif // #ifdef UNICODEMAP_ENABLE
 
 enum napoli1084_symbols_constants {
-    SYMBOL_STRING_MAX_LENGTH = 8
+    SYMBOL_STRING_MAX_LENGTH = 16
 };
 
 typedef struct {
@@ -90,10 +87,55 @@ typedef struct {
 } napoli1084_symbol_string_t;
 
 static const napoli1084_symbol_string_t PROGMEM cafr_symbol_string_map[] = {
-    [uni_QUOTATION] = {""}, // "
-    [uni_HASH] = {""}, // #
-    [uni_APOSTROPHE] = {""}, // '
+    [uni_QUOTATION] = {SS_LSFT("2")}, // "
+    [uni_HASH] = {"`"}, // #
+    [uni_APOSTROPHE] = {"<"}, // '
     [uni_AT] = {SS_RALT("2")}, // @
+    [uni_LEFTBRACKET] = {SS_RALT("[")}, // [
+    [uni_BACKSLASH] = {SS_RALT("`")}, // `\`
+    [uni_RIGHTBRACKET] = {SS_RALT("]")}, // ]
+    [uni_CIRCUMFLEX] = {"[ "}, // ^ dead key
+    [uni_GRAVE] = {"' "}, // ` dead key
+    [uni_LEFTCURLYBRACKET] = {SS_RALT("'")}, // {
+    [uni_PIPE] = {"~"}, // |
+    [uni_RIGHTCURLYBRACKET] = {SS_RALT("\\")}, // }
+    [uni_TILDE] = {SS_RALT(";")}, // ~
+    [uni_a_CIRCUMFLEX] = {"[a"}, // â
+    [uni_a_DIAERESIS] = {"}a"}, // ä
+    [uni_a_GRAVE] = {"'a"}, // à
+    [uni_c_CEDILLA] = {"]c"}, // ç
+    [uni_e_ACUTE] = {"/"}, // é
+    [uni_e_CIRCUMFLEX] = {"[e"}, // ê
+    [uni_e_DIAERESIS] = {"}e"}, // ë
+    [uni_e_GRAVE] = {"'e"}, // è
+    [uni_i_CIRCUMFLEX] = {"[i"}, // î
+    [uni_i_DIAERESIS] = {"}i"}, // ï
+    [uni_n_TILDE] = {"n"}, // ñ
+    [uni_o_CIRCUMFLEX] = {"[o"}, // ô
+    [uni_o_DIAERESIS] = {"}o"}, // ö
+    [uni_s_SHARP] = {"ss"}, // ß
+    [uni_u_CIRCUMFLEX] = {"[u"}, // û
+    [uni_u_DIAERESIS] = {"}u"}, // ü
+    [uni_u_GRAVE] = {"'u"}, // ù
+    [uni_y_DIAERESIS] = {"}y"}, // ÿ
+    [uni_A_CIRCUMFLEX] = {"[A"}, // Â
+    [uni_A_DIAERESIS] = {"}A"}, // Ä
+    [uni_A_GRAVE] = {"'A"}, // À
+    [uni_C_CEDILLA] = {"]C"}, // Ç
+    [uni_E_ACUTE] = {"?"}, // É
+    [uni_E_CIRCUMFLEX] = {"[E"}, // Ê
+    [uni_E_DIAERESIS] = {"}E"}, // Ë
+    [uni_E_GRAVE] = {"'E"}, // È
+    [uni_I_CIRCUMFLEX] = {"[I"}, // Î
+    [uni_I_DIAERESIS] = {"}I"}, // Ï
+    [uni_N_TILDE] = {"N"}, // Ñ
+    [uni_O_CIRCUMFLEX] = {"[O"}, // Ô
+    [uni_O_DIAERESIS] = {"}O"}, // Ö
+    [uni_S_SHARP] = {"SS"}, // ẞ
+    [uni_U_CIRCUMFLEX] = {"[U"}, // Û
+    [uni_U_DIAERESIS] = {"}U"}, // Ü
+    [uni_U_GRAVE] = {"'U"}, // Ù
+    [uni_Y_DIAERESIS] = {"}Y"}, // Ÿ
 };
 
 static const napoli1084_symbol_string_t PROGMEM cms_symbol_string_map[] = {
@@ -101,6 +143,51 @@ static const napoli1084_symbol_string_t PROGMEM cms_symbol_string_map[] = {
     [uni_HASH] = {""}, //
     [uni_APOSTROPHE] = {""}, // '
     [uni_AT] = {SS_LSFT("2")}, // @
+    [uni_LEFTBRACKET] = {""}, // [
+    [uni_BACKSLASH] = {""}, // `\`
+    [uni_RIGHTBRACKET] = {""}, // ]
+    [uni_CIRCUMFLEX] = {""}, // ^
+    [uni_GRAVE] = {""}, // `
+    [uni_LEFTCURLYBRACKET] = {""}, // {
+    [uni_PIPE] = {""}, // |
+    [uni_RIGHTCURLYBRACKET] = {""}, // }
+    [uni_TILDE] = {""}, // ~
+    [uni_a_CIRCUMFLEX] = {""}, // â
+    [uni_a_DIAERESIS] = {""}, // ä
+    [uni_a_GRAVE] = {""}, // à
+    [uni_c_CEDILLA] = {""}, // ç
+    [uni_e_ACUTE] = {""}, // é
+    [uni_e_CIRCUMFLEX] = {""}, // ê
+    [uni_e_DIAERESIS] = {""}, // ë
+    [uni_e_GRAVE] = {""}, // è
+    [uni_i_CIRCUMFLEX] = {""}, // î
+    [uni_i_DIAERESIS] = {""}, // ï
+    [uni_n_TILDE] = {""}, // ñ
+    [uni_o_CIRCUMFLEX] = {""}, // ô
+    [uni_o_DIAERESIS] = {""}, // ö
+    [uni_s_SHARP] = {""}, // ß
+    [uni_u_CIRCUMFLEX] = {""}, // û
+    [uni_u_DIAERESIS] = {""}, // ü
+    [uni_u_GRAVE] = {""}, // ù
+    [uni_y_DIAERESIS] = {""}, // ÿ
+    [uni_A_CIRCUMFLEX] = {""}, // Â
+    [uni_A_DIAERESIS] = {""}, // Ä
+    [uni_A_GRAVE] = {""}, // À
+    [uni_C_CEDILLA] = {""}, // Ç
+    [uni_E_ACUTE] = {""}, // É
+    [uni_E_CIRCUMFLEX] = {""}, // Ê
+    [uni_E_DIAERESIS] = {""}, // Ë
+    [uni_E_GRAVE] = {""}, // È
+    [uni_I_CIRCUMFLEX] = {""}, // Î
+    [uni_I_DIAERESIS] = {""}, // Ï
+    [uni_N_TILDE] = {""}, // Ñ
+    [uni_O_CIRCUMFLEX] = {""}, // Ô
+    [uni_O_DIAERESIS] = {""}, // Ö
+    [uni_S_SHARP] = {""}, // ẞ
+    [uni_U_CIRCUMFLEX] = {""}, // Û
+    [uni_U_DIAERESIS] = {""}, // Ü
+    [uni_U_GRAVE] = {""}, // Ù
+    [uni_Y_DIAERESIS] = {""}, // Ÿ
 };
 
 static const napoli1084_symbol_string_t PROGMEM us_symbol_string_map[] = {
@@ -108,6 +195,51 @@ static const napoli1084_symbol_string_t PROGMEM us_symbol_string_map[] = {
     [uni_HASH] = {""}, //
     [uni_APOSTROPHE] = {""}, // '
     [uni_AT] = {SS_LSFT("2")}, // @
+    [uni_LEFTBRACKET] = {""}, // [
+    [uni_BACKSLASH] = {""}, // `\`
+    [uni_RIGHTBRACKET] = {""}, // ]
+    [uni_CIRCUMFLEX] = {""}, // ^
+    [uni_GRAVE] = {""}, // `
+    [uni_LEFTCURLYBRACKET] = {""}, // {
+    [uni_PIPE] = {""}, // |
+    [uni_RIGHTCURLYBRACKET] = {""}, // }
+    [uni_TILDE] = {""}, // ~
+    [uni_a_CIRCUMFLEX] = {""}, // â
+    [uni_a_DIAERESIS] = {""}, // ä
+    [uni_a_GRAVE] = {""}, // à
+    [uni_c_CEDILLA] = {""}, // ç
+    [uni_e_ACUTE] = {""}, // é
+    [uni_e_CIRCUMFLEX] = {""}, // ê
+    [uni_e_DIAERESIS] = {""}, // ë
+    [uni_e_GRAVE] = {""}, // è
+    [uni_i_CIRCUMFLEX] = {""}, // î
+    [uni_i_DIAERESIS] = {""}, // ï
+    [uni_n_TILDE] = {""}, // ñ
+    [uni_o_CIRCUMFLEX] = {""}, // ô
+    [uni_o_DIAERESIS] = {""}, // ö
+    [uni_s_SHARP] = {""}, // ß
+    [uni_u_CIRCUMFLEX] = {""}, // û
+    [uni_u_DIAERESIS] = {""}, // ü
+    [uni_u_GRAVE] = {""}, // ù
+    [uni_y_DIAERESIS] = {""}, // ÿ
+    [uni_A_CIRCUMFLEX] = {""}, // Â
+    [uni_A_DIAERESIS] = {""}, // Ä
+    [uni_A_GRAVE] = {""}, // À
+    [uni_C_CEDILLA] = {""}, // Ç
+    [uni_E_ACUTE] = {""}, // É
+    [uni_E_CIRCUMFLEX] = {""}, // Ê
+    [uni_E_DIAERESIS] = {""}, // Ë
+    [uni_E_GRAVE] = {""}, // È
+    [uni_I_CIRCUMFLEX] = {""}, // Î
+    [uni_I_DIAERESIS] = {""}, // Ï
+    [uni_N_TILDE] = {""}, // Ñ
+    [uni_O_CIRCUMFLEX] = {""}, // Ô
+    [uni_O_DIAERESIS] = {""}, // Ö
+    [uni_S_SHARP] = {""}, // ẞ
+    [uni_U_CIRCUMFLEX] = {""}, // Û
+    [uni_U_DIAERESIS] = {""}, // Ü
+    [uni_U_GRAVE] = {""}, // Ù
+    [uni_Y_DIAERESIS] = {""}, // Ÿ
 };
 
 static const napoli1084_symbol_string_t* const PROGMEM nap_symbol_string_maps[] = {
@@ -277,15 +409,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (symbol_mode < SYMD_KB_COUNT) {
             if (record->event.pressed) {
                 const napoli1084_symbol_string_t *const *map_ptr = nap_symbol_string_maps + symbol_mode;
-                //TODO: get index from keycode
                 uint16_t map_index = unicodemap_index(keycode);
-                //uint32_t code_point = pgm_read_dword(unicode_map + unicodemap_index(keycode));
                 const napoli1084_symbol_string_t *entry_ptr = pgm_read_ptr(map_ptr);
                 entry_ptr += map_index;
-                napoli1084_symbol_string_t entry;
-                memcpy_P(&entry, entry_ptr, sizeof(napoli1084_symbol_string_t));
-                send_string(entry.string);
-                //send_string_P(entry_ptr->string);
+                send_string_P(entry_ptr->string);
             }
             return false;
         }
