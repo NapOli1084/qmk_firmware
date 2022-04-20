@@ -33,8 +33,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,KC_WH_U,KC_LEFT,KC_DOWN,KC_RGHT,KC_WH_U,                        KC_DLR , KC_4  , KC_5  , KC_6  ,KC_PLUS,_______,
         _______,KC_WH_L,KC_END ,KC_WH_D,KC_PGDN,KC_WH_R,                        KC_HASH, KC_1  , KC_2  , KC_3  ,KC_EQL ,_______,
                         _______,_______,                                                         KC_0  ,KC_DOT ,
-                                            _______,_______,                _______,_______,
-                                                _______,_______,        _______,_______,
+                                            _______,_______,                _______, OSFN   ,
+                                                 _______,_______,    _______,_______,
                                                 _______,_______,        _______,_______
     ),
     [LYR_FRSYMBOL] = LAYOUT_6x6(
@@ -72,6 +72,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______
     ),
 #endif // MOUSEKEY_ENABLE
+    [LYR_FN] = LAYOUT_6x6(
+         _______, _______, _______, _______, _______, _______,                _______, _______, _______, _______, _______, _______,
+         _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 ,
+         _______,RGB_M_SW, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD,                BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_MPRV, _______,
+         _______, RGB_M_P, RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD,                BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MNXT, _______,
+         _______, RGB_M_T, KC_NO  , UC_MOD , NC_SYMD, RGB_TOG,                BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_MNXT, _______,
+                           _______, _______,                                                    _______, _______,
+                                             _______, _______,                _______, _______,
+                                                    _______, _______,  _______, _______,
+                                                 _______, _______,        _______, _______
+    ),
     [LYR_F1F12] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         KC_F20 ,KC_F21 ,KC_F10 ,KC_F11 ,KC_F12 ,KC_F22 ,                        _______,KC_F10 ,KC_F11 ,KC_F12 ,_______,_______,
