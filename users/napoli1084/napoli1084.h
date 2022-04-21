@@ -182,6 +182,7 @@ enum unicode_names {
 
 #define UN_HASH X(uni_HASH)
 #define UN_APOS XP(uni_APOSTROPHE, uni_QUOTATION)
+#define UN_DQUO X(uni_QUOTATION)
 #define UN_AT X(uni_AT)
 #define UN_LBRC XP(uni_LEFTBRACKET, uni_LEFTCURLYBRACKET)
 #define UN_RBRC XP(uni_RIGHTBRACKET, uni_RIGHTCURLYBRACKET)
@@ -190,6 +191,7 @@ enum unicode_names {
 #define UN_GRAV XP(uni_GRAVE, uni_TILDE)
 #define UN_LCBR X(uni_LEFTCURLYBRACKET)
 #define UN_RCBR X(uni_RIGHTCURLYBRACKET)
+#define UN_PIPE X(uni_PIPE)
 #define UN_TILD X(uni_TILDE)
 #define a_CIRCM XP(uni_a_CIRCUMFLEX, uni_A_CIRCUMFLEX)
 #define a_DIAER XP(uni_a_DIAERESIS, uni_A_DIAERESIS)
