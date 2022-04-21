@@ -87,7 +87,7 @@ typedef struct {
 } napoli1084_symbol_string_t;
 
 static const napoli1084_symbol_string_t PROGMEM cafr_symbol_string_map[] = {
-    [uni_QUOTATION] = {SS_LSFT("2")}, // "
+    [uni_QUOTATION] = {"@"}, // "
     [uni_HASH] = {"`"}, // #
     [uni_APOSTROPHE] = {"<"}, // '
     [uni_AT] = {SS_RALT("2")}, // @
