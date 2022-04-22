@@ -132,6 +132,8 @@ enum unicode_names {
     uni_QUOTATION,
     uni_HASH,
     uni_APOSTROPHE,
+    uni_SLASH,
+    uni_QUESTION,
     uni_AT,
     uni_LEFTBRACKET,
     uni_BACKSLASH,
@@ -182,6 +184,7 @@ enum unicode_names {
 
 #define UN_HASH X(uni_HASH)
 #define UN_APOS XP(uni_APOSTROPHE, uni_QUOTATION)
+#define UN_SLSH XP(uni_SLASH, uni_QUESTION)
 #define UN_DQUO X(uni_QUOTATION)
 #define UN_AT X(uni_AT)
 #define UN_LBRC XP(uni_LEFTBRACKET, uni_LEFTCURLYBRACKET)
@@ -291,7 +294,7 @@ enum unicode_names {
 #define WN_L KC_L
 #define WN_COMM KC_COMM
 #define WN_DOT KC_DOT
-#define WN_SLSH RCTL_SL
+#define WN_SLSH UN_SLSH
 #define WN_RCTL KC_RCTL
 
 #define WN_LWIN KC_LCTL
