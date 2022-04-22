@@ -25,6 +25,8 @@ const uint32_t PROGMEM unicode_map[] = {
     [uni_QUOTATION] = 0x0022, // "
     [uni_HASH] = 0x0023, // #
     [uni_APOSTROPHE] = 0x0027, // '
+    [uni_SLASH] = 0x002F, // /
+    [uni_QUESTION] = 0x003F, // ?
     [uni_AT] = 0x0040, // @
     [uni_LEFTBRACKET] = 0x005B, // [
     [uni_BACKSLASH] = 0x005C, // `\`
@@ -79,7 +81,8 @@ static uint8_t symbol_mode = SYMD_KB_CAFR;
 #endif // #ifdef UNICODEMAP_ENABLE
 
 enum napoli1084_symbols_constants {
-    SYMBOL_STRING_MAX_LENGTH = 16
+    // Combos like SS_LSFT("3") or SS_RALT("2") have a length of 7 + 1 terminating null
+    SYMBOL_STRING_MAX_LENGTH = 8
 };
 
 typedef struct {
@@ -90,6 +93,8 @@ static const napoli1084_symbol_string_t PROGMEM cafr_symbol_string_map[] = {
     [uni_QUOTATION] = {"@"}, // "
     [uni_HASH] = {"`"}, // #
     [uni_APOSTROPHE] = {"<"}, // '
+    [uni_SLASH] = {SS_LSFT("3")}, // /
+    [uni_QUESTION] = {SS_LSFT("6")}, // ?
     [uni_AT] = {SS_RALT("2")}, // @
     [uni_LEFTBRACKET] = {SS_RALT("[")}, // [
     [uni_BACKSLASH] = {SS_RALT("`")}, // `\`
@@ -142,6 +147,8 @@ static const napoli1084_symbol_string_t PROGMEM cms_symbol_string_map[] = {
     [uni_QUOTATION] = {""}, // "
     [uni_HASH] = {""}, //
     [uni_APOSTROPHE] = {""}, // '
+    [uni_SLASH] = {""}, // /
+    [uni_QUESTION] = {""}, // ?
     [uni_AT] = {SS_LSFT("2")}, // @
     [uni_LEFTBRACKET] = {""}, // [
     [uni_BACKSLASH] = {""}, // `\`
@@ -194,6 +201,8 @@ static const napoli1084_symbol_string_t PROGMEM us_symbol_string_map[] = {
     [uni_QUOTATION] = {""}, // "
     [uni_HASH] = {""}, //
     [uni_APOSTROPHE] = {""}, // '
+    [uni_SLASH] = {""}, // /
+    [uni_QUESTION] = {""}, // ?
     [uni_AT] = {SS_LSFT("2")}, // @
     [uni_LEFTBRACKET] = {""}, // [
     [uni_BACKSLASH] = {""}, // `\`
@@ -396,9 +405,53 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 #endif // RGBLIGHT_LAYERS
     return state;
 }
+/*
+static bool is_shift_pressed(void)
+{
+    return get_mods() & MOD_MASK_SHIFT;
+}
+
+
+static bool napoli1084_process_slash(keyrecord_t *record)
+{
+    switch (symbol_mode)
+    {
+    case SYMD_KB_CAFR:
+        if (record->event.pressed) {
+            if (is_shift_pressed()) {
+                tap_code16(LSFT(KC_6)); // ?
+            }
+            else {
+                tap_code16(LSFT(KC_3)); // '\'
+            }
+        }
+        return false;
+        break;
+    case SYMD_KB_CMS:
+        if (record->event.pressed) {
+            if (is_shift_pressed()) {
+                tap_code16(LSFT(KC_6)); // ?
+            }
+            else {
+                tap_code16(KC_GRAVE); // '\'
+            }
+        }
+        return false;
+        break;
+#ifdef UNICODEMAP_ENABLE
+    case SYMD_UNICODE:
+        return false;
+        break;
+#endif
+    }
+    return true; // let default processing occur
+}*/
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+    //case KC_SLASH:
+        //return napoli1084_process_slash(record);
+        //break;
     case NC_SYMD:
         if (record->event.pressed) {
             napoli1084_cycle_symbol_mode();
@@ -413,6 +466,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 const napoli1084_symbol_string_t *entry_ptr = pgm_read_ptr(map_ptr);
                 entry_ptr += map_index;
                 send_string_P(entry_ptr->string);
+
+                #if 1
+                size_t len = strlen_P(entry_ptr->string);
+                tap_code16(KC_A + (uint16_t)len);
+                #endif
             }
             return false;
         }
