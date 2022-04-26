@@ -447,6 +447,16 @@ static bool napoli1084_process_slash(keyrecord_t *record)
     return true; // let default processing occur
 }*/
 
+
+//#define NAPOLI1084_UNICODE_PRESS_TIMER
+
+#ifdef NAPOLI1084_UNICODE_PRESS_TIMER
+static uint16_t unicode_press_timer = 0;
+enum {UNICODE_PRESS_BUFFER_SIZE=4};
+static uint16_t unicode_press_buffer[UNICODE_PRESS_BUFFER_SIZE] = {0};
+static uint16_t unicode_press_count = 0;
+#endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     //case KC_SLASH:
@@ -467,7 +477,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 entry_ptr += map_index;
                 send_string_P(entry_ptr->string);
 
-                #if 1
+                #if 0
                 size_t len = strlen_P(entry_ptr->string);
                 tap_code16(KC_A + (uint16_t)len);
                 #endif
@@ -475,7 +485,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         }
 #ifdef UNICODEMAP_ENABLE
-        if (symbol_mode == SYMD_UNICODE) {
+        else if (symbol_mode == SYMD_UNICODE) {
+
+            #ifdef NAPOLI1084_UNICODE_PRESS_TIMER
+            if(record->event.pressed) {
+                if (unicode_press_timer == 0) {
+                    unicode_press_timer = timer_read();
+                    return true;
+                }
+                else {
+                    if (unicode_press_count < UNICODE_PRESS_BUFFER_SIZE) {
+                        unicode_press_buffer[unicode_press_count] = keycode;
+                        ++unicode_press_count;
+                    }
+                    return false;
+                }
+            }
+            #endif
+            #if 0
+            if(record->event.pressed) {
+                static uint16_t press_count = 0;
+                ++press_count;
+                press_count = press_count % 2;
+                tap_code16(KC_A + press_count);
+            //wait_ms(100);
+            //tap_code16(KC_A + (uint16_t)record->tap.count);
+            }
+            #endif
+
             // Let default unicode map processing take place
             return true;
 
@@ -486,4 +523,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     }
     return true;
+}
+
+void matrix_scan_user(void) {
+
+#ifdef NAPOLI1084_UNICODE_PRESS_TIMER
+  if (unicode_press_timer > 0) {
+    if (timer_elapsed(unicode_press_timer) > 300) {
+        tap_code16(KC_A + unicode_press_count);
+
+        if (unicode_press_count > 0) {
+            keyrecord_t record = {};
+            record.event.pressed = true;
+            process_unicodemap(unicode_press_buffer[0], &record);
+            for (uint16_t i = 0; i<unicode_press_count-1; ++i)
+            {
+                unicode_press_buffer[i] = unicode_press_buffer[i+1];
+            }
+            --unicode_press_count;
+            if (unicode_press_count == 0) {
+                unicode_press_timer = 0;
+            }
+            else {
+                unicode_press_timer = timer_read();
+            }
+        }
+        else {
+            unicode_press_timer = 0;
+        }
+    }
+  }
+#endif
 }
