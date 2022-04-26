@@ -20,4 +20,8 @@
 #define UNICODE_SELECTED_MODES UC_WINC
 // https://docs.qmk.fm/#/feature_unicode?id=input-key-configuration
 #define UNICODE_KEY_WINC KC_APPLICATION
+
+// Don't save Unicode mode to EEPROM
 #define UNICODE_CYCLE_PERSIST 0
+
+//#define UNICODE_TYPE_DELAY 0
