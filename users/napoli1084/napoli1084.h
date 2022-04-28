@@ -25,10 +25,15 @@ enum napoli1084_keycodes {
     NC_SYMD = SAFE_RANGE, // Symbol Mode cycle
 };
 
+#define NAPOLI1084_SYMBOL_MODE_ALL 0
+
+
 enum napoli1084_symbol_mode {
     SYMD_KB_CAFR, // Canadian French
+#if NAPOLI1084_SYMBOL_MODE_ALL
     SYMD_KB_CMS, // Canadian Multilingual Standard
     SYMD_KB_US, // US QWERTY
+#endif
     SYMD_KB_COUNT, // Number of keyboard symbol modes (not a mode)
 #ifdef UNICODEMAP_ENABLE
     SYMD_UNICODE = SYMD_KB_COUNT, // Default, uses currently selected Unicode mode as per get_unicode_input_mode()
@@ -126,13 +131,25 @@ enum tap_dance_id{
 #endif // #ifdef TAP_DANCE_ENABLE
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifdef UNICODEMAP_ENABLE
+#define CAFR_CEDILLA_DEAD_KEY KC_RIGHT_BRACKET
+#define CAFR_CIRCUMFLEX_DEAD_KEY KC_LEFT_BRACKET
+#define CAFR_DIAERESIS_DEAD_KEY KC_RIGHT_CURLY_BRACE
+#define CAFR_GRAVE_DEAD_KEY KC_QUOTE
+#define CAFR_HASH KC_GRAVE
+#define CAFR_QUOTE KC_LEFT_ANGLE_BRACKET
+#define CAFR_DOUBLE_QUOTE KC_AT
+#define CAFR_SLASH KC_HASH
+#define CAFR_E_ACUTE KC_SLASH
 
 enum unicode_names {
     uni_QUOTATION,
     uni_HASH,
     uni_APOSTROPHE,
+    uni_COMMA,
+    uni_DOT,
     uni_SLASH,
+    uni_LESSTHAN,
+    uni_GREATERTHAN,
     uni_QUESTION,
     uni_AT,
     uni_LEFTBRACKET,
@@ -179,11 +196,13 @@ enum unicode_names {
     uni_U_CIRCUMFLEX,
     uni_U_DIAERESIS,
     uni_U_GRAVE,
-    uni_Y_DIAERESIS
+    uni_Y_DIAERESIS,
 };
 
 #define UN_HASH X(uni_HASH)
 #define UN_APOS XP(uni_APOSTROPHE, uni_QUOTATION)
+#define UN_COMM XP(uni_COMMA, uni_LESSTHAN)
+#define UN_DOT XP(uni_DOT, uni_GREATERTHAN)
 #define UN_SLSH XP(uni_SLASH, uni_QUESTION)
 #define UN_DQUO X(uni_QUOTATION)
 #define UN_AT X(uni_AT)
@@ -233,8 +252,6 @@ enum unicode_names {
 #define U_DIAER X(uni_U_DIAERESIS)
 #define U_GRAVE X(uni_U_GRAVE)
 #define Y_DIAER X(uni_Y_DIAERESIS)
-
-#endif // #ifdef UNICODEMAP_ENABLE
 
 ////////////////////////////////////////////////////////////////////////////////
 
