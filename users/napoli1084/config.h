@@ -12,6 +12,10 @@
 // how long before a tap becomes a hold in milliseconds
 #define TAPPING_TERM 225
 
+// Waits milliseconds before calling unregister_code()
+// Needed for my symbol keys with LSFT
+#define TAP_CODE_DELAY 5
+
 // https://docs.qmk.fm/#/tap_hold?id=ignore-mod-tap-interrupt
 #define IGNORE_MOD_TAP_INTERRUPT // this makes it possible to do rolling combos (zx) with keys that convert to other keys on hold (z becomes ctrl when you hold it, and when this option isn't enabled, z rapidly followed by x actually sends Ctrl-x. That's bad.)
 
