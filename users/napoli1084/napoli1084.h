@@ -197,6 +197,7 @@ enum unicode_names {
     uni_U_DIAERESIS,
     uni_U_GRAVE,
     uni_Y_DIAERESIS,
+    uni_COUNT // not an ID, provides number of IDs
 };
 
 #define UN_HASH X(uni_HASH)
@@ -309,8 +310,8 @@ enum unicode_names {
 
 #define WN_K KC_K
 #define WN_L KC_L
-#define WN_COMM KC_COMM
-#define WN_DOT KC_DOT
+#define WN_COMM UN_COMM
+#define WN_DOT UN_DOT
 #define WN_SLSH UN_SLSH
 #define WN_RCTL KC_RCTL
 
