@@ -376,6 +376,26 @@ enum napoli1084_rgblayers {
 
 void napoli1084_cycle_symbol_mode(void) {
     symbol_mode = (symbol_mode + 1) % SYMD_COUNT;
+
+    switch (symbol_mode)
+    {
+    case SYMD_KB_CAFR:
+        SEND_STRING("CAFR");
+        break;
+#if NAPOLI1084_SYMBOL_MODE_ALL
+    case SYMD_KB_CMS:
+        SEND_STRING("CMS");
+        break;
+    case SYMD_KB_US:
+        SEND_STRING("US");
+        break;
+#endif
+#ifdef UNICODEMAP_ENABLE
+    case SYMD_UNICODE:
+        SEND_STRING("UNI");
+        break;
+#endif
+    }
 }
 
 void keyboard_post_init_user(void) {
@@ -476,7 +496,7 @@ typedef struct {
 } napoli1084_symbol_keys_t;
 
 
-static const napoli1084_symbol_keys_t PROGMEM cafr_symbol_keys_map[] = {
+static const napoli1084_symbol_keys_t PROGMEM cafr_symbol_keys_map[uni_COUNT] = {
     [uni_QUOTATION] = {{CAFR_DOUBLE_QUOTE, KC_NO}}, // "
     [uni_HASH] = {{CAFR_HASH, KC_NO}}, // #
     [uni_APOSTROPHE] = {{CAFR_QUOTE, KC_NO}}, // '
@@ -770,7 +790,24 @@ static uint16_t unicode_press_buffer[UNICODE_PRESS_BUFFER_SIZE] = {0};
 static uint16_t unicode_press_count = 0;
 #endif
 
+void napoli1084_unregister_mods(uint8_t mods) {
+    if (mods & MOD_BIT(KC_LEFT_SHIFT)) {
+        unregister_code(KC_LSFT);
+        // tap twice to clear sticky key
+        tap_code(KC_LSFT);
+        tap_code(KC_LSFT);
+    }
+    if (mods & MOD_BIT(KC_RIGHT_SHIFT)) {
+        unregister_code(KC_RSFT);
+        // tap twice to clear sticky key
+        tap_code(KC_RSFT);
+        tap_code(KC_RSFT);
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static uint8_t symbol_saved_mods = 0;
+
     switch (keycode) {
     //case KC_SLASH:
         //return napoli1084_process_slash(record);
@@ -809,12 +846,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     // rely on default unicode map processing
                     return true;
                 }
-                tap_code16(key1);
 
+                // Clear mods
+                symbol_saved_mods = get_mods(); // Save current mods
+                napoli1084_unregister_mods(symbol_saved_mods);
+                clear_mods(); // Unregister mods to start from a clean state
+
+                // Tap keys
+                tap_code16(key1);
                 uint16_t key2 = entry.keys[1];
                 if (key2 != KC_NO) {
                     tap_code16(key2);
                 }
+
+                // Re-register mods
+                if (symbol_saved_mods & MOD_BIT(KC_LEFT_SHIFT)) {
+                    register_code(KC_LSFT);
+                }
+                if (symbol_saved_mods & MOD_BIT(KC_RIGHT_SHIFT)) {
+                    register_code(KC_RSFT);
+                }
+                set_mods(symbol_saved_mods); // Reregister previously set mods
+
                 return false;
 
                 #endif
@@ -862,6 +915,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
 #endif // UNICODEMAP_ENABLE
         return true;
+        break;
+    case KC_LEFT_CTRL ... KC_RIGHT_GUI:
+        if (!record->event.pressed) {
+            napoli1084_unregister_mods(symbol_saved_mods);
+            symbol_saved_mods = 0;
+        }
         break;
     }
     return true;
