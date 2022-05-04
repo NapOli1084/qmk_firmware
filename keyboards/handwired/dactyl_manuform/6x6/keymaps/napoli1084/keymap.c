@@ -5,7 +5,7 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [LYR_WORKNAP] = LAYOUT_6x6(
-        TODEFLT , KC_NO  , KC_NO  , TTGAME , KC_HYPR, TTF1F12,                TODEFLT, TTNVNUM, KC_MEH , KC_NO  , KC_NO  , WN_APP ,
+        TODEFLT , KC_NO  , KC_NO  , TTGAME , KC_HYPR, TODEFLT,                TODEFLT, TTNVNUM, KC_MEH , KC_NO  , KC_NO  , WN_APP ,
         WN_ESC  , WN_1   , WN_2   , WN_3   , WN_4   , WN_5   ,                WN_6   , WN_7   , WN_8   , WN_9   , WN_0   , WN_DEL ,
         WN_TAB  , WN_Q   , WN_D   , WN_R   , WN_W   , WN_B   ,                WN_J   , WN_F   , WN_U   , WN_P   , WN_SCOL, WN_BSPC,
         WN_LSFT , WN_A   , WN_S   , WN_H   , WN_T   , WN_G   ,                WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , WN_RSFT,
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______
     ),
     [LYR_FRSYMBOL] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______, RESET ,                        _______,_______,_______,_______,_______, RESET ,
+        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,RESET,
         n_TILDE,a_DIAER, UN_AT ,UN_HASH,KC_DLR ,KC_PERC,                        y_DIAER,u_DIAER,e_DIAER,o_DIAER,i_DIAER,_______,
         s_SHARP,a_CIRCM,UN_RCBR,UN_LCBR,UN_GRAV,UN_CIRC,                        KC_PERC,u_CIRCM,e_CIRCM,o_CIRCM,i_CIRCM,_______,
         _______,a_GRAVE,KC_RPRN,KC_LPRN,KC_UNDS,KC_AMPR,                        KC_DLR ,u_GRAVE,e_ACUTE,UN_DQUO,UN_APOS,_______,
@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 #endif // MOUSEKEY_ENABLE
     [LYR_FN] = LAYOUT_6x6(
-         _______, _______, _______, _______, _______, _______,                _______, _______, _______, _______, _______, _______,
+         NC_RSET, _______, _______, _______, _______, _______,                _______, _______, _______, _______, _______, NC_RSET,
          _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,                KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 ,
          _______,RGB_M_SW, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD,                BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_MPRV, _______,
          _______, RGB_M_P, RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD,                BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MNXT, _______,
@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                  _______, _______,        _______, _______
     ),
     [LYR_F1F12] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+        NC_RSET,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,NC_RSET,
         KC_F20 ,KC_F21 ,KC_F10 ,KC_F11 ,KC_F12 ,KC_F22 ,                        _______,KC_F10 ,KC_F11 ,KC_F12 ,_______,_______,
         KC_F17 ,KC_F18 ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F19 ,                        _______,KC_F7  ,KC_F8  ,KC_F9  ,_______,_______,
         _______,KC_F15 ,KC_F4  ,KC_F5  ,KC_F6  ,KC_F16 ,                        _______,HOLDLYR,KC_F5  ,KC_F6  ,_______,_______,
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______
     ),
     [LYR_WINDOWS] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
+        NC_RSET,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,NC_RSET,
         _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,_______,
         _______,_______,KC_MPRV,KC_VOLU,_______,_______,                        KC_WAKE,WINLEFT,WINUP  ,WINRGHT,_______,_______,
         _______,_______,KC_MNXT,KC_VOLD,HOLDLYR,_______,                        KC_SLEP,WINSFTL,WINDOWN,WINSFTR,ALT_F4 ,_______,

@@ -17,7 +17,12 @@ enum napoli1084_layers {
 #endif
     LYR_FN, // Function keys layer
     LYR_F1F12, // F keys layer
-    LYR_WINDOWS // Windows combos layers
+    LYR_WINDOWS, // Windows combos layers
+#ifdef NAPOLI1084_QWERTY_ENABLE
+    LYR_DEFAULT = LYR_QWERTY
+#else
+    LYR_DEFAULT = LYR_WORKNAP
+#endif
 };
 
 enum napoli1084_keycodes {
@@ -49,12 +54,7 @@ enum napoli1084_symbol_mode {
 #define OSFRCAPS OSL(LYR_FRCAPS)
 
 // Layer TO keys
-#ifdef NAPOLI1084_QWERTY_ENABLE
-    // To Default layer
-    #define TODEFLT TO(LYR_QWERTY)
-#else
-    #define TODEFLT TO(LYR_WORKNAP)
-#endif
+#define TODEFLT TO(LYR_DEFAULT)
 
 // Layer Tap-Toggle keys
 #define TTGAME TT(LYR_GAME)
@@ -111,6 +111,7 @@ enum napoli1084_symbol_mode {
 #ifdef TAP_DANCE_ENABLE
 
 enum tap_dance_id{
+    tap_dance_reset,
     tap_dance_h_esc,
     tap_dance_ctl_z_ctl_a,
     tap_dance_ctl_s_ctl_x,
@@ -127,6 +128,8 @@ enum tap_dance_id{
 #define TD_CTLF TD(tap_dance_ctl_f_F3)
 #define TD_F7 TD(tap_dance_F7_ctl_F7)
 #define TD_CTLP TD(tap_dance_ctl_p_ctl_o)
+
+#define NC_RSET TD(tap_dance_reset)
 
 #endif // #ifdef TAP_DANCE_ENABLE
 ////////////////////////////////////////////////////////////////////////////////
