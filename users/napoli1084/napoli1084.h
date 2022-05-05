@@ -30,15 +30,10 @@ enum napoli1084_keycodes {
     NC_SYMD = SAFE_RANGE, // Symbol Mode cycle
 };
 
-#define NAPOLI1084_SYMBOL_MODE_ALL 1
-
-
 enum napoli1084_symbol_mode {
     SYMD_KB_CAFR, // Canadian French
-#if NAPOLI1084_SYMBOL_MODE_ALL
     SYMD_KB_CMS, // Canadian Multilingual Standard
     SYMD_KB_US, // US QWERTY
-#endif
     SYMD_KB_COUNT, // Number of keyboard symbol modes (not a mode)
 #ifdef UNICODEMAP_ENABLE
     SYMD_UNICODE = SYMD_KB_COUNT, // Default, uses currently selected Unicode mode as per get_unicode_input_mode()
