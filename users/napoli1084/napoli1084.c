@@ -221,198 +221,6 @@ static uint8_t symbol_mode = SYMD_UNICODE;
 static uint8_t symbol_mode = SYMD_KB_CAFR;
 #endif // #ifdef UNICODEMAP_ENABLE
 
-#define SYM_MAP_STRING 1
-#define SYM_MAP_SWITCH 2
-#define SYM_MAP_KEYS 3
-#define SYM_MAP SYM_MAP_KEYS
-
-#if SYM_MAP == SYM_MAP_STRING
-enum napoli1084_symbols_constants {
-    // Combos like SS_LSFT("3") or SS_RALT("2") have a length of 7 + 1 terminating null
-    SYMBOL_STRING_MAX_LENGTH = 8
-};
-
-typedef struct {
-    const char string[SYMBOL_STRING_MAX_LENGTH];
-} napoli1084_symbol_string_t;
-
-static const napoli1084_symbol_string_t PROGMEM cafr_symbol_string_map[] = {
-    [uni_QUOTATION] = {"@"}, // "
-    [uni_HASH] = {"`"}, // #
-    [uni_APOSTROPHE] = {"<"}, // '
-    [uni_COMMA] = {","},
-    [uni_DOT] = {"."},
-    [uni_SLASH] = {SS_LSFT("3")}, // /
-    [uni_LESSTHAN] = {"\\"},
-    [uni_GREATERTHAN] = {"|"},
-    [uni_QUESTION] = {SS_LSFT("6")}, // ?
-    [uni_AT] = {SS_RALT("2")}, // @
-    [uni_LEFTBRACKET] = {SS_RALT("[")}, // [
-    [uni_BACKSLASH] = {SS_RALT("`")}, // `\`
-    [uni_RIGHTBRACKET] = {SS_RALT("]")}, // ]
-    [uni_CIRCUMFLEX] = {"[ "}, // ^ dead key
-    [uni_GRAVE] = {"' "}, // ` dead key
-    [uni_LEFTCURLYBRACKET] = {SS_RALT("'")}, // {
-    [uni_PIPE] = {"~"}, // |
-    [uni_RIGHTCURLYBRACKET] = {SS_RALT("\\")}, // }
-    [uni_TILDE] = {SS_RALT(";")}, // ~
-    [uni_a_CIRCUMFLEX] = {"[a"}, // â
-    [uni_a_DIAERESIS] = {"}a"}, // ä
-    [uni_a_GRAVE] = {"'a"}, // à
-    [uni_c_CEDILLA] = {"]c"}, // ç
-    [uni_e_ACUTE] = {"/"}, // é
-    [uni_e_CIRCUMFLEX] = {"[e"}, // ê
-    [uni_e_DIAERESIS] = {"}e"}, // ë
-    [uni_e_GRAVE] = {"'e"}, // è
-    [uni_i_CIRCUMFLEX] = {"[i"}, // î
-    [uni_i_DIAERESIS] = {"}i"}, // ï
-    [uni_n_TILDE] = {"n"}, // ñ
-    [uni_o_CIRCUMFLEX] = {"[o"}, // ô
-    [uni_o_DIAERESIS] = {"}o"}, // ö
-    [uni_s_SHARP] = {"ss"}, // ß
-    [uni_u_CIRCUMFLEX] = {"[u"}, // û
-    [uni_u_DIAERESIS] = {"}u"}, // ü
-    [uni_u_GRAVE] = {"'u"}, // ù
-    [uni_y_DIAERESIS] = {"}y"}, // ÿ
-    [uni_A_CIRCUMFLEX] = {"[A"}, // Â
-    [uni_A_DIAERESIS] = {"}A"}, // Ä
-    [uni_A_GRAVE] = {"'A"}, // À
-    [uni_C_CEDILLA] = {"]C"}, // Ç
-    [uni_E_ACUTE] = {"?"}, // É
-    [uni_E_CIRCUMFLEX] = {"[E"}, // Ê
-    [uni_E_DIAERESIS] = {"}E"}, // Ë
-    [uni_E_GRAVE] = {"'E"}, // È
-    [uni_I_CIRCUMFLEX] = {"[I"}, // Î
-    [uni_I_DIAERESIS] = {"}I"}, // Ï
-    [uni_N_TILDE] = {"N"}, // Ñ
-    [uni_O_CIRCUMFLEX] = {"[O"}, // Ô
-    [uni_O_DIAERESIS] = {"}O"}, // Ö
-    [uni_S_SHARP] = {"SS"}, // ẞ
-    [uni_U_CIRCUMFLEX] = {"[U"}, // Û
-    [uni_U_DIAERESIS] = {"}U"}, // Ü
-    [uni_U_GRAVE] = {"'U"}, // Ù
-    [uni_Y_DIAERESIS] = {"}Y"}, // Ÿ
-};
-
-#if NAPOLI1084_SYMBOL_MODE_ALL
-static const napoli1084_symbol_string_t PROGMEM cms_symbol_string_map[] = {
-    [uni_QUOTATION] = {""}, // "
-    [uni_HASH] = {""}, //
-    [uni_APOSTROPHE] = {""}, // '
-    [uni_SLASH] = {""}, // /
-    [uni_QUESTION] = {""}, // ?
-    [uni_AT] = {SS_LSFT("2")}, // @
-    [uni_LEFTBRACKET] = {""}, // [
-    [uni_BACKSLASH] = {""}, // `\`
-    [uni_RIGHTBRACKET] = {""}, // ]
-    [uni_CIRCUMFLEX] = {""}, // ^
-    [uni_GRAVE] = {""}, // `
-    [uni_LEFTCURLYBRACKET] = {""}, // {
-    [uni_PIPE] = {""}, // |
-    [uni_RIGHTCURLYBRACKET] = {""}, // }
-    [uni_TILDE] = {""}, // ~
-    [uni_a_CIRCUMFLEX] = {""}, // â
-    [uni_a_DIAERESIS] = {""}, // ä
-    [uni_a_GRAVE] = {""}, // à
-    [uni_c_CEDILLA] = {""}, // ç
-    [uni_e_ACUTE] = {""}, // é
-    [uni_e_CIRCUMFLEX] = {""}, // ê
-    [uni_e_DIAERESIS] = {""}, // ë
-    [uni_e_GRAVE] = {""}, // è
-    [uni_i_CIRCUMFLEX] = {""}, // î
-    [uni_i_DIAERESIS] = {""}, // ï
-    [uni_n_TILDE] = {""}, // ñ
-    [uni_o_CIRCUMFLEX] = {""}, // ô
-    [uni_o_DIAERESIS] = {""}, // ö
-    [uni_s_SHARP] = {""}, // ß
-    [uni_u_CIRCUMFLEX] = {""}, // û
-    [uni_u_DIAERESIS] = {""}, // ü
-    [uni_u_GRAVE] = {""}, // ù
-    [uni_y_DIAERESIS] = {""}, // ÿ
-    [uni_A_CIRCUMFLEX] = {""}, // Â
-    [uni_A_DIAERESIS] = {""}, // Ä
-    [uni_A_GRAVE] = {""}, // À
-    [uni_C_CEDILLA] = {""}, // Ç
-    [uni_E_ACUTE] = {""}, // É
-    [uni_E_CIRCUMFLEX] = {""}, // Ê
-    [uni_E_DIAERESIS] = {""}, // Ë
-    [uni_E_GRAVE] = {""}, // È
-    [uni_I_CIRCUMFLEX] = {""}, // Î
-    [uni_I_DIAERESIS] = {""}, // Ï
-    [uni_N_TILDE] = {""}, // Ñ
-    [uni_O_CIRCUMFLEX] = {""}, // Ô
-    [uni_O_DIAERESIS] = {""}, // Ö
-    [uni_S_SHARP] = {""}, // ẞ
-    [uni_U_CIRCUMFLEX] = {""}, // Û
-    [uni_U_DIAERESIS] = {""}, // Ü
-    [uni_U_GRAVE] = {""}, // Ù
-    [uni_Y_DIAERESIS] = {""}, // Ÿ
-};
-
-static const napoli1084_symbol_string_t PROGMEM us_symbol_string_map[] = {
-    [uni_QUOTATION] = {""}, // "
-    [uni_HASH] = {""}, //
-    [uni_APOSTROPHE] = {""}, // '
-    [uni_SLASH] = {""}, // /
-    [uni_QUESTION] = {""}, // ?
-    [uni_AT] = {SS_LSFT("2")}, // @
-    [uni_LEFTBRACKET] = {""}, // [
-    [uni_BACKSLASH] = {""}, // `\`
-    [uni_RIGHTBRACKET] = {""}, // ]
-    [uni_CIRCUMFLEX] = {""}, // ^
-    [uni_GRAVE] = {""}, // `
-    [uni_LEFTCURLYBRACKET] = {""}, // {
-    [uni_PIPE] = {""}, // |
-    [uni_RIGHTCURLYBRACKET] = {""}, // }
-    [uni_TILDE] = {""}, // ~
-    [uni_a_CIRCUMFLEX] = {""}, // â
-    [uni_a_DIAERESIS] = {""}, // ä
-    [uni_a_GRAVE] = {""}, // à
-    [uni_c_CEDILLA] = {""}, // ç
-    [uni_e_ACUTE] = {""}, // é
-    [uni_e_CIRCUMFLEX] = {""}, // ê
-    [uni_e_DIAERESIS] = {""}, // ë
-    [uni_e_GRAVE] = {""}, // è
-    [uni_i_CIRCUMFLEX] = {""}, // î
-    [uni_i_DIAERESIS] = {""}, // ï
-    [uni_n_TILDE] = {""}, // ñ
-    [uni_o_CIRCUMFLEX] = {""}, // ô
-    [uni_o_DIAERESIS] = {""}, // ö
-    [uni_s_SHARP] = {""}, // ß
-    [uni_u_CIRCUMFLEX] = {""}, // û
-    [uni_u_DIAERESIS] = {""}, // ü
-    [uni_u_GRAVE] = {""}, // ù
-    [uni_y_DIAERESIS] = {""}, // ÿ
-    [uni_A_CIRCUMFLEX] = {""}, // Â
-    [uni_A_DIAERESIS] = {""}, // Ä
-    [uni_A_GRAVE] = {""}, // À
-    [uni_C_CEDILLA] = {""}, // Ç
-    [uni_E_ACUTE] = {""}, // É
-    [uni_E_CIRCUMFLEX] = {""}, // Ê
-    [uni_E_DIAERESIS] = {""}, // Ë
-    [uni_E_GRAVE] = {""}, // È
-    [uni_I_CIRCUMFLEX] = {""}, // Î
-    [uni_I_DIAERESIS] = {""}, // Ï
-    [uni_N_TILDE] = {""}, // Ñ
-    [uni_O_CIRCUMFLEX] = {""}, // Ô
-    [uni_O_DIAERESIS] = {""}, // Ö
-    [uni_S_SHARP] = {""}, // ẞ
-    [uni_U_CIRCUMFLEX] = {""}, // Û
-    [uni_U_DIAERESIS] = {""}, // Ü
-    [uni_U_GRAVE] = {""}, // Ù
-    [uni_Y_DIAERESIS] = {""}, // Ÿ
-};
-#endif
-
-static const napoli1084_symbol_string_t* const PROGMEM nap_symbol_string_maps[] = {
-    cafr_symbol_string_map,
-#if NAPOLI1084_SYMBOL_MODE_ALL
-    cms_symbol_string_map,
-    us_symbol_string_map,
-#endif
-};
-
-#endif // #if SYM_MAP == SYM_MAP_STRING
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -519,14 +327,12 @@ void napoli1084_cycle_symbol_mode(void) {
     case SYMD_KB_CAFR:
         SEND_STRING("CAFR");
         break;
-#if NAPOLI1084_SYMBOL_MODE_ALL
     case SYMD_KB_CMS:
         SEND_STRING("CMS");
         break;
     case SYMD_KB_US:
         SEND_STRING("US");
         break;
-#endif
 #ifdef UNICODEMAP_ENABLE
     case SYMD_UNICODE:
         SEND_STRING("UNI");
@@ -578,7 +384,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 
-#if SYM_MAP == SYM_MAP_KEYS
 enum {
     SYMBOL_KEYS_MAX = 2
 };
@@ -660,7 +465,6 @@ static const napoli1084_symbol_keys_t PROGMEM cafr_symbol_keys_map[uni_COUNT] = 
     [uni_Y_DIAERESIS] = {{KC_NO, KC_NO}}, // Ÿ
 };
 
-#if NAPOLI1084_SYMBOL_MODE_ALL
 
 #define CMS_CIRCUMFLEX_DEAD_KEY KC_LEFT_BRACKET
 #define CMS_DIAERESIS_DEAD_KEY LSFT(KC_LEFT_BRACKET)
@@ -733,291 +537,69 @@ static const napoli1084_symbol_keys_t PROGMEM cms_symbol_keys_map[uni_COUNT] = {
 };
 
 static const napoli1084_symbol_keys_t PROGMEM us_symbol_keys_map[uni_COUNT] = {
-    [uni_QUOTATION] = {{CAFR_DOUBLE_QUOTE, KC_NO}}, // "
-    [uni_HASH] = {{CAFR_HASH, KC_NO}}, // #
-    [uni_APOSTROPHE] = {{CAFR_QUOTE, KC_NO}}, // '
+    [uni_QUOTATION] = {{KC_DOUBLE_QUOTE, KC_NO}}, // "
+    [uni_HASH] = {{KC_HASH, KC_NO}}, // #
+    [uni_APOSTROPHE] = {{KC_QUOTE, KC_NO}}, // '
     [uni_COMMA] = {{KC_COMMA, KC_NO}}, // ,
     [uni_DOT] = {{KC_DOT, KC_NO}}, // ,
-    [uni_SLASH] = {{CAFR_SLASH, KC_NO}}, // /
-    [uni_LESSTHAN] = {{KC_BACKSLASH, KC_NO}}, // <
-    [uni_GREATERTHAN] = {{KC_PIPE, KC_NO}}, // >
-    [uni_QUESTION] = {{KC_CIRCUMFLEX, KC_NO}}, // ?
-    [uni_AT] = {{RALT(KC_2), KC_NO}}, // @
-    [uni_LEFTBRACKET] = {{RALT(KC_LEFT_BRACKET), KC_NO}}, // [
-    [uni_BACKSLASH] = {{RALT(KC_GRAVE), KC_NO}}, // '\'
-    [uni_RIGHTBRACKET] = {{RALT(KC_RIGHT_BRACKET), KC_NO}}, // ]
-    [uni_CIRCUMFLEX] = {{KC_LEFT_BRACKET, KC_SPACE}}, // ^
-    [uni_GRAVE] = {{KC_QUOTE, KC_SPACE}}, // `
-    [uni_LEFTCURLYBRACKET] = {{RALT(KC_QUOTE), KC_NO}}, // {
-    [uni_PIPE] = {{KC_TILDE, KC_NO}}, // |
-    [uni_RIGHTCURLYBRACKET] = {{RALT(KC_BACKSLASH), KC_NO}}, // }
-    [uni_TILDE] = {{RALT(KC_SEMICOLON), KC_NO}}, // ~
-    [uni_a_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, KC_A}},
-    [uni_a_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, KC_A}},
-    [uni_a_GRAVE] = {{CAFR_GRAVE_DEAD_KEY, KC_A}},
-    [uni_c_CEDILLA] = {{CAFR_CEDILLA_DEAD_KEY, KC_C}},
-    [uni_e_ACUTE] = {{CMS_E_ACUTE, KC_NO}},
-    [uni_e_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, KC_E}},
-    [uni_e_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, KC_E}},
-    [uni_e_GRAVE] = {{CAFR_GRAVE_DEAD_KEY, KC_E}},
-    [uni_i_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, KC_I}},
-    [uni_i_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, KC_I}},
-    // Can't be emitted on CAFR keyboard, use default unicode processing
+    [uni_SLASH] = {{KC_SLASH, KC_NO}}, // /
+    [uni_LESSTHAN] = {{KC_LEFT_ANGLE_BRACKET, KC_NO}}, // <
+    [uni_GREATERTHAN] = {{KC_RIGHT_ANGLE_BRACKET, KC_NO}}, // >
+    [uni_QUESTION] = {{KC_QUESTION, KC_NO}}, // ?
+    [uni_AT] = {{KC_AT, KC_NO}}, // @
+    [uni_LEFTBRACKET] = {{KC_LEFT_BRACKET, KC_NO}}, // [
+    [uni_BACKSLASH] = {{KC_BACKSLASH, KC_NO}}, // '\'
+    [uni_RIGHTBRACKET] = {{KC_RIGHT_BRACKET, KC_NO}}, // ]
+    [uni_CIRCUMFLEX] = {{KC_CIRCUMFLEX, KC_NO}}, // ^
+    [uni_GRAVE] = {{KC_GRAVE, KC_NO}}, // `
+    [uni_LEFTCURLYBRACKET] = {{KC_LEFT_CURLY_BRACE, KC_NO}}, // {
+    [uni_PIPE] = {{KC_PIPE, KC_NO}}, // |
+    [uni_RIGHTCURLYBRACKET] = {{KC_RIGHT_CURLY_BRACE, KC_NO}}, // }
+    [uni_TILDE] = {{KC_TILDE, KC_NO}}, // ~
+    [uni_a_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_a_DIAERESIS] = {{KC_NO, KC_NO}},
+    [uni_a_GRAVE] = {{KC_NO, KC_NO}},
+    [uni_c_CEDILLA] = {{KC_NO, KC_NO}},
+    [uni_e_ACUTE] = {{KC_NO, KC_NO}},
+    [uni_e_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_e_DIAERESIS] = {{KC_NO, KC_NO}},
+    [uni_e_GRAVE] = {{KC_NO, KC_NO}},
+    [uni_i_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_i_DIAERESIS] = {{KC_NO, KC_NO}},
     [uni_n_TILDE] = {{KC_NO, KC_NO}},
-    [uni_o_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, KC_O}},
-    [uni_o_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, KC_O}},
-    // Can't be emitted on CAFR keyboard, use default unicode processing
+    [uni_o_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_o_DIAERESIS] = {{KC_NO, KC_NO}},
     [uni_s_SHARP] = {{KC_NO, KC_NO}},
-    [uni_u_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, KC_U}},
-    [uni_u_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, KC_U}},
-    [uni_u_GRAVE] = {{CAFR_GRAVE_DEAD_KEY, KC_U}},
-    [uni_y_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, KC_Y}},
-    [uni_A_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, LSFT(KC_A)}},
-    [uni_A_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, LSFT(KC_A)}},
-    [uni_A_GRAVE] = {{CAFR_GRAVE_DEAD_KEY, LSFT(KC_A)}},
-    [uni_C_CEDILLA] = {{CAFR_CEDILLA_DEAD_KEY, LSFT(KC_C)}},
-    [uni_E_ACUTE] = {{LSFT(CAFR_E_ACUTE), KC_NO}},
-    [uni_E_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, LSFT(KC_E)}},
-    [uni_E_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, LSFT(KC_E)}},
-    [uni_E_GRAVE] = {{CAFR_GRAVE_DEAD_KEY, LSFT(KC_E)}},
-    [uni_I_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, LSFT(KC_I)}},
-    [uni_I_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, LSFT(KC_I)}},
-    // Can't be emitted on CAFR keyboard, use default unicode processing
+    [uni_u_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_u_DIAERESIS] = {{KC_NO, KC_NO}},
+    [uni_u_GRAVE] = {{KC_NO, KC_NO}},
+    [uni_y_DIAERESIS] = {{KC_NO, KC_NO}},
+    [uni_A_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_A_DIAERESIS] = {{KC_NO, KC_NO}},
+    [uni_A_GRAVE] = {{KC_NO, KC_NO}},
+    [uni_C_CEDILLA] = {{KC_NO, KC_NO}},
+    [uni_E_ACUTE] = {{KC_NO, KC_NO}},
+    [uni_E_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_E_DIAERESIS] = {{KC_NO, KC_NO}},
+    [uni_E_GRAVE] = {{KC_NO, KC_NO}},
+    [uni_I_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_I_DIAERESIS] = {{KC_NO, KC_NO}},
     [uni_N_TILDE] = {{KC_NO, KC_NO}},
-    [uni_O_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, LSFT(KC_O)}},
-    [uni_O_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, LSFT(KC_O)}},
-    // Can't be emitted on CAFR keyboard, use default unicode processing
+    [uni_O_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_O_DIAERESIS] = {{KC_NO, KC_NO}},
     [uni_S_SHARP] = {{KC_NO, KC_NO}},
-    [uni_U_CIRCUMFLEX] = {{CAFR_CIRCUMFLEX_DEAD_KEY, LSFT(KC_U)}},
-    [uni_U_DIAERESIS] = {{CAFR_DIAERESIS_DEAD_KEY, LSFT(KC_U)}},
-    [uni_U_GRAVE] = {{CAFR_GRAVE_DEAD_KEY, LSFT(KC_U)}},
-    // Strangely, lower case ÿ works on CAFR keyboard, but upper case Ÿ doesn't.
-    // Use default unicode processing.
+    [uni_U_CIRCUMFLEX] = {{KC_NO, KC_NO}},
+    [uni_U_DIAERESIS] = {{KC_NO, KC_NO}},
+    [uni_U_GRAVE] = {{KC_NO, KC_NO}},
     [uni_Y_DIAERESIS] = {{KC_NO, KC_NO}}, // Ÿ
 };
-#endif // NAPOLI1084_SYMBOL_MODE_ALL
 
 static const napoli1084_symbol_keys_t* const PROGMEM nap_symbol_keys_maps[] = {
     cafr_symbol_keys_map,
-#if NAPOLI1084_SYMBOL_MODE_ALL
     cms_symbol_keys_map,
     us_symbol_keys_map,
-#endif
 };
-#endif // #if SYM_MAP == SYM_MAP_KEYS
 
-#if SYM_MAP == SYM_MAP_SWITCH
-bool napoli1084_process_symbol_mode_cafr(uint16_t map_index)
-{
-    switch (map_index)
-    {
-    case uni_QUOTATION:
-        tap_code16(KC_AT);
-        break;
-    case uni_HASH:
-        tap_code16(KC_GRAVE);
-        break;
-    case uni_APOSTROPHE:
-        tap_code16(KC_LEFT_ANGLE_BRACKET);
-        break;
-    case uni_COMMA:
-        tap_code16(KC_COMMA);
-        break;
-    case uni_DOT:
-        tap_code16(KC_DOT);
-        break;
-    case uni_SLASH:
-        tap_code16(KC_HASH);
-        break;
-    case uni_LESSTHAN:
-        tap_code16(KC_BACKSLASH);
-        break;
-    case uni_GREATERTHAN:
-        tap_code16(KC_PIPE);
-        break;
-    case uni_QUESTION:
-        tap_code16(KC_CIRCUMFLEX);
-        break;
-    case uni_AT:
-        tap_code16(RALT(KC_2));
-        break;
-    case uni_LEFTBRACKET:
-        tap_code16(RALT(KC_LEFT_BRACKET));
-        break;
-    case uni_BACKSLASH:
-        tap_code16(RALT(KC_GRAVE));
-        break;
-    case uni_RIGHTBRACKET:
-        tap_code16(RALT(KC_RIGHT_BRACKET));
-        break;
-    case uni_CIRCUMFLEX:
-        //SEND_STRING("[ "); // ^ dead key
-        tap_code(KC_LEFT_BRACKET);
-        tap_code(KC_SPACE);
-        break;
-    case uni_GRAVE:
-        //SEND_STRING("' "); // ` dead key
-        tap_code(KC_QUOTE);
-        tap_code(KC_SPACE);
-        break;
-    case uni_LEFTCURLYBRACKET:
-        tap_code16(RALT(KC_QUOTE));
-        break;
-    case uni_PIPE:
-        tap_code16(KC_TILDE);
-        break;
-    case uni_RIGHTCURLYBRACKET:
-        tap_code16(RALT(KC_BACKSLASH));
-        break;
-    case uni_TILDE:
-        tap_code16(RALT(KC_SEMICOLON));
-        break;
-    case uni_a_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code(KC_A);
-        break;
-    case uni_a_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code(KC_A);
-        break;
-    case uni_a_GRAVE:
-        tap_code(CAFR_GRAVE_DEAD_KEY);
-        tap_code(KC_A);
-        break;
-    case uni_c_CEDILLA:
-        tap_code(CAFR_CEDILLA_DEAD_KEY);
-        tap_code(KC_C);
-        break;
-    case uni_e_ACUTE:
-        tap_code(CAFR_E_ACUTE);
-        break;
-    case uni_e_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code(KC_E);
-        break;
-    case uni_e_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        break;
-    case uni_e_GRAVE:
-        tap_code(CAFR_GRAVE_DEAD_KEY);
-        tap_code(KC_E);
-        break;
-    case uni_i_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code(KC_I);
-        break;
-    case uni_i_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code(KC_I);
-        break;
-    case uni_n_TILDE:
-        // Can't be emitted on CAFR keyboard, use default unicode processing
-        return true;
-        break;
-    case uni_o_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code(KC_O);
-        break;
-    case uni_o_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code(KC_O);
-        break;
-    case uni_s_SHARP:
-        // Can't be emitted on CAFR keyboard, use default unicode processing
-        return true;
-        break;
-    case uni_u_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code(KC_U);
-        break;
-    case uni_u_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code(KC_U);
-        break;
-    case uni_u_GRAVE:
-        tap_code(CAFR_GRAVE_DEAD_KEY);
-        tap_code(KC_U);
-        break;
-    case uni_y_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code(KC_Y);
-        break;
-    case uni_A_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code16(LSFT(KC_A));
-        break;
-    case uni_A_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code16(LSFT(KC_A));
-        break;
-    case uni_A_GRAVE:
-        tap_code(CAFR_GRAVE_DEAD_KEY);
-        tap_code16(LSFT(KC_A));
-        break;
-    case uni_C_CEDILLA:
-        tap_code(CAFR_CEDILLA_DEAD_KEY);
-        tap_code16(LSFT(KC_C));
-        break;
-    case uni_E_ACUTE:
-        tap_code16(LSFT(CAFR_E_ACUTE));
-        break;
-    case uni_E_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code16(LSFT(KC_E));
-        break;
-    case uni_E_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code16(LSFT(KC_E));
-        break;
-    case uni_E_GRAVE:
-        tap_code(CAFR_GRAVE_DEAD_KEY);
-        tap_code16(LSFT(KC_E));
-        break;
-    case uni_I_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code16(LSFT(KC_I));
-        break;
-    case uni_I_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code16(LSFT(KC_I));
-        break;
-    case uni_N_TILDE:
-        // Can't be emitted on CAFR keyboard, use default unicode processing
-        return true;
-        break;
-    case uni_O_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code16(LSFT(KC_O));
-        break;
-    case uni_O_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code16(LSFT(KC_O));
-        break;
-    case uni_S_SHARP:
-        // Can't be emitted on CAFR keyboard, use default unicode processing
-        return true;
-        break;
-    case uni_U_CIRCUMFLEX:
-        tap_code(CAFR_CIRCUMFLEX_DEAD_KEY);
-        tap_code16(LSFT(KC_U));
-        break;
-    case uni_U_DIAERESIS:
-        tap_code16(CAFR_DIAERESIS_DEAD_KEY);
-        tap_code16(LSFT(KC_U));
-        break;
-    case uni_U_GRAVE:
-        tap_code(CAFR_GRAVE_DEAD_KEY);
-        tap_code16(LSFT(KC_U));
-        break;
-    case uni_Y_DIAERESIS:
-        // Strangely, lower case works on CAFR keyboard, but upper case doesn't.
-        // Use default unicode processing.
-        return true;
-        break;
-    }
-    return false;
-}
-#endif // #if SYM_MAP == SYM_MAP_SWITCH
 
 //#define NAPOLI1084_UNICODE_PRESS_TIMER
 
@@ -1058,18 +640,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 uint16_t map_index = unicodemap_index(keycode);
 
-                #if SYM_MAP == SYM_MAP_STRING
-                const napoli1084_symbol_string_t *const *map_ptr = nap_symbol_string_maps + symbol_mode;
-                const napoli1084_symbol_string_t *entry_ptr = pgm_read_ptr(map_ptr);
-                entry_ptr += map_index;
-                send_string_P(entry_ptr->string);
-                #endif
-
-                #if SYM_MAP == SYM_MAP_SWITCH
-                return napoli1084_process_symbol_mode_cafr(map_index);
-                #endif
-
-                #if SYM_MAP == SYM_MAP_KEYS
                 const napoli1084_symbol_keys_t *const *map_ptr = nap_symbol_keys_maps + symbol_mode;
                 const napoli1084_symbol_keys_t *entry_ptr = pgm_read_ptr(map_ptr);
                 entry_ptr += map_index;
@@ -1102,10 +672,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     register_code(KC_RSFT);
                 }
                 set_mods(symbol_saved_mods); // Reregister previously set mods
-
-                return PROCESS_STOP;
-
-                #endif
 
                 #if 0
                 size_t len = strlen_P(entry_ptr->string);
