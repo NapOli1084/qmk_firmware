@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,        _______,_______
     ),
     [LYR_FRSYMBOL] = LAYOUT_6x6(
-        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,RESET,
+        _______,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,NC_RSET,
         n_TILDE,a_DIAER, UN_AT ,UN_HASH,KC_DLR ,KC_PERC,                        y_DIAER,u_DIAER,e_DIAER,o_DIAER,i_DIAER,_______,
         s_SHARP,a_CIRCM,UN_RCBR,UN_LCBR,UN_GRAV,UN_CIRC,                        KC_PERC,u_CIRCM,e_CIRCM,o_CIRCM,i_CIRCM,_______,
         _______,a_GRAVE,KC_RPRN,KC_LPRN,KC_UNDS,KC_AMPR,                        KC_DLR ,u_GRAVE,e_ACUTE,UN_DQUO,UN_APOS,_______,
