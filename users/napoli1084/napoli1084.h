@@ -30,7 +30,7 @@ enum napoli1084_keycodes {
     NC_SYMD = SAFE_RANGE, // Symbol Mode cycle
 };
 
-#define NAPOLI1084_SYMBOL_MODE_ALL 0
+#define NAPOLI1084_SYMBOL_MODE_ALL 1
 
 
 enum napoli1084_symbol_mode {
@@ -133,16 +133,6 @@ enum tap_dance_id{
 
 #endif // #ifdef TAP_DANCE_ENABLE
 ////////////////////////////////////////////////////////////////////////////////
-
-#define CAFR_CEDILLA_DEAD_KEY KC_RIGHT_BRACKET
-#define CAFR_CIRCUMFLEX_DEAD_KEY KC_LEFT_BRACKET
-#define CAFR_DIAERESIS_DEAD_KEY KC_RIGHT_CURLY_BRACE
-#define CAFR_GRAVE_DEAD_KEY KC_QUOTE
-#define CAFR_HASH KC_GRAVE
-#define CAFR_QUOTE KC_LEFT_ANGLE_BRACKET
-#define CAFR_DOUBLE_QUOTE KC_AT
-#define CAFR_SLASH KC_HASH
-#define CAFR_E_ACUTE KC_SLASH
 
 enum unicode_names {
     uni_QUOTATION,
