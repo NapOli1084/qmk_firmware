@@ -623,10 +623,40 @@ void napoli1084_unregister_mods(uint8_t mods) {
         tap_code(KC_RSFT);
         tap_code(KC_RSFT);
     }
+    clear_mods(); // Clear internal mods state
+}
+
+void napoli1084_register_mods(uint8_t mods) {
+    if (mods & MOD_BIT(KC_LEFT_SHIFT)) {
+        register_code(KC_LSFT);
+    }
+    if (mods & MOD_BIT(KC_RIGHT_SHIFT)) {
+        register_code(KC_RSFT);
+    }
+    set_mods(mods); // Re-set internal mods state
+}
+
+void napoli1084_get_symbol_keys(uint16_t                  keycode,
+                                napoli1084_symbol_keys_t *entry) {
+    uint16_t map_index = unicodemap_index(keycode);
+
+    const napoli1084_symbol_keys_t *const *map_ptr =
+        nap_symbol_keys_maps + symbol_mode;
+    const napoli1084_symbol_keys_t *entry_ptr = pgm_read_ptr(map_ptr);
+    entry_ptr += map_index;
+    memcpy_P(entry, entry_ptr, sizeof(napoli1084_symbol_keys_t));
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint8_t symbol_saved_mods = 0;
+
+#ifdef CONSOLE_ENABLE
+    dprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, "
+            "interrupt: %b, count: %u\n",
+            keycode, record->event.key.col, record->event.key.row,
+            record->event.pressed, record->event.time,
+            record->tap.interrupted, record->tap.count);
+#endif
 
     switch (keycode) {
     case NC_SYMD:
@@ -638,13 +668,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case QK_UNICODEMAP ... QK_UNICODEMAP_PAIR_MAX:
         if (symbol_mode < SYMD_KB_COUNT) {
             if (record->event.pressed) {
-                uint16_t map_index = unicodemap_index(keycode);
-
-                const napoli1084_symbol_keys_t *const *map_ptr = nap_symbol_keys_maps + symbol_mode;
-                const napoli1084_symbol_keys_t *entry_ptr = pgm_read_ptr(map_ptr);
-                entry_ptr += map_index;
                 napoli1084_symbol_keys_t entry;
-                memcpy_P(&entry, entry_ptr, sizeof(napoli1084_symbol_keys_t));
+                napoli1084_get_symbol_keys(keycode, &entry);
 
                 uint16_t key1 = entry.keys[0];
                 if (key1 == KC_NO) {
@@ -655,7 +680,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 // Clear mods
                 symbol_saved_mods = get_mods(); // Save current mods
                 napoli1084_unregister_mods(symbol_saved_mods);
-                clear_mods(); // Unregister mods to start from a clean state
 
                 // Tap keys
                 tap_code16(key1);
@@ -665,18 +689,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 }
 
                 // Re-register mods
-                if (symbol_saved_mods & MOD_BIT(KC_LEFT_SHIFT)) {
-                    register_code(KC_LSFT);
-                }
-                if (symbol_saved_mods & MOD_BIT(KC_RIGHT_SHIFT)) {
-                    register_code(KC_RSFT);
-                }
-                set_mods(symbol_saved_mods); // Reregister previously set mods
-
-                #if 0
-                size_t len = strlen_P(entry_ptr->string);
-                tap_code16(KC_A + (uint16_t)len);
-                #endif
+                napoli1084_register_mods(symbol_saved_mods);
             }
             return PROCESS_STOP;
         }
