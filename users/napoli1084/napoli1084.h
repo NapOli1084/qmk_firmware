@@ -12,7 +12,7 @@ enum napoli1084_layers {
     LYR_NAVNUM, // Navigation (arrows, home/end, page up/down) / numpad layer
     LYR_FRSYMBOL, // French symbols layer
     LYR_FRCAPS, // Capital french symbols layer
-#ifdef MOUSEKEY_ENABLE
+#ifdef NAPOLI1084_MOUSE_LAYER_ENABLE
     LYR_MOUSE, // Mouse layer
 #endif
     LYR_FN, // Function keys layer
@@ -58,7 +58,7 @@ enum napoli1084_symbol_mode {
 #define TTWIN TT(LYR_WINDOWS)
 #define TTWRKNP TT(LYR_WORKNAP)
 
-#ifdef MOUSEKEY_ENABLE
+#ifdef NAPOLI1084_MOUSE_LAYER_ENABLE
     #define TTMOUSE TT(LYR_MOUSE)
 #else
     #define TTMOUSE KC_NO
