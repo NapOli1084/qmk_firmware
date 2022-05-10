@@ -385,7 +385,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 enum {
-    SYMBOL_KEYS_MAX = 2
+    SYMBOL_KEYS_MAX = 2,
+    // Duration that the key must be held before it starts repeating
+    SYMBOL_KEYS_HOLD_TIMEOUT_MS = 500,
+    // Duration between each repetition when key is held
+    SYMBOL_KEYS_REPEAT_TIMEOUT_MS = 33,
 };
 typedef struct {
     uint16_t keys[SYMBOL_KEYS_MAX];
@@ -647,8 +651,48 @@ void napoli1084_get_symbol_keys(uint16_t                  keycode,
     memcpy_P(entry, entry_ptr, sizeof(napoli1084_symbol_keys_t));
 }
 
+static uint8_t symbol_saved_mods = 0;
+static uint16_t symbol_press_repeat_timeout = 0;
+static uint16_t symbol_press_keycode = 0;
+
+bool napoli1084_symbol_key_press(uint16_t keycode) {
+    napoli1084_symbol_keys_t entry;
+    napoli1084_get_symbol_keys(keycode, &entry);
+
+    uint16_t key1 = entry.keys[0];
+    if (key1 == KC_NO) {
+        // rely on default `process_unicodemap()`
+        return PROCESS_CONTINUE;
+    }
+
+    // Clear mods
+    symbol_saved_mods = get_mods(); // Save current mods
+    napoli1084_unregister_mods(symbol_saved_mods);
+
+    // Tap keys
+    tap_code16(key1);
+    uint16_t key2 = entry.keys[1];
+    if (key2 != KC_NO) {
+        tap_code16(key2);
+    }
+
+    // Re-register mods
+    napoli1084_register_mods(symbol_saved_mods);
+
+    return PROCESS_STOP;
+}
+
+void napoli1084_update_symbol_key_press(void) {
+    if (symbol_press_repeat_timeout > 0) {
+        uint16_t timer = timer_read();
+        if (timer >= symbol_press_repeat_timeout) {
+            napoli1084_symbol_key_press(symbol_press_keycode);
+            symbol_press_repeat_timeout += SYMBOL_KEYS_REPEAT_TIMEOUT_MS;
+        }
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static uint8_t symbol_saved_mods = 0;
 
 #ifdef CONSOLE_ENABLE
     dprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, "
@@ -668,28 +712,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case QK_UNICODEMAP ... QK_UNICODEMAP_PAIR_MAX:
         if (symbol_mode < SYMD_KB_COUNT) {
             if (record->event.pressed) {
-                napoli1084_symbol_keys_t entry;
-                napoli1084_get_symbol_keys(keycode, &entry);
-
-                uint16_t key1 = entry.keys[0];
-                if (key1 == KC_NO) {
-                    // rely on default `process_unicodemap()`
-                    return PROCESS_CONTINUE;
-                }
-
-                // Clear mods
-                symbol_saved_mods = get_mods(); // Save current mods
-                napoli1084_unregister_mods(symbol_saved_mods);
-
-                // Tap keys
-                tap_code16(key1);
-                uint16_t key2 = entry.keys[1];
-                if (key2 != KC_NO) {
-                    tap_code16(key2);
-                }
-
-                // Re-register mods
-                napoli1084_register_mods(symbol_saved_mods);
+                symbol_press_keycode = keycode;
+                symbol_press_repeat_timeout = timer_read() + SYMBOL_KEYS_HOLD_TIMEOUT_MS;
+                return napoli1084_symbol_key_press(keycode);
+            } else if (symbol_press_keycode == keycode) {
+                symbol_press_keycode = 0;
+                symbol_press_repeat_timeout = 0;
             }
             return PROCESS_STOP;
         }
@@ -729,6 +757,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void matrix_scan_user(void) {
+
+    napoli1084_update_symbol_key_press();
 
 #ifdef NAPOLI1084_UNICODE_PRESS_TIMER
     if (unicode_press_timer > 0) {
