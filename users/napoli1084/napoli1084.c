@@ -385,12 +385,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 enum {
+    // Max number of keys to tap in sequence to produce a symbol
     SYMBOL_KEYS_MAX = 2,
     // Duration that the key must be held before it starts repeating
-    SYMBOL_KEYS_HOLD_TIMEOUT_MS = 500,
+    SYMBOL_HOLD_TIMEOUT_MS = 500,
     // Duration between each repetition when key is held
-    SYMBOL_KEYS_REPEAT_TIMEOUT_MS = 33,
+    SYMBOL_REPEAT_TIMEOUT_MS = 33,
 };
+
 typedef struct {
     uint16_t keys[SYMBOL_KEYS_MAX];
 } napoli1084_symbol_keys_t;
@@ -604,16 +606,6 @@ static const napoli1084_symbol_keys_t* const PROGMEM nap_symbol_keys_maps[] = {
     us_symbol_keys_map,
 };
 
-
-//#define NAPOLI1084_UNICODE_PRESS_TIMER
-
-#ifdef NAPOLI1084_UNICODE_PRESS_TIMER
-static uint16_t unicode_press_timer = 0;
-enum {UNICODE_PRESS_BUFFER_SIZE=4};
-static uint16_t unicode_press_buffer[UNICODE_PRESS_BUFFER_SIZE] = {0};
-static uint16_t unicode_press_count = 0;
-#endif
-
 void napoli1084_unregister_mods(uint8_t mods) {
     if (mods & MOD_BIT(KC_LEFT_SHIFT)) {
         unregister_code(KC_LSFT);
@@ -686,9 +678,39 @@ void napoli1084_update_symbol_key_press(void) {
     if (symbol_press_repeat_timeout > 0) {
         uint16_t timer = timer_read();
         if (timer >= symbol_press_repeat_timeout) {
-            napoli1084_symbol_key_press(symbol_press_keycode);
-            symbol_press_repeat_timeout += SYMBOL_KEYS_REPEAT_TIMEOUT_MS;
+            bool process_state = PROCESS_CONTINUE;
+            if (symbol_mode < SYMD_KB_COUNT) {
+                process_state = napoli1084_symbol_key_press(symbol_press_keycode);
+            }
+            #if UNICODEMAP_ENABLE
+            if (process_state == PROCESS_CONTINUE) {
+                keyrecord_t record = {.event = {.pressed = true}};
+                process_unicodemap(symbol_press_keycode, &record);
+            }
+            #endif
+            symbol_press_repeat_timeout += SYMBOL_REPEAT_TIMEOUT_MS;
         }
+    }
+}
+
+bool napoli1084_process_symbol_key(uint16_t keycode, keyrecord_t* record) {
+    if (record->event.pressed) {
+        symbol_press_keycode = keycode;
+        symbol_press_repeat_timeout = timer_read() + SYMBOL_HOLD_TIMEOUT_MS;
+    } else if (symbol_press_keycode == keycode) {
+        symbol_press_keycode        = 0;
+        symbol_press_repeat_timeout = 0;
+    }
+
+    if (symbol_mode < SYMD_KB_COUNT) {
+        if (record->event.pressed) {
+            return napoli1084_symbol_key_press(keycode);
+        }
+        return PROCESS_STOP;
+    }
+    else { //if (symbol_mode == SYMD_UNICODE) {
+        // Let default `process_unicodemap()` take place
+        return PROCESS_CONTINUE;
     }
 }
 
@@ -710,41 +732,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return PROCESS_STOP;
         break;
     case QK_UNICODEMAP ... QK_UNICODEMAP_PAIR_MAX:
-        if (symbol_mode < SYMD_KB_COUNT) {
-            if (record->event.pressed) {
-                symbol_press_keycode = keycode;
-                symbol_press_repeat_timeout = timer_read() + SYMBOL_KEYS_HOLD_TIMEOUT_MS;
-                return napoli1084_symbol_key_press(keycode);
-            } else if (symbol_press_keycode == keycode) {
-                symbol_press_keycode = 0;
-                symbol_press_repeat_timeout = 0;
-            }
-            return PROCESS_STOP;
-        }
-#ifdef UNICODEMAP_ENABLE
-        else if (symbol_mode == SYMD_UNICODE) {
-
-            #ifdef NAPOLI1084_UNICODE_PRESS_TIMER
-            if(record->event.pressed) {
-                if (unicode_press_timer == 0) {
-                    unicode_press_timer = timer_read();
-                    return PROCESS_CONTINUE;
-                }
-                else {
-                    if (unicode_press_count < UNICODE_PRESS_BUFFER_SIZE) {
-                        unicode_press_buffer[unicode_press_count] = keycode;
-                        ++unicode_press_count;
-                    }
-                    return PROCESS_STOP;
-                }
-            }
-            #endif
-
-            // Let default `process_unicodemap()` take place
-            return PROCESS_CONTINUE;
-        }
-#endif // UNICODEMAP_ENABLE
-        return PROCESS_CONTINUE;
+        return napoli1084_process_symbol_key(keycode, record);
         break;
     case KC_LEFT_CTRL ... KC_RIGHT_GUI:
         if (!record->event.pressed) {
@@ -757,32 +745,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 void matrix_scan_user(void) {
-
     napoli1084_update_symbol_key_press();
-
-#ifdef NAPOLI1084_UNICODE_PRESS_TIMER
-    if (unicode_press_timer > 0) {
-        if (timer_elapsed(unicode_press_timer) > 300) {
-            tap_code16(KC_A + unicode_press_count);
-
-            if (unicode_press_count > 0) {
-                keyrecord_t record   = {};
-                record.event.pressed = true;
-                process_unicodemap(unicode_press_buffer[0], &record);
-                for (uint16_t i = 0; i < unicode_press_count - 1; ++i) {
-                    unicode_press_buffer[i] = unicode_press_buffer[i + 1];
-                }
-                --unicode_press_count;
-                if (unicode_press_count == 0) {
-                    unicode_press_timer = 0;
-                } else {
-                    unicode_press_timer = timer_read();
-                }
-            } else {
-                unicode_press_timer = 0;
-            }
-        }
-    }
-#endif
-
 }

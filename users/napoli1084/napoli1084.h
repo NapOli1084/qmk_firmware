@@ -35,8 +35,8 @@ enum napoli1084_symbol_mode {
     SYMD_KB_CMS, // Canadian Multilingual Standard
     SYMD_KB_US, // US QWERTY
     SYMD_KB_COUNT, // Number of keyboard symbol modes (not a mode)
-#ifdef UNICODEMAP_ENABLE
     SYMD_UNICODE = SYMD_KB_COUNT, // Default, uses currently selected Unicode mode as per get_unicode_input_mode()
+#ifdef UNICODEMAP_ENABLE
     SYMD_COUNT // Number of symbol modes (not a mode)
 #else
     SYMD_COUNT = SYMD_KB_COUNT
