@@ -399,10 +399,10 @@ typedef struct {
 
 #define CAFR_CEDILLA_DEAD_KEY KC_RIGHT_BRACKET
 #define CAFR_CIRCUMFLEX_DEAD_KEY KC_LEFT_BRACKET
-#define CAFR_DIAERESIS_DEAD_KEY KC_RIGHT_CURLY_BRACE
+#define CAFR_DIAERESIS_DEAD_KEY LSFT(KC_RIGHT_BRACKET)
 #define CAFR_GRAVE_DEAD_KEY KC_QUOTE
 #define CAFR_HASH KC_GRAVE
-#define CAFR_QUOTE KC_LEFT_ANGLE_BRACKET
+#define CAFR_QUOTE LSFT(KC_COMMA)
 #define CAFR_DOUBLE_QUOTE KC_AT
 #define CAFR_SLASH KC_HASH
 #define CAFR_E_ACUTE KC_SLASH
@@ -415,7 +415,7 @@ static const napoli1084_symbol_keys_t PROGMEM cafr_symbol_keys_map[uni_COUNT] = 
     [uni_DOT] = {{KC_DOT, KC_NO}}, // ,
     [uni_SLASH] = {{CAFR_SLASH, KC_NO}}, // /
     [uni_LESSTHAN] = {{KC_BACKSLASH, KC_NO}}, // <
-    [uni_GREATERTHAN] = {{KC_PIPE, KC_NO}}, // >
+    [uni_GREATERTHAN] = {{LSFT(KC_BACKSLASH), KC_NO}}, // >
     [uni_QUESTION] = {{KC_CIRCUMFLEX, KC_NO}}, // ?
     [uni_AT] = {{RALT(KC_2), KC_NO}}, // @
     [uni_LEFTBRACKET] = {{RALT(KC_LEFT_BRACKET), KC_NO}}, // [
