@@ -13,12 +13,20 @@
 #define TAPPING_TERM 225
 
 // Waits milliseconds before calling unregister_code()
-// Needed for my symbol keys with LSFT
-#define TAP_CODE_DELAY 5
+// Needed for my symbol keys with LSFT and 2 keys sequence, e.g. 'ë' on CAFR keyboard.
+// Otherwise shift isn't applied to the right keystroke and doesn't give the desired result.
+// 3 milliseconds seems enough (it worked well with 5 and 10 also).
+// More than 3 milliseconds slows down repetition with WinCompose unicode keys
+// since they end up tapping 7-11 keys and repetition is every 33ms.
+#define TAP_CODE_DELAY 3
 
 // https://docs.qmk.fm/#/tap_hold?id=ignore-mod-tap-interrupt
 // https://docs.qmk.fm/#/mod_tap?id=changing-hold-function
-#define IGNORE_MOD_TAP_INTERRUPT // this makes it possible to do rolling combos (zx) with keys that convert to other keys on hold (z becomes ctrl when you hold it, and when this option isn't enabled, z rapidly followed by x actually sends Ctrl-x. That's bad.)
+// This makes it possible to do rolling combos (zx)
+// with keys that convert to other keys on hold
+// (z becomes ctrl when you hold it, and when this option isn't enabled,
+// z rapidly followed by x actually sends Ctrl-x. That's bad.)
+#define IGNORE_MOD_TAP_INTERRUPT
 
 // Unicode mode WinCompose with KC_APP as trigger key
 // https://docs.qmk.fm/#/feature_unicode?id=setting-the-input-mode
