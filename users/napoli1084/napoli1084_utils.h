@@ -1,6 +1,7 @@
 
+#pragma once
 
-
+// Return values for key process functions like `process_record_user()`
 #define PROCESS_CONTINUE true
 #define PROCESS_STOP false
 
