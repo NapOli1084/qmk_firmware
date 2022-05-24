@@ -45,7 +45,7 @@ static void napoli1084_get_symbol_keys(uint16_t                  keycode,
 }
 
 static uint8_t symbol_saved_mods = 0;
-static uint16_t symbol_press_repeat_timeout = 0;
+static uint32_t symbol_press_repeat_timeout = 0;
 static uint16_t symbol_press_keycode = 0;
 
 bool napoli1084_symbol_key_press(uint16_t keycode) {
@@ -77,8 +77,14 @@ bool napoli1084_symbol_key_press(uint16_t keycode) {
 
 void napoli1084_update_symbol_key_press(void) {
     if (symbol_press_repeat_timeout > 0) {
-        uint16_t timer = timer_read();
+        uint32_t timer = timer_read32();
         if (timer >= symbol_press_repeat_timeout) {
+
+            #ifdef CONSOLE_ENABLE
+            xprintf("SYMBOL REPEAT: keycode: 0x%04X, timer: %u, timeout: %u\n",
+                symbol_press_keycode, timer, symbol_press_repeat_timeout);
+            #endif
+
             bool process_state = PROCESS_CONTINUE;
             if (symbol_mode < SYMD_KB_COUNT) {
                 process_state = napoli1084_symbol_key_press(symbol_press_keycode);
@@ -97,7 +103,7 @@ void napoli1084_update_symbol_key_press(void) {
 bool napoli1084_process_symbol_key(uint16_t keycode, keyrecord_t* record) {
     if (record->event.pressed) {
         symbol_press_keycode = keycode;
-        symbol_press_repeat_timeout = timer_read() + SYMBOL_HOLD_TIMEOUT_MS;
+        symbol_press_repeat_timeout = timer_read32() + SYMBOL_HOLD_TIMEOUT_MS;
     } else if (symbol_press_keycode == keycode) {
         symbol_press_keycode        = 0;
         symbol_press_repeat_timeout = 0;
