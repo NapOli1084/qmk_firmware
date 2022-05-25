@@ -81,7 +81,7 @@ void napoli1084_update_symbol_key_press(void) {
         if (timer >= symbol_press_repeat_timeout) {
 
             #ifdef CONSOLE_ENABLE
-            xprintf("SYMBOL REPEAT: keycode: 0x%04X, timer: %u, timeout: %u\n",
+            xprintf("SYMBOL REPEAT: keycode: 0x%04X, timer: %lu, timeout: %lu\n",
                 symbol_press_keycode, timer, symbol_press_repeat_timeout);
             #endif
 
