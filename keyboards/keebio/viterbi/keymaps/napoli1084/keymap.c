@@ -62,11 +62,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, KC_WH_L, _______, _______, HOLDLYR, _______,     _______, OSFN   , KC_0   , KC_DOT , KC_EQL , _______, _______
   ),
   [LYR_FRSYMBOL] = LAYOUT_ortho_5x14(
-     RESET , _______, KC_NO  , KC_AT  , KC_HASH, KC_DLR , KC_PERC,     y_DIAER, u_DIAER, e_DIAER, o_DIAER, KC_NO  , _______,  RESET ,
-    _______, n_TILDE, a_DIAER, KC_RCBR, KC_LCBR, KC_GRV , KC_CIRC,     KC_PERC, u_CIRCM, e_CIRCM, o_CIRCM, i_DIAER, _______, _______,
-    _______, s_SHARP, a_CIRCM, KC_RPRN, KC_LPRN, KC_UNDS, KC_AMPR,     KC_DLR , u_GRAVE, e_ACUTE, KC_DQUO, i_CIRCM, _______, _______,
-    _______, _______, a_GRAVE, KC_RBRC, KC_LBRC, c_CEDIL, KC_TILD,     KC_HASH, KC_ASTR, e_GRAVE, KC_BSLS, KC_QUOT, _______, _______,
-    _______, _______, KC_EXLM, _______, _______,OSFRCAPS, _______,     _______, HOLDLYR, _______, _______, KC_PIPE, _______, _______
+    _______, _______, KC_NO  , UN_AT  , UN_HASH, KC_DLR , KC_PERC,     y_DIAER, u_DIAER, e_DIAER, o_DIAER, KC_NO  , _______, NC_RSET,
+    _______, n_TILDE, a_DIAER, UN_RCBR, UN_LCBR, UN_GRAV, UN_CIRC,     KC_PERC, u_CIRCM, e_CIRCM, o_CIRCM, i_DIAER, _______, _______,
+    _______, s_SHARP, a_CIRCM, KC_RPRN, KC_LPRN, KC_UNDS, KC_AMPR,     KC_DLR , u_GRAVE, e_ACUTE, UN_DQUO, i_CIRCM, _______, _______,
+    _______, _______, a_GRAVE, UN_RBRC, UN_LBRC, c_CEDIL, UN_TILD,     UN_HASH, KC_ASTR, e_GRAVE, UN_BSLS, UN_APOS, _______, _______,
+    _______, _______, KC_EXLM, _______, _______,OSFRCAPS, _______,     _______, HOLDLYR, _______, _______, UN_PIPE, _______, _______
   ),
   [LYR_FRCAPS] = LAYOUT_ortho_5x14(
     _______, _______, _______, _______, _______, _______, _______,     Y_DIAER, U_DIAER, E_DIAER, O_DIAER, _______, _______, _______,
@@ -89,21 +89,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------------'      `------------------------------------------------'
  */
   [LYR_FN] = LAYOUT_ortho_5x14(
-    _______, KC_ESC , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
-    _______, _______,RGB_M_SW, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD,     BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_MPRV, _______, _______,
+    NC_RSET, KC_ESC , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
+    _______, _______,RGB_M_SW, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD,     BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_MPRV, _______, NC_RSET,
     _______, _______, RGB_M_P, RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD,     BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MNXT, _______, _______,
     _______, _______, RGB_M_T, KC_NO  , UC_MOD , NC_SYMD, RGB_TOG,     BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_MNXT, _______, _______,
     _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______
   ),
   [LYR_F1F12] = LAYOUT_ortho_5x14(
-    _______, _______, KC_NO  , KC_F10 , KC_F11 , KC_F12 , KC_F22 ,     _______, KC_F10 , KC_F11 , KC_F12 , _______, _______, _______,
+    NC_RSET, _______, KC_NO  , KC_F10 , KC_F11 , KC_F12 , KC_F22 ,     _______, KC_F10 , KC_F11 , KC_F12 , _______, _______, NC_RSET,
     _______, KC_F20 , KC_F21 , KC_F7  , KC_F8  , KC_F9  , KC_F19 ,     _______, KC_F7  , KC_F8  , KC_F9  , _______, _______, _______,
     _______, KC_F17 , KC_F18 , KC_F4  , KC_F5  , KC_F6  , KC_F16 ,     _______, HOLDLYR, KC_F5  , KC_F6  , _______, _______, _______,
     _______, _______, KC_F15 , KC_F1  , KC_F2  , KC_F3  , KC_F13 ,     _______, KC_F1  , KC_F2  , KC_F3  , _______, _______, _______,
     _______, _______, KC_F14 , _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______
   ),
   [LYR_WINDOWS] = LAYOUT_ortho_5x14(
-    _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
+    NC_RSET, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, NC_RSET,
     _______, _______, _______, KC_MPRV, KC_VOLU, _______, _______,     KC_WAKE, WINLEFT, WINUP  , WINRGHT, _______, _______, _______,
     _______, _______, _______, KC_MNXT, KC_VOLD, HOLDLYR, _______,     KC_SLEP, WINSFTL, WINDOWN, WINSFTR, _______, _______, _______,
     _______, _______, _______, KC_MPLY, KC_MUTE, _______, _______,     KC_PWR , WINCTLL, _______, WINCTLR, ALT_F4 , _______, _______,
