@@ -1,9 +1,10 @@
 #ifdef RGBLIGHT_LAYERS
 #include "napoli1084_rgblayers.h"
 
-#include "napoli1084.h"
-#include "quantum/rgblight/rgblight.h"
+#include "napoli1084_keycodeenums.h"
 
+#include <stddef.h>
+#include "quantum/rgblight/rgblight.h"
 
 const rgblight_segment_t PROGMEM my_capslock_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM / 4, HSV_WHITE}       // Light 3 LEDs, starting with LED 0
