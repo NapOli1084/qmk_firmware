@@ -1,8 +1,27 @@
 #include "napoli1084_symbolkeys.h"
 #include "napoli1084_symbolkeysdata.h"
-
-#include "napoli1084.h"
 #include "napoli1084_utils.h"
+
+#include "quantum/quantum.h"
+
+enum napoli1084_symbol_mode {
+    SYMD_KB_CAFR, // Canadian French
+    SYMD_KB_CMS, // Canadian Multilingual Standard
+    SYMD_KB_US, // US QWERTY
+    SYMD_KB_COUNT, // Number of keyboard symbol modes (not a mode)
+    SYMD_UNICODE = SYMD_KB_COUNT, // Default, uses currently selected Unicode mode as per get_unicode_input_mode()
+#ifdef UNICODEMAP_ENABLE
+    SYMD_COUNT // Number of symbol modes (not a mode)
+#else
+    SYMD_COUNT = SYMD_KB_COUNT
+#endif
+};
+
+#ifdef UNICODEMAP_ENABLE
+static uint8_t symbol_mode = SYMD_UNICODE;
+#else
+static uint8_t symbol_mode = SYMD_KB_CAFR;
+#endif
 
 void napoli1084_cycle_symbol_mode(void) {
     symbol_mode = (symbol_mode + 1) % SYMD_COUNT;
