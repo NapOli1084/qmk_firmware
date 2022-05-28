@@ -1,47 +1,8 @@
 #pragma once
 
+#include "napoli1084_keycodeenums.h"
 #include "quantum.h"
 
-enum napoli1084_layers {
-#ifdef NAPOLI1084_QWERTY_ENABLE
-    LYR_QWERTY, // Default layer on keyboards I share with other people
-    LYR_QNAVNUM, // Navigation/numpad layer for qwerty users
-#endif
-    LYR_WORKNAP, // My main default layer, based on Workman layout
-    LYR_GAME, // Game layer
-    LYR_NAVNUM, // Navigation (arrows, home/end, page up/down) / numpad layer
-    LYR_FRSYMBOL, // French symbols layer
-    LYR_FRCAPS, // Capital french symbols layer
-#ifdef NAPOLI1084_MOUSE_LAYER_ENABLE
-    LYR_MOUSE, // Mouse layer
-#endif
-    LYR_FN, // Function keys layer
-    LYR_F1F12, // F keys layer
-    LYR_WINDOWS, // Windows combos layers
-#ifdef NAPOLI1084_QWERTY_ENABLE
-    LYR_DEFAULT = LYR_QWERTY
-#else
-    LYR_DEFAULT = LYR_WORKNAP
-#endif
-};
-
-enum napoli1084_keycodes {
-    // NC = NapOli1084 Code
-    NC_SYMD = SAFE_RANGE, // Symbol Mode cycle
-};
-
-enum napoli1084_symbol_mode {
-    SYMD_KB_CAFR, // Canadian French
-    SYMD_KB_CMS, // Canadian Multilingual Standard
-    SYMD_KB_US, // US QWERTY
-    SYMD_KB_COUNT, // Number of keyboard symbol modes (not a mode)
-    SYMD_UNICODE = SYMD_KB_COUNT, // Default, uses currently selected Unicode mode as per get_unicode_input_mode()
-#ifdef UNICODEMAP_ENABLE
-    SYMD_COUNT // Number of symbol modes (not a mode)
-#else
-    SYMD_COUNT = SYMD_KB_COUNT
-#endif
-};
 
 // One-shot layer keys
 #define OSQNVNUM OSL(LYR_QNAVNUM)
@@ -105,17 +66,6 @@ enum napoli1084_symbol_mode {
 
 #ifdef TAP_DANCE_ENABLE
 
-enum tap_dance_id{
-    tap_dance_reset,
-    tap_dance_h_esc,
-    tap_dance_ctl_z_ctl_a,
-    tap_dance_ctl_s_ctl_x,
-    tap_dance_ctl_c_F5,
-    tap_dance_F7_ctl_F7,
-    tap_dance_ctl_f_F3,
-    tap_dance_ctl_p_ctl_o,
-};
-
 #define TD_H_ESC TD(tap_dance_h_esc)
 #define TD_CTLZ TD(tap_dance_ctl_z_ctl_a)
 #define TD_CTLS TD(tap_dance_ctl_s_ctl_x)
@@ -128,65 +78,6 @@ enum tap_dance_id{
 
 #endif // #ifdef TAP_DANCE_ENABLE
 ////////////////////////////////////////////////////////////////////////////////
-
-enum unicode_names {
-    uni_QUOTATION,
-    uni_HASH,
-    uni_APOSTROPHE,
-    uni_COMMA,
-    uni_DOT,
-    uni_SLASH,
-    uni_LESSTHAN,
-    uni_GREATERTHAN,
-    uni_QUESTION,
-    uni_AT,
-    uni_LEFTBRACKET,
-    uni_BACKSLASH,
-    uni_RIGHTBRACKET,
-    uni_CIRCUMFLEX,
-    uni_GRAVE,
-    uni_LEFTCURLYBRACKET,
-    uni_PIPE,
-    uni_RIGHTCURLYBRACKET,
-    uni_TILDE,
-    uni_a_CIRCUMFLEX,
-    uni_a_DIAERESIS,
-    uni_a_GRAVE,
-    uni_c_CEDILLA,
-    uni_e_ACUTE,
-    uni_e_CIRCUMFLEX,
-    uni_e_DIAERESIS,
-    uni_e_GRAVE,
-    uni_i_CIRCUMFLEX,
-    uni_i_DIAERESIS,
-    uni_n_TILDE,
-    uni_o_CIRCUMFLEX,
-    uni_o_DIAERESIS,
-    uni_s_SHARP,
-    uni_u_CIRCUMFLEX,
-    uni_u_DIAERESIS,
-    uni_u_GRAVE,
-    uni_y_DIAERESIS,
-    uni_A_CIRCUMFLEX,
-    uni_A_DIAERESIS,
-    uni_A_GRAVE,
-    uni_C_CEDILLA,
-    uni_E_ACUTE,
-    uni_E_CIRCUMFLEX,
-    uni_E_DIAERESIS,
-    uni_E_GRAVE,
-    uni_I_CIRCUMFLEX,
-    uni_I_DIAERESIS,
-    uni_N_TILDE,
-    uni_O_CIRCUMFLEX,
-    uni_O_DIAERESIS,
-    uni_S_SHARP,
-    uni_U_CIRCUMFLEX,
-    uni_U_DIAERESIS,
-    uni_U_GRAVE,
-    uni_Y_DIAERESIS,
-    uni_COUNT // not an ID, provides number of IDs
-};
 
 #define UN_HASH X(uni_HASH)
 #define UN_APOS XP(uni_APOSTROPHE, uni_QUOTATION)
