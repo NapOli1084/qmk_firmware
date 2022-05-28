@@ -1,6 +1,6 @@
 #include "napoli1084_symbolkeys.h"
 
-#include "napoli1084.h"
+#include "napoli1084_keycodeenums.h"
 
 #ifdef UNICODEMAP_ENABLE
 
@@ -62,9 +62,6 @@ const uint32_t PROGMEM unicode_map[] = {
     [uni_Y_DIAERESIS] = 0x0178, // Ÿ
 };
 
-static uint8_t symbol_mode = SYMD_UNICODE;
-#else
-static uint8_t symbol_mode = SYMD_KB_CAFR;
 #endif // #ifdef UNICODEMAP_ENABLE
 
 ////////////////////////////////////////////////////////////////////////////////
