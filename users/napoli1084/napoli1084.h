@@ -194,9 +194,9 @@
 #define WN_SLSH UN_SLSH
 #define WN_RCTL KC_RCTL
 
-#define WN_LWIN KC_LCTL
+#define WN_LWIN KC_NO
 #define WN_LALT KC_LALT
-#define WN_RALT KC_LALT
+#define WN_RALT KC_APP
 #define WN_RWIN KC_LWIN
 
 // Thumb keys
