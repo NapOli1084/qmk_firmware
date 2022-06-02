@@ -3,7 +3,7 @@
 #include "napoli1084_symbolkeys.h"
 #include "napoli1084_utils.h"
 
-#ifdef TAP_DANCE_ENABLE
+//#ifdef TAP_DANCE_ENABLE
 
 typedef enum {
     TD_NONE,
@@ -21,6 +21,17 @@ typedef struct {
     bool is_press_action;
     td_state_t state;
 } td_tap_t;
+
+bool is_tap_dance_double(td_state_t state) {
+    switch (state) {
+    case TD_DOUBLE_TAP:
+    case TD_DOUBLE_HOLD:
+        return true;
+    case TD_DOUBLE_SINGLE_TAP: // not considered double since it just applies twice the single tap
+    default:
+        return false;
+    }
+}
 
 // See https://docs.qmk.fm/#/feature_tap_dance
 /* Return an integer that corresponds to what kind of tap dance should be executed.
@@ -73,12 +84,6 @@ td_state_t cur_dance(qk_tap_dance_state_t *state) {
     } else return TD_UNKNOWN;
 }
 
-// Create an instance of 'td_tap_t' for the 'x' tap dance.
-static td_tap_t reset_key_tap_state = {
-    .is_press_action = true,
-    .state = TD_NONE
-};
-
 #ifndef NAPOLI1084_TD_DEBUG_STRING_ENABLE
     #define NAPOLI1084_TD_DEBUG_STRING_ENABLE 0
 #endif
@@ -107,6 +112,12 @@ void napoli1084_send_tp_debug_string(td_state_t state) {
 }
 #endif
 
+// Create an instance of 'td_tap_t' for the 'RESET' tap dance.
+static td_tap_t reset_key_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
 void napoli1084_reset_key_finished(qk_tap_dance_state_t *state, void *user_data) {
     TD_DEBUG_STRING("napoli1084_reset_key_finished: ");
     reset_key_tap_state.state = cur_dance(state);
@@ -124,7 +135,8 @@ void napoli1084_reset_key_finished(qk_tap_dance_state_t *state, void *user_data)
     }
 }
 
-// The _reset function gets called when releasing the key after held
+// The _reset function gets called when releasing the key after held,
+// or right after finished when tapped.
 void napoli1084_reset_key_reset(qk_tap_dance_state_t *state, void *user_data) {
     TD_DEBUG_STRING("napoli1084_reset_key_reset: ");
     TD_DEBUG_ONLY(napoli1084_send_tp_debug_string(reset_key_tap_state.state));
@@ -139,12 +151,58 @@ void napoli1084_reset_key_reset(qk_tap_dance_state_t *state, void *user_data) {
     reset_key_tap_state.state = TD_NONE;
 }
 
+static td_tap_t h_esc_key_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void napoli1084_h_esc_key_finished(qk_tap_dance_state_t *state, void *user_data) {
+    TD_DEBUG_STRING("napoli1084_h_key_finished: ");
+    h_esc_key_tap_state.state = cur_dance(state);
+    TD_DEBUG_ONLY(napoli1084_send_tp_debug_string(h_esc_key_tap_state.state));
+
+    if (is_tap_dance_double(h_esc_key_tap_state.state)) {
+        caps_word_off();
+    } else {
+        if (is_caps_word_on()) {
+            add_weak_mods(MOD_BIT(KC_LSFT));
+        }
+    }
+
+    switch (h_esc_key_tap_state.state) {
+        case TD_SINGLE_HOLD: register_code(KC_H); break;
+        case TD_DOUBLE_TAP: tap_code(KC_ESC); break;
+        case TD_DOUBLE_HOLD: register_code(KC_ESC); break;
+        //case TD_TRIPLE_TAP: tap_code(KC_H); // fallthrough
+        //case TD_DOUBLE_SINGLE_TAP: tap_code(KC_H); // fallthrough
+        //case TD_SINGLE_TAP: tap_code(KC_H); break;
+        default:
+            for (uint8_t i = 0; i < state->count; ++i) {
+                tap_code(KC_H);
+            }
+            break;
+    }
+}
+
+void napoli1084_h_esc_key_reset(qk_tap_dance_state_t *state, void *user_data) {
+    TD_DEBUG_STRING("napoli1084_h_esc_key_reset: ");
+    TD_DEBUG_ONLY(napoli1084_send_tp_debug_string(h_esc_key_tap_state.state));
+    switch (h_esc_key_tap_state.state) {
+        case TD_SINGLE_TAP: break;//unregister_code(KC_H); break;
+        case TD_SINGLE_HOLD: unregister_code(KC_H); break;
+        case TD_DOUBLE_TAP: break;//unregister_code(KC_ESC); break;
+        case TD_DOUBLE_HOLD: unregister_code(KC_ESC);
+        //case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_H);
+        default: break;
+    }
+    h_esc_key_tap_state.state = TD_NONE;
+}
 
 // Tap Dance definitions
 // Limited to 256, see #define TD(n) (QK_TAP_DANCE | ((n)&0xFF))
 qk_tap_dance_action_t tap_dance_actions[] = {
     [tap_dance_reset] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, napoli1084_reset_key_finished, napoli1084_reset_key_reset),
-    [tap_dance_h_esc] = ACTION_TAP_DANCE_DOUBLE(KC_H, KC_ESC),
+    [tap_dance_h_esc] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, napoli1084_h_esc_key_finished, napoli1084_h_esc_key_reset),
     [tap_dance_ctl_z_ctl_a] = ACTION_TAP_DANCE_DOUBLE(CTL_Z, CTL_A),
     [tap_dance_ctl_s_ctl_x] = ACTION_TAP_DANCE_DOUBLE(CTL_S, CTL_X),
     [tap_dance_ctl_c_F5] = ACTION_TAP_DANCE_DOUBLE(CTL_C, KC_F5),
@@ -152,7 +210,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [tap_dance_ctl_f_F3] = ACTION_TAP_DANCE_DOUBLE(KC_F3, CTL_F),
     [tap_dance_ctl_p_ctl_o] = ACTION_TAP_DANCE_DOUBLE(CTL_P, CTL_O),
 };
-#endif // TAP_DANCE_ENABLE
+//#endif // TAP_DANCE_ENABLE
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -188,15 +246,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case NC_SYMD:
         return napoli1084_process_symbol_mode(keycode, record);
-        break;
     case QK_UNICODEMAP ... QK_UNICODEMAP_PAIR_MAX:
         return napoli1084_process_symbol_key(keycode, record);
-        break;
     case KC_LEFT_CTRL ... KC_RIGHT_GUI:
         return napoli1084_process_symbol_mod(keycode, record);
-        break;
     }
     return PROCESS_CONTINUE;
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+        // napoli1084 specific keycodes
+        case TD_H_ESC:
+        case QK_UNICODE ... QK_UNICODE_MAX:
+            return true;
+
+        default:
+            return false; // Deactivate Caps Word.
+    }
 }
 
 void matrix_scan_user(void) {
