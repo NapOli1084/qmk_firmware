@@ -1,4 +1,6 @@
 
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+
 #define RGBLIGHT_MAX_LAYERS 12
 
 // how many taps before oneshot toggle is triggered
