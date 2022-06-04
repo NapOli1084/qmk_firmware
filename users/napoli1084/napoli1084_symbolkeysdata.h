@@ -4,6 +4,10 @@
 
 #ifdef UNICODEMAP_ENABLE
 
+// See:
+// #define XP(i, j) (QK_UNICODEMAP_PAIR | ((i)&0x7F) | (((j)&0x7F) << 7)) // 127 max i and j
+_Static_assert(uni_COUNT <= 0x7F+1, "Number of unicode map indexes cannot exceed 128, see XP()");
+
 const uint32_t PROGMEM unicode_map[] = {
     [uni_QUOTATION] = 0x0022, // "
     [uni_HASH] = 0x0023, // #

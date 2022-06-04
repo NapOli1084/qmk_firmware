@@ -27,3 +27,10 @@ void napoli1084_register_mods(uint8_t mods) {
     set_mods(mods); // Re-set internal mods state
 }
 
+#ifdef CAPS_WORD_ENABLE
+void napoli1084_shift_if_caps_word_on(void) {
+    if (is_caps_word_on()) {
+        add_weak_mods(MOD_BIT(KC_LSFT));
+    }
+}
+#endif
