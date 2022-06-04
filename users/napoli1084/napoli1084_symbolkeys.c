@@ -1,6 +1,7 @@
 #include "napoli1084_symbolkeys.h"
 #include "napoli1084_symbolkeysdata.h"
 #include "napoli1084_utils.h"
+#include "napoli1084.h"
 
 #include "quantum/quantum.h"
 
@@ -146,4 +147,36 @@ bool napoli1084_process_symbol_mod(uint16_t keycode, keyrecord_t* record) {
         symbol_saved_mods = 0;
     }
     return PROCESS_CONTINUE;
+}
+
+uint16_t unicodemap_index(uint16_t keycode) {
+    if (keycode >= QK_UNICODEMAP_PAIR) {
+        // Keycode is a pair: extract index based on Shift / Caps Lock state
+        uint16_t index = keycode - QK_UNICODEMAP_PAIR;
+
+        uint8_t mods = get_mods() | get_weak_mods();
+#ifndef NO_ACTION_ONESHOT
+        mods |= get_oneshot_mods();
+#endif
+
+        bool shift = mods & MOD_MASK_SHIFT;
+
+        //{napoli1084 begin
+#ifdef CAPS_WORD_ENABLE
+        if (keycode >= a_CIRCM && keycode <= y_DIAER) {
+            shift |= is_caps_word_on();
+        }
+#endif
+        //}napoli1084 end
+
+        bool caps  = host_keyboard_led_state().caps_lock;
+        if (shift ^ caps) {
+            index >>= 7;
+        }
+
+        return index & 0x7F;
+    } else {
+        // Keycode is a regular index
+        return keycode - QK_UNICODEMAP;
+    }
 }
