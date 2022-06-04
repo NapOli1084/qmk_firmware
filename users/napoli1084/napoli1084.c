@@ -157,17 +157,18 @@ static td_tap_t h_esc_key_tap_state = {
 };
 
 void napoli1084_h_esc_key_finished(qk_tap_dance_state_t *state, void *user_data) {
-    TD_DEBUG_STRING("napoli1084_h_key_finished: ");
     h_esc_key_tap_state.state = cur_dance(state);
+
+    TD_DEBUG_STRING("napoli1084_h_key_finished: ");
     TD_DEBUG_ONLY(napoli1084_send_tp_debug_string(h_esc_key_tap_state.state));
 
+    #ifdef CAPS_WORD_ENABLE
     if (is_tap_dance_double(h_esc_key_tap_state.state)) {
         caps_word_off();
     } else {
-        if (is_caps_word_on()) {
-            add_weak_mods(MOD_BIT(KC_LSFT));
-        }
+        napoli1084_shift_if_caps_word_on();
     }
+    #endif
 
     switch (h_esc_key_tap_state.state) {
         case TD_SINGLE_HOLD: register_code(KC_H); break;
@@ -200,6 +201,7 @@ void napoli1084_h_esc_key_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 // Tap Dance definitions
 // Limited to 256, see #define TD(n) (QK_TAP_DANCE | ((n)&0xFF))
+_Static_assert(tap_dance_count <= 0x00FF+1, "Number of tap dances cannot exceed 256, see TD()");
 qk_tap_dance_action_t tap_dance_actions[] = {
     [tap_dance_reset] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, napoli1084_reset_key_finished, napoli1084_reset_key_reset),
     [tap_dance_h_esc] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, napoli1084_h_esc_key_finished, napoli1084_h_esc_key_reset),
@@ -267,9 +269,17 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_BSPC:
         case KC_DEL:
         case KC_UNDS:
-        // napoli1084 specific keycodes
+
+        //{napoli1084 begin
         case TD_H_ESC:
-        case QK_UNICODE ... QK_UNICODE_MAX:
+        // my symbols keys and unicodemap are both processed before caps word,
+        // so can't add weak mod here.
+        // Also weak mods aren't properly handled in unicode_input_start() and unicode_input_finish(),
+        // causes codes to be shifted, which doesn't work at least for WinCompose.
+        case a_CIRCM ... y_DIAER:
+        case A_CIRCM ... Y_DIAER:
+        //}napoli1084 end
+
             return true;
 
         default:
