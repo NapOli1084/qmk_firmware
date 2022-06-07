@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 
-#include "napoli1084.h" // users/napoli1084
+#include "napoli1084_keycodes.h" // users/napoli1084
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
