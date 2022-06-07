@@ -270,15 +270,16 @@ bool caps_word_press_user(uint16_t keycode) {
         case KC_DEL:
         case KC_UNDS:
 
-        //{napoli1084 begin
+        //{napoli1084
         case TD_H_ESC:
         // my symbols keys and unicodemap are both processed before caps word,
-        // so can't add weak mod here.
+        // so can't add weak mod here, handled in unicodemap_index() instead.
         // Also weak mods aren't properly handled in unicode_input_start() and unicode_input_finish(),
         // causes codes to be shifted, which doesn't work at least for WinCompose.
+        //case QK_UNICODEMAP_PAIR ... QK_UNICODEMAP_PAIR_MAX:
         case a_CIRCM ... y_DIAER:
         case A_CIRCM ... Y_DIAER:
-        //}napoli1084 end
+        //}napoli1084
 
             return true;
 
