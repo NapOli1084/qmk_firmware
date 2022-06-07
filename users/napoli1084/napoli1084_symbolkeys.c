@@ -161,13 +161,13 @@ uint16_t unicodemap_index(uint16_t keycode) {
 
         bool shift = mods & MOD_MASK_SHIFT;
 
-        //{napoli1084 begin
+        //{napoli1084
 #ifdef CAPS_WORD_ENABLE
         if (keycode >= a_CIRCM && keycode <= y_DIAER) {
             shift |= is_caps_word_on();
         }
 #endif
-        //}napoli1084 end
+        //}napoli1084
 
         bool caps  = host_keyboard_led_state().caps_lock;
         if (shift ^ caps) {
