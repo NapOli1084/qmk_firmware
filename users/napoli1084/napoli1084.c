@@ -261,6 +261,11 @@ bool caps_word_press_user(uint16_t keycode) {
         // Keycodes that continue Caps Word, with shift applied.
         case KC_A ... KC_Z:
         case KC_MINS:
+
+        //{napoli1084
+        case a_CIRCM ... y_DIAER:
+        //}napoli1084
+
             add_weak_mods(MOD_BIT(KC_LSFT)); // Apply shift to next key.
             return true;
 
@@ -277,7 +282,6 @@ bool caps_word_press_user(uint16_t keycode) {
         // Also weak mods aren't properly handled in unicode_input_start() and unicode_input_finish(),
         // causes codes to be shifted, which doesn't work at least for WinCompose.
         //case QK_UNICODEMAP_PAIR ... QK_UNICODEMAP_PAIR_MAX:
-        case a_CIRCM ... y_DIAER:
         case A_CIRCM ... Y_DIAER:
         //}napoli1084
 
