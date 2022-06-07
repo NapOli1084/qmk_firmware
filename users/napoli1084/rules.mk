@@ -7,7 +7,8 @@ SPACE_CADET_ENABLE = no
 TAP_DANCE_ENABLE = yes
 UNICODEMAP_ENABLE = yes
 
-SRC += napoli1084_utils.c
+SRC += napoli1084.c
 SRC += napoli1084_rgblayers.c
 SRC += napoli1084_symbolkeys.c
-SRC += napoli1084.c
+SRC += napoli1084_tapdance.c
+SRC += napoli1084_utils.c
