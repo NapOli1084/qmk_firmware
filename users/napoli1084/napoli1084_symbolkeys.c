@@ -1,7 +1,7 @@
+#include "napoli1084_keycodes.h"
 #include "napoli1084_symbolkeys.h"
 #include "napoli1084_symbolkeysdata.h"
 #include "napoli1084_utils.h"
-#include "napoli1084.h"
 
 #include "quantum/quantum.h"
 
