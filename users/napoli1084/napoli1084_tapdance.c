@@ -21,6 +21,13 @@ typedef struct {
     td_state_t state;
 } td_tap_t;
 
+// Create an instance of 'td_tap_t' for all tap dances.
+// No need to have one per tap dance, there can't be multiple tap dances in progress at same time.
+static td_tap_t key_tap_state = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
 static bool napoli1084_is_tap_dance_double(td_state_t state) {
     switch (state) {
     case TD_DOUBLE_TAP:
@@ -83,45 +90,42 @@ td_state_t cur_dance(qk_tap_dance_state_t *state) {
     } else return TD_UNKNOWN;
 }
 
-#ifndef NAPOLI1084_TD_DEBUG_STRING_ENABLE
-    #define NAPOLI1084_TD_DEBUG_STRING_ENABLE 0
-#endif
-
-#if NAPOLI1084_TD_DEBUG_STRING_ENABLE
-    #define TD_DEBUG_ONLY(...) __VA_ARGS__
-    #define TD_DEBUG_STRING(str) SEND_STRING(str)
+#if defined(NAPOLI1084_TD_DEBUG_ENABLE) && defined(CONSOLE_ENABLE)
+    #define NAPOLI1084_TD_DEBUG_ENABLED 1
 #else
-    #define TD_DEBUG_ONLY(...)
-    #define TD_DEBUG_STRING(str)
+    #define NAPOLI1084_TD_DEBUG_ENABLED 0
 #endif
 
-#if NAPOLI1084_TD_DEBUG_STRING_ENABLE
-void napoli1084_send_tp_debug_string(td_state_t state) {
+#if NAPOLI1084_TD_DEBUG_ENABLED
+    #define TD_DEBUG_STATE(state) dprintf("%s: %s\n", __FUNCTION__, napoli1084_get_td_state_str(state))
+#else
+    #define TD_DEBUG_STATE(state)
+#endif
+
+#if NAPOLI1084_TD_DEBUG_ENABLED
+static const char* napoli1084_get_td_state_str(td_state_t state) {
     switch (state) {
-        case TD_NONE: SEND_STRING("TD_NONE\n"); break;
-        case TD_UNKNOWN: SEND_STRING("TD_UNKNOWN\n"); break;
-        case TD_SINGLE_TAP: SEND_STRING("TD_SINGLE_TAP\n"); break;
-        case TD_SINGLE_HOLD: SEND_STRING("TD_SINGLE_HOLD\n"); break;
-        case TD_DOUBLE_TAP: SEND_STRING("TD_DOUBLE_TAP\n"); break;
-        case TD_DOUBLE_HOLD: SEND_STRING("TD_DOUBLE_HOLD\n"); break;
-        case TD_DOUBLE_SINGLE_TAP: SEND_STRING("TD_DOUBLE_SINGLE_TAP\n"); break;
-        case TD_TRIPLE_TAP: SEND_STRING("TD_TRIPLE_TAP\n"); break;
-        case TD_TRIPLE_HOLD: SEND_STRING("TD_TRIPLE_HOLD\n"); break;
+        case TD_NONE: return "TD_NONE";
+        case TD_UNKNOWN: return "TD_UNKNOWN";
+        case TD_SINGLE_TAP: return "TD_SINGLE_TAP";
+        case TD_SINGLE_HOLD: return "TD_SINGLE_HOLD";
+        case TD_DOUBLE_TAP: return "TD_DOUBLE_TAP";
+        case TD_DOUBLE_HOLD: return "TD_DOUBLE_HOLD";
+        case TD_DOUBLE_SINGLE_TAP: return "TD_DOUBLE_SINGLE_TAP";
+        case TD_TRIPLE_TAP: return "TD_TRIPLE_TAP";
+        case TD_TRIPLE_HOLD: return "TD_TRIPLE_HOLD";
     }
+    return "<TD_INVALID>";
 }
 #endif
 
-// Create an instance of 'td_tap_t' for the 'RESET' tap dance.
-static td_tap_t reset_key_tap_state = {
-    .is_press_action = true,
-    .state = TD_NONE
-};
+
 
 void napoli1084_reset_key_finished(qk_tap_dance_state_t *state, void *user_data) {
-    TD_DEBUG_STRING("napoli1084_reset_key_finished: ");
-    reset_key_tap_state.state = cur_dance(state);
-    TD_DEBUG_ONLY(napoli1084_send_tp_debug_string(reset_key_tap_state.state));
-    switch (reset_key_tap_state.state) {
+    key_tap_state.state = cur_dance(state);
+    TD_DEBUG_STATE(key_tap_state.state);
+
+    switch (key_tap_state.state) {
         case TD_SINGLE_TAP:
         case TD_SINGLE_HOLD:
         case TD_DOUBLE_TAP: layer_move(LYR_DEFAULT); break;
@@ -137,9 +141,9 @@ void napoli1084_reset_key_finished(qk_tap_dance_state_t *state, void *user_data)
 // The _reset function gets called when releasing the key after held,
 // or right after finished when tapped.
 void napoli1084_reset_key_reset(qk_tap_dance_state_t *state, void *user_data) {
-    TD_DEBUG_STRING("napoli1084_reset_key_reset: ");
-    TD_DEBUG_ONLY(napoli1084_send_tp_debug_string(reset_key_tap_state.state));
-    switch (reset_key_tap_state.state) {
+    TD_DEBUG_STATE(key_tap_state.state);
+
+    switch (key_tap_state.state) {
         case TD_SINGLE_TAP: break;//unregister_code(KC_X); break;
         case TD_SINGLE_HOLD: break;// unregister_code(KC_LCTL); break;
         case TD_DOUBLE_TAP: break;//unregister_code(KC_ESC); break;
@@ -147,29 +151,22 @@ void napoli1084_reset_key_reset(qk_tap_dance_state_t *state, void *user_data) {
         //case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_X);
         default: break;
     }
-    reset_key_tap_state.state = TD_NONE;
+    key_tap_state.state = TD_NONE;
 }
 
-static td_tap_t h_esc_key_tap_state = {
-    .is_press_action = true,
-    .state = TD_NONE
-};
-
 void napoli1084_h_esc_key_finished(qk_tap_dance_state_t *state, void *user_data) {
-    h_esc_key_tap_state.state = cur_dance(state);
-
-    TD_DEBUG_STRING("napoli1084_h_key_finished: ");
-    TD_DEBUG_ONLY(napoli1084_send_tp_debug_string(h_esc_key_tap_state.state));
+    key_tap_state.state = cur_dance(state);
+    TD_DEBUG_STATE(key_tap_state.state);
 
     #ifdef CAPS_WORD_ENABLE
-    if (napoli1084_is_tap_dance_double(h_esc_key_tap_state.state)) {
+    if (napoli1084_is_tap_dance_double(key_tap_state.state)) {
         caps_word_off();
     } else {
         napoli1084_shift_if_caps_word_on();
     }
     #endif
 
-    switch (h_esc_key_tap_state.state) {
+    switch (key_tap_state.state) {
         case TD_SINGLE_HOLD: register_code(KC_H); break;
         case TD_DOUBLE_TAP: tap_code(KC_ESC); break;
         case TD_DOUBLE_HOLD: register_code(KC_ESC); break;
@@ -185,9 +182,9 @@ void napoli1084_h_esc_key_finished(qk_tap_dance_state_t *state, void *user_data)
 }
 
 void napoli1084_h_esc_key_reset(qk_tap_dance_state_t *state, void *user_data) {
-    TD_DEBUG_STRING("napoli1084_h_esc_key_reset: ");
-    TD_DEBUG_ONLY(napoli1084_send_tp_debug_string(h_esc_key_tap_state.state));
-    switch (h_esc_key_tap_state.state) {
+    TD_DEBUG_STATE(key_tap_state.state);
+
+    switch (key_tap_state.state) {
         case TD_SINGLE_TAP: break;//unregister_code(KC_H); break;
         case TD_SINGLE_HOLD: unregister_code(KC_H); break;
         case TD_DOUBLE_TAP: break;//unregister_code(KC_ESC); break;
@@ -195,7 +192,7 @@ void napoli1084_h_esc_key_reset(qk_tap_dance_state_t *state, void *user_data) {
         //case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_H);
         default: break;
     }
-    h_esc_key_tap_state.state = TD_NONE;
+    key_tap_state.state = TD_NONE;
 }
 
 // Tap Dance definitions
