@@ -19,6 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "napoli1084_symbolkeys.h"
 #include "napoli1084_utils.h"
 
+#ifdef LOCKING_SUPPORT_ENABLE
+#error Locking support enabled, not needed
+#endif
+
+_Static_assert(LYR_COUNT <= MAX_LAYER, "Number of layers exceeds max");
 
 void keyboard_post_init_user(void) {
     RGBLIGHT_LAYERS_ONLY(napoli1084_rgblayers_keyboard_post_init());
@@ -34,8 +39,15 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
     return state;
 }
 
+#ifdef NAPOLI1084_ERGODOX
+layer_state_t napoli1084_ergodox_layer_state_set(layer_state_t state);
+#endif
+
 layer_state_t layer_state_set_user(layer_state_t state) {
-    RGBLIGHT_LAYERS_ONLY(napoli1084_rgblayers_layer_state_set(state));
+    #ifdef NAPOLI1084_ERGODOX
+    state = napoli1084_ergodox_layer_state_set(state);
+    #endif
+    RGBLIGHT_LAYERS_ONLY(state = napoli1084_rgblayers_layer_state_set(state));
     return state;
 }
 
