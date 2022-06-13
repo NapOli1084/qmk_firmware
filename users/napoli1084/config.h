@@ -15,9 +15,39 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+///////////////////////////////////////////////////////////////////////////
+// Caps Word
+///////////////////////////////////////////////////////////////////////////
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 
+
+///////////////////////////////////////////////////////////////////////////
+// Layers
+///////////////////////////////////////////////////////////////////////////
+// I don't expect using more than 16 layers, so using 16 bits saves some space.
+#define LAYER_STATE_16BIT
+
+///////////////////////////////////////////////////////////////////////////
+// Locking
+///////////////////////////////////////////////////////////////////////////
+// This is for mechanically locking keys.
+// https://docs.qmk.fm/#/squeezing_avr?id=configh-settings
+// https://docs.qmk.fm/#/faq_keymap?id=mechanical-lock-switch-support
+//
+// Supports KC_LOCKING_CAPS_LOCK, KC_LOCKING_NUM_LOCK, KC_LOCKING_SCROLL_LOCK.
+// ergodox_ez enables it (?!), keebio/viterbi and dactyl_manuform also,
+// let's disable it.
+#undef LOCKING_SUPPORT_ENABLE
+#undef LOCKING_RESYNC_ENABLE
+
+///////////////////////////////////////////////////////////////////////////
+// RGB backlight
+///////////////////////////////////////////////////////////////////////////
 #define RGBLIGHT_MAX_LAYERS 12
+
+///////////////////////////////////////////////////////////////////////////
+// Tapping
+///////////////////////////////////////////////////////////////////////////
 
 // how many taps before oneshot toggle is triggered
 // https://docs.qmk.fm/#/one_shot_keys?id=one-shot-keys
@@ -28,6 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TOGGLE 1
 
 // how long before a tap becomes a hold in milliseconds
+#undef TAPPING_TERM
 #define TAPPING_TERM 225
 
 // Waits milliseconds before calling unregister_code()
@@ -45,6 +76,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // (z becomes ctrl when you hold it, and when this option isn't enabled,
 // z rapidly followed by x actually sends Ctrl-x. That's bad.)
 #define IGNORE_MOD_TAP_INTERRUPT
+
+
+///////////////////////////////////////////////////////////////////////////
+// Unicode
+///////////////////////////////////////////////////////////////////////////
 
 // Unicode mode WinCompose with KC_APP as trigger key
 // https://docs.qmk.fm/#/feature_unicode?id=setting-the-input-mode
