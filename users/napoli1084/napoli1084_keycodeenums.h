@@ -35,6 +35,7 @@ enum napoli1084_layers {
     LYR_FN, // Function keys layer
     LYR_F1F12, // F keys layer
     LYR_WINDOWS, // Windows combos layers
+    LYR_COUNT, // Number of layers
 #ifdef NAPOLI1084_QWERTY_ENABLE
     LYR_DEFAULT = LYR_QWERTY
 #else
