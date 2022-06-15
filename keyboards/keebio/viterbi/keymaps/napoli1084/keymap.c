@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______,     Y_DIAER, U_DIAER, E_DIAER, O_DIAER, _______, _______, _______,
     _______, N_TILDE, A_DIAER, _______, _______, _______, _______,     _______, U_CIRCM, E_CIRCM, O_CIRCM, I_DIAER, _______, _______,
     _______, S_SHARP, A_CIRCM, _______, _______, _______, _______,     _______, U_GRAVE, E_ACUTE, _______, I_CIRCM, _______, _______,
-    _______, _______, A_GRAVE, _______, _______, C_CEDIL, _______,     _______, KC_ASTR, E_GRAVE, _______, _______, _______, _______,
+    _______, _______, A_GRAVE, _______, _______, C_CEDIL, _______,     _______, _______, E_GRAVE, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, HOLDLYR, _______,     _______, _______, _______, _______, _______, _______, _______
   ),
 /* Fn
@@ -109,8 +109,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     NC_RSET, KC_ESC , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  ,     KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 ,
     _______, _______,RGB_M_SW, RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD,     BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_MPRV, _______, NC_RSET,
     _______, _______, RGB_M_P, RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD,     BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MNXT, _______, _______,
-    _______, _______, RGB_M_T, KC_NO  , UC_MOD , NC_SYMD, RGB_TOG,     BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_MNXT, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______
+    _______, _______, RGB_M_T, DB_TOGG, UC_MOD , NC_SYMD, RGB_TOG,     BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_MNXT, _______, _______,
+    _______, _______, _______, _______, _______, HOLDLYR, _______,     _______, HOLDLYR, _______, _______, _______, _______, _______
   ),
   [LYR_F1F12] = LAYOUT_ortho_5x14(
     NC_RSET, _______, KC_NO  , KC_F10 , KC_F11 , KC_F12 , KC_F22 ,     _______, KC_F10 , KC_F11 , KC_F12 , _______, _______, NC_RSET,
