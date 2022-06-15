@@ -26,6 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 _Static_assert(LYR_COUNT <= MAX_LAYER, "Number of layers exceeds max");
 
 void keyboard_post_init_user(void) {
+    #ifdef RGB_MATRIX_ENABLE
+    rgb_matrix_enable_noeeprom();
+    #endif
     RGBLIGHT_LAYERS_ONLY(napoli1084_rgblayers_keyboard_post_init());
 }
 
