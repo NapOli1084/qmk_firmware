@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          _______, RGB_M_P, RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD,                BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MNXT, _______,
          _______, RGB_M_T, DB_TOGG, UC_MOD , NC_SYMD, RGB_TOG,                BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_MNXT, _______,
                            _______, _______,                                                    _______, _______,
-                                             _______, _______,                _______, _______,
+                                             HOLDLYR, _______,                _______, HOLDLYR,
                                                     _______, _______,  _______, _______,
                                                  _______, _______,        _______, _______
     ),
@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                         _______,_______,                                                        _______,_______,
                                             _______,_______,                _______,_______,
                                                 _______,_______,        _______,_______,
-                                                _______,_______,        _______,_______
+                                                HOLDLYR,_______,        _______,_______
     ),
     [LYR_WINDOWS] = LAYOUT_6x6(
         NC_RSET,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,NC_RSET,
