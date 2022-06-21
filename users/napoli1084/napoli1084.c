@@ -19,6 +19,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "napoli1084_symbolkeys.h"
 #include "napoli1084_utils.h"
 
+#ifdef CONSOLE_ENABLE
+    #ifdef NO_PRINT
+        #error NO_PRINT defined with CONSOLE_ENABLE, nothing will be written to console
+    #endif
+    #ifdef NO_DEBUG
+        #error NO_DEBUG defined with CONSOLE_ENABLE, no debugging will be available
+    #endif
+#else
+    #ifndef NO_PRINT
+        #error NO_PRINT not defined when CONSOLE_ENABLE not defined, printing not needed
+    #endif
+    #ifndef NO_DEBUG
+        #error NO_DEBUG not defined when CONSOLE_ENABLE not defined, debugging not needed
+    #endif
+#endif
+
 #ifdef LOCKING_SUPPORT_ENABLE
 #error Locking support enabled, not needed
 #endif
