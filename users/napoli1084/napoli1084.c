@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "napoli1084_keycodes.h"
 #include "napoli1084_rgblayers.h"
+#include "napoli1084_rgbmatrix.h"
 #include "napoli1084_symbolkeys.h"
 #include "napoli1084_utils.h"
 
@@ -87,6 +88,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return napoli1084_process_symbol_key(keycode, record);
     case KC_LEFT_CTRL ... KC_RIGHT_GUI:
         return napoli1084_process_symbol_mod(keycode, record);
+    case RGB_TOG ... RGB_MODE_RGBTEST:
+    case RGB_DBG ... RGB_EEP:
+        #ifdef RGB_MATRIX_ENABLE
+        return napoli1084_process_rgb_matrix(keycode, record);
+        #endif
+
+        #ifdef RGBLIGHT_ENABLE
+        //TODO
+        //return napoli1084_process_rgblight(keycode, record);
+        #endif
+        break;
     }
     return PROCESS_CONTINUE;
 }
