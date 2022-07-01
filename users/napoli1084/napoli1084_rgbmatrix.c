@@ -17,14 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "napoli1084_keycodeenums.h"
 #include "napoli1084_rgbmatrix_layers.h" // under keyboards/**/keymaps/napoli1084
+#include "napoli1084_rgbmatrix.h"
+#include "napoli1084_utils.h"
 
 #include <stddef.h>
 #include "quantum/rgb_matrix/rgb_matrix.h"
-
-
-#ifdef RGB_MATRIX_DISABLE_KEYCODES
-    #error RGB_MATRIX_DISABLE_KEYCODES is defined
-#endif
 
 #ifndef NAPOLI1084_RGBMATRIX_LYR
     #error NAPOLI1084_RGBMATRIX_LYR must be defined in napoli1084_rgbmatrix_layers.h
@@ -99,4 +96,92 @@ void rgb_matrix_indicators_user(void) {
     } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
         rgb_matrix_set_color_all(0, 0, 0);
     }
+}
+
+// from rgb_matrix.c
+void eeconfig_debug_rgb_matrix(void);
+
+bool napoli1084_process_rgb_matrix(uint16_t keycode, keyrecord_t *record) {
+    #ifndef RGB_MATRIX_DISABLE_KEYCODES
+    #error RGB_MATRIX_DISABLE_KEYCODES is not defined, processing in this function supersedes the default
+    #endif
+
+    // need to trigger on key-up for edge-case issue (from quantum/process_keycode/process_rgb.c)
+    if (record->event.pressed)
+        return PROCESS_CONTINUE;
+
+    switch (keycode) {
+        case RGB_TOG:
+            rgb_matrix_toggle_noeeprom();
+            return PROCESS_STOP;
+        case RGB_MODE_FORWARD:
+            rgb_matrix_step_noeeprom();
+            return PROCESS_STOP;
+        case RGB_MODE_REVERSE:
+            rgb_matrix_step_reverse_noeeprom();
+            return PROCESS_STOP;
+        case RGB_HUI:
+            rgb_matrix_increase_hue_noeeprom();
+            return PROCESS_STOP;
+        case RGB_HUD:
+            rgb_matrix_decrease_hue_noeeprom();
+            return PROCESS_STOP;
+        case RGB_SAI:
+            rgb_matrix_increase_sat_noeeprom();
+            return PROCESS_STOP;
+        case RGB_SAD:
+            rgb_matrix_decrease_sat_noeeprom();
+            return PROCESS_STOP;
+        case RGB_VAI:
+            rgb_matrix_increase_val_noeeprom();
+            return PROCESS_STOP;
+        case RGB_VAD:
+            rgb_matrix_decrease_val_noeeprom();
+            return PROCESS_STOP;
+        case RGB_SPI:
+            rgb_matrix_increase_speed_noeeprom();
+            return PROCESS_STOP;
+        case RGB_SPD:
+            rgb_matrix_decrease_speed_noeeprom();
+            return PROCESS_STOP;
+        case RGB_MODE_PLAIN:
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+            return PROCESS_STOP;
+        case RGB_MODE_BREATHE:
+            #if defined(ENABLE_RGB_MATRIX_BREATHING)
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_BREATHING);
+            #endif
+            return PROCESS_STOP;
+        case RGB_MODE_RAINBOW:
+            #if defined(ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT)
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_LEFT_RIGHT);
+            #endif
+            return PROCESS_STOP;
+        case RGB_MODE_SWIRL:
+            #if defined(ENABLE_RGB_MATRIX_CYCLE_PINWHEEL)
+            rgb_matrix_mode_noeeprom(RGB_MATRIX_CYCLE_PINWHEEL);
+            #endif
+            return PROCESS_STOP;
+        case RGB_MODE_SNAKE:
+            return PROCESS_STOP;
+        case RGB_MODE_KNIGHT:
+            return PROCESS_STOP;
+        case RGB_MODE_XMAS:
+            return PROCESS_STOP;
+        case RGB_MODE_GRADIENT:
+            return PROCESS_STOP;
+        case RGB_MODE_RGBTEST:
+            return PROCESS_STOP;
+        case RGB_MODE_TWINKLE:
+            return PROCESS_STOP;
+
+        // Custom keycodes
+        case RGB_DBG:
+            eeconfig_debug_rgb_matrix();
+            return PROCESS_STOP;
+        case RGB_EEP:
+            eeconfig_update_rgb_matrix();
+            return PROCESS_STOP;
+    }
+    return PROCESS_CONTINUE;
 }
