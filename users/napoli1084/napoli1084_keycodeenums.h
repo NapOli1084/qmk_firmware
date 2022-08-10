@@ -46,8 +46,12 @@ enum napoli1084_layers {
 enum napoli1084_keycodes {
     // NC = NapOli1084 Code
     NC_SYMD = SAFE_RANGE, // Symbol Mode cycle
-    RGB_DBG, // RGB debug, prints RGB state to console
-    RGB_EEP, //
+
+    NAP_RGB_BEGIN,
+    RGB_DBG = NAP_RGB_BEGIN, // RGB debug, prints RGB state to console
+    RGB_EEP, // Save RGB settings to EEPROM
+    RGB_LYR, // RGB layer mode
+    NAP_RGB_END = RGB_LYR,
 };
 
 enum napoli1084_tap_dance_id {

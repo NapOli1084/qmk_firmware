@@ -78,8 +78,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [LYR_FN] = LAYOUT_ergodox_pretty(
   NC_RSET, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , _______,     _______, KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , NC_RSET,
-  _______, KC_F1  , RGB_HUI, RGB_SAI, RGB_VAI, RGB_MOD, _______,     _______, BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_F10 , _______,
-  _______,RGB_M_SW, RGB_HUD, RGB_SAD, RGB_VAD,RGB_RMOD,                       BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MPRV, _______,
+  _______, KC_F1  , RGB_HUI, RGB_SAI, RGB_VAI, RGB_LYR, _______,     _______, BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_F10 , _______,
+  _______,RGB_M_SW, RGB_HUD, RGB_SAD, RGB_VAD, RGB_MOD,                       BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MPRV, _______,
   _______, RGB_M_P, DB_TOGG, UC_MOD , NC_SYMD, RGB_TOG, _______,     _______, BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_MNXT, _______,
   _______, RGB_M_T, _______, _______, HOLDLYR,                                         HOLDLYR, _______, _______, _______, _______,
                                                _______, _______,     _______, _______,
