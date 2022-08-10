@@ -89,7 +89,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case KC_LEFT_CTRL ... KC_RIGHT_GUI:
         return napoli1084_process_symbol_mod(keycode, record);
     case RGB_TOG ... RGB_MODE_RGBTEST:
-    case RGB_DBG ... RGB_EEP:
+    case NAP_RGB_BEGIN ... NAP_RGB_END:
         #ifdef RGB_MATRIX_ENABLE
         return napoli1084_process_rgb_matrix(keycode, record);
         #endif
