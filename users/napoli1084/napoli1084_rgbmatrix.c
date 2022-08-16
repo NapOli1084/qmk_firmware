@@ -27,49 +27,114 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #error NAPOLI1084_RGBMATRIX_LYR must be defined in napoli1084_rgbmatrix_layers.h
 #endif
 
-#ifndef NAPOLI1084_RGBMATRIX_LYR_WORKNAP
-    #define NAPOLI1084_RGBMATRIX_LYR_WORKNAP NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_WORKNAP)
-#endif
-#ifndef NAPOLI1084_RGBMATRIX_LYR_GAME
-    #define NAPOLI1084_RGBMATRIX_LYR_GAME NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_GAME)
-#endif
-#ifndef NAPOLI1084_RGBMATRIX_LYR_NAVNUM
-    #define NAPOLI1084_RGBMATRIX_LYR_NAVNUM NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_NAVNUM)
-#endif
-#ifndef NAPOLI1084_RGBMATRIX_LYR_FRSYMBOL
-    #define NAPOLI1084_RGBMATRIX_LYR_FRSYMBOL NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_FRSYMBOL)
-#endif
-#ifndef NAPOLI1084_RGBMATRIX_LYR_FRCAPS
-    #define NAPOLI1084_RGBMATRIX_LYR_FRCAPS NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_FRCAPS)
-#endif
-#ifndef NAPOLI1084_RGBMATRIX_LYR_FN
-    #define NAPOLI1084_RGBMATRIX_LYR_FN NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_FN)
-#endif
-#ifndef NAPOLI1084_RGBMATRIX_LYR_F1F12
-    #define NAPOLI1084_RGBMATRIX_LYR_F1F12 NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_F1F12)
-#endif
+// #ifndef NAPOLI1084_RGBMATRIX_LYR_WORKNAP
+//     #define NAPOLI1084_RGBMATRIX_LYR_WORKNAP NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_WORKNAP)
+// #endif
+// #ifndef NAPOLI1084_RGBMATRIX_LYR_GAME
+//     #define NAPOLI1084_RGBMATRIX_LYR_GAME NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_GAME)
+// #endif
+// #ifndef NAPOLI1084_RGBMATRIX_LYR_NAVNUM
+//     #define NAPOLI1084_RGBMATRIX_LYR_NAVNUM NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_NAVNUM)
+// #endif
+// #ifndef NAPOLI1084_RGBMATRIX_LYR_FRSYMBOL
+//     #define NAPOLI1084_RGBMATRIX_LYR_FRSYMBOL NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_FRSYMBOL)
+// #endif
+// #ifndef NAPOLI1084_RGBMATRIX_LYR_FRCAPS
+//     #define NAPOLI1084_RGBMATRIX_LYR_FRCAPS NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_FRCAPS)
+// #endif
+// #ifndef NAPOLI1084_RGBMATRIX_LYR_FN
+//     #define NAPOLI1084_RGBMATRIX_LYR_FN NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_FN)
+// #endif
+// #ifndef NAPOLI1084_RGBMATRIX_LYR_F1F12
+//     #define NAPOLI1084_RGBMATRIX_LYR_F1F12 NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_F1F12)
+// #endif
 #ifndef NAPOLI1084_RGBMATRIX_LYR_WINDOWS
     #define NAPOLI1084_RGBMATRIX_LYR_WINDOWS NAPOLI1084_RGBMATRIX_LYR(NAPOLI1084_HSV_LYR_WINDOWS)
 #endif
 
+enum nap_rgb_matrix_layer_map_id {
+    NAP_RGB_SINGLE_COLOR_LAYER_MAP = 0x40,
+    NAP_RGB_MATRIX_LAYER_MAP = 0x00,
+    NAP_RGB_LAYER_MAP_MASK = 0xC0,
+    NAP_RGB_LAYER_INDEX_MASK = 0x3F,
+};
+
+enum nap_rgb_matrix_layer_id {
+#ifdef NAPOLI1084_RGBMATRIX_LYR_WINDOWS
+    NAP_RGB_MATRIX_LYR_WINDOWS,
+#endif
+};
+
 const uint8_t PROGMEM nap_rgb_matrix_layer_map[][DRIVER_LED_TOTAL][3] = {
+#ifdef NAPOLI1084_RGBMATRIX_LYR_WORKNAP
     [LYR_WORKNAP] = { NAPOLI1084_RGBMATRIX_LYR_WORKNAP },
+#endif
+#ifdef NAPOLI1084_RGBMATRIX_LYR_GAME
     [LYR_GAME] = { NAPOLI1084_RGBMATRIX_LYR_GAME },
+#endif
+#ifdef NAPOLI1084_RGBMATRIX_LYR_NAVNUM
     [LYR_NAVNUM] = { NAPOLI1084_RGBMATRIX_LYR_NAVNUM },
+#endif
+#ifdef NAPOLI1084_RGBMATRIX_LYR_FRSYMBOL
     [LYR_FRSYMBOL] = { NAPOLI1084_RGBMATRIX_LYR_FRSYMBOL },
+#endif
+#ifdef NAPOLI1084_RGBMATRIX_LYR_FRCAPS
     [LYR_FRCAPS] = { NAPOLI1084_RGBMATRIX_LYR_FRCAPS },
+#endif
+#ifdef NAPOLI1084_RGBMATRIX_LYR_FN
     [LYR_FN] = { NAPOLI1084_RGBMATRIX_LYR_FN },
+#endif
+#ifdef NAPOLI1084_RGBMATRIX_LYR_F1F12
     [LYR_F1F12] = { NAPOLI1084_RGBMATRIX_LYR_F1F12 },
-    [LYR_WINDOWS] = { NAPOLI1084_RGBMATRIX_LYR_WINDOWS },
+#endif
+#ifdef NAPOLI1084_RGBMATRIX_LYR_WINDOWS
+    [NAP_RGB_MATRIX_LYR_WINDOWS] = NAPOLI1084_RGBMATRIX_LYR_WINDOWS,
+#endif
+};
+
+const uint8_t PROGMEM nap_rgb_single_color_layer_map[][3] = {
+    [LYR_WORKNAP] = { NAPOLI1084_HSV_LYR_WORKNAP },
+    [LYR_GAME] = { NAPOLI1084_HSV_LYR_GAME },
+    [LYR_NAVNUM] = { NAPOLI1084_HSV_LYR_NAVNUM },
+    [LYR_FRSYMBOL] = { NAPOLI1084_HSV_LYR_FRSYMBOL },
+    [LYR_FRCAPS] = { NAPOLI1084_HSV_LYR_FRCAPS },
+    [LYR_FN] = { NAPOLI1084_HSV_LYR_FN },
+    [LYR_F1F12] = { NAPOLI1084_HSV_LYR_F1F12 },
+    [LYR_WINDOWS] = { NAPOLI1084_HSV_LYR_WINDOWS },
+};
+
+const uint8_t PROGMEM nap_rgb_layer_index_map[] = {
+    [LYR_WORKNAP] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_WORKNAP,
+    [LYR_GAME] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_GAME,
+    [LYR_NAVNUM] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_NAVNUM,
+    [LYR_FRSYMBOL] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_FRSYMBOL,
+    [LYR_FRCAPS] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_FRCAPS,
+    [LYR_FN] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_FN,
+    [LYR_F1F12] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_F1F12,
+#ifdef NAPOLI1084_RGBMATRIX_LYR_WINDOWS
+    [LYR_WINDOWS] = NAP_RGB_MATRIX_LAYER_MAP | NAP_RGB_MATRIX_LYR_WINDOWS,
+#else
+    [LYR_WINDOWS] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_WINDOWS,
+#endif
 };
 
 static void set_layer_color(int layer) {
+    HSV hsv;
+    uint8_t map_layer_index = pgm_read_byte(&nap_rgb_layer_index_map[layer]);
+    bool is_single_color_layer = (map_layer_index & NAP_RGB_LAYER_MAP_MASK) == NAP_RGB_SINGLE_COLOR_LAYER_MAP;
+    uint8_t layer_index = map_layer_index & NAP_RGB_LAYER_INDEX_MASK;
+    if (is_single_color_layer) {
+        hsv.h = pgm_read_byte(&nap_rgb_single_color_layer_map[layer_index][0]);
+        hsv.s = pgm_read_byte(&nap_rgb_single_color_layer_map[layer_index][1]);
+        hsv.v = pgm_read_byte(&nap_rgb_single_color_layer_map[layer_index][2]);
+    }
+
     for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
-        HSV hsv = {
-            .h = pgm_read_byte(&nap_rgb_matrix_layer_map[layer][i][0]),
-            .s = pgm_read_byte(&nap_rgb_matrix_layer_map[layer][i][1]),
-            .v = pgm_read_byte(&nap_rgb_matrix_layer_map[layer][i][2]),
-        };
+        if (!is_single_color_layer) {
+            hsv.h = pgm_read_byte(&nap_rgb_matrix_layer_map[layer_index][i][0]);
+            hsv.s = pgm_read_byte(&nap_rgb_matrix_layer_map[layer_index][i][1]);
+            hsv.v = pgm_read_byte(&nap_rgb_matrix_layer_map[layer_index][i][2]);
+        }
         if (!hsv.h && !hsv.s && !hsv.v) {
             rgb_matrix_set_color(i, 0, 0, 0);
         } else {
