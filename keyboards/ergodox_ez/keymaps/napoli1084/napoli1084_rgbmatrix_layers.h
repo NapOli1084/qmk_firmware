@@ -18,8 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "napoli1084_colors.h"
 #include "ergodox_ez.h"
 
-#define NAPOLI1084_RGBMATRIX_LYR(...) {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}, {__VA_ARGS__}
-
 #define NAPOLI1084_RGBMATRIX_LYR_WINDOWS LED_LAYOUT_ergodox_pretty( \
     {HSV_RED}    ,{HSV_RED}    ,{HSV_WHITE}  ,{HSV_GREEN}  ,{HSV_GREEN}  ,    {HSV_RED}    ,{HSV_RED}    ,{HSV_WHITE}  ,{HSV_GREEN}  ,{HSV_GREEN}  ,  \
     {HSV_RED}    ,{HSV_RED}    ,{HSV_WHITE}  ,{HSV_GREEN}  ,{HSV_GREEN}  ,    {HSV_RED}    ,{HSV_RED}    ,{HSV_WHITE}  ,{HSV_GREEN}  ,{HSV_GREEN}  ,  \
