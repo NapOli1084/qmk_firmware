@@ -37,14 +37,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       WN_LTB2, WN_LTB3, KC_WH_D,     KC_PGDN, WN_RTB3, WN_RTB2
 ),
 [LYR_GAME] = LAYOUT_ergodox_pretty(
-  _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,                       _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______,                                         _______, _______, _______, _______, _______,
-                                               _______, _______,     _______, _______,
-                                                        _______,     _______,
-                                      _______, _______, _______,     _______, _______, _______
+  GMLPOR5, GMLPKR5, GMLRGR4, GMLMDR4, GMLIDR4, GMLIOR4, _______,     _______, GMRIOR4, GMRIDR4, GMRMDR4, GMRRGR4, GMRPKR5, GMRPOR5,
+  GMLPOR4, GMLPKR4, GMLRGR3, GMLMDR3, GMLIDR3, GMLIOR3, _______,     _______, GMRIOR3, GMRIDR3, GMRMDR3, GMRRGR3, GMRPKR4, GMRPOR4,
+  GMLPOR3, GMLPKR3, GMLRGR2, GMLMDR2, GMLIDR2, GMLIOR2,                       GMRIOR2, GMRIDR2, GMRMDR2, GMRRGR2, GMRPKR3, GMRPOR3,
+  GMLPOR2, GMLPKR2, GMLRGR1, GMLMDR1, GMLIDR1, GMLIOR1, _______,     _______, GMRIOR1, GMRIDR1, GMRMDR1, GMRRGR1, GMRPKR2, GMRPOR2,
+  GMLPOR1, GMLPKR1, GMLRGR0, GMLMDR0, GMLTB1 ,                                         GMRTB1 , GMRMDR0, GMRRGR0, GMRPKR1, GMRPOR1,
+                                               _______, GMLTB6 ,     GMRTB6 , _______,
+                                                        GMLTB5 ,     GMRTB5 ,
+                                      GMLTB2 , GMLTB3 , GMLTB4 ,     GMRTB4 , GMRTB3 , GMRTB2
 ),
 [LYR_NAVNUM] = LAYOUT_ergodox_pretty(
   _______, KC_NO  , KC_PSCR, KC_SLCK, KC_PAUS, KC_INS , _______,     _______, KC_CIRC, KC_NLCK, KC_PSLS, KC_ASTR,KC_MINUS, _______,
