@@ -33,4 +33,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLED_SPLIT { 6, 6 }
 
 // https://docs.qmk.fm/#/feature_rgblight?id=effects-and-animations
-#define RGBLIGHT_ANIMATIONS
+// RGBLIGHT_ANIMATIONS is deprecated and animation modes should be explicitly defined.
+//#define RGBLIGHT_ANIMATIONS
