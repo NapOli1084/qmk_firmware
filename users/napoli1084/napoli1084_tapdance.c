@@ -135,7 +135,39 @@ static const char* napoli1084_get_td_state_str(td_state_t state) {
 }
 #endif
 
+#ifdef NAPOLI1084_TAP_HOLD_DANCE
+typedef struct {
+    uint16_t kc1tap;
+    uint16_t kc1hold;
+    uint16_t kc2tap;
+    uint16_t kc2hold;
+    uint16_t kc3tap;
+    uint16_t kc3hold;
+} nap_tap_hold_dance_data_t;
 
+void napoli1084_tap_hold_dance_finished(qk_tap_dance_state_t *state, void *user_data) {
+    key_tap_state.state = cur_dance(state);
+    TD_DEBUG_STATE(key_tap_state.state);
+    nap_tap_hold_dance_data_t* data = (nap_tap_hold_dance_data_t*)user_data;
+
+    switch (key_tap_state.state) {
+        case TD_SINGLE_TAP:
+        case TD_SINGLE_HOLD:
+        case TD_DOUBLE_TAP: break;
+        case TD_DOUBLE_HOLD: break;
+        // Last case is for fast typing. Assuming your key is `f`:
+        // For example, when typing the word `buffer`, and you want to make sure that you send `ff` and not `Esc`.
+        // In order to type `ff` when typing fast, the next character will have to be hit within the `TAPPING_TERM`, which by default is 200ms.
+        //case TD_DOUBLE_SINGLE_TAP: tap_code(KC_X); register_code(KC_X);
+        default: break;
+    }
+}
+
+// The _reset function gets called when releasing the key after held,
+// or right after finished when tapped.
+void napoli1084_tap_hold_dance_reset(qk_tap_dance_state_t *state, void *user_data) {
+}
+#endif
 
 void napoli1084_reset_key_finished(qk_tap_dance_state_t *state, void *user_data) {
     key_tap_state.state = cur_dance(state);
