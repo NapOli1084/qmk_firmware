@@ -33,7 +33,7 @@ Finally I have layers for F keys, Windows shortcuts and system/keyboard function
 My keymaps are:
 
 * [Dactyl-Manuform 6x6](../../keyboards/handwired/dactyl_manuform/6x6/keymaps/napoli1084/keymap.c)
-* [Dactyl](../../keyboards/handwired/dactyl_promicro/keymaps/napoli1084test/keymap.c)
+* [Dactyl](../../keyboards/handwired/dactyl_promicro/keymaps/napoli1084/keymap.c)
 * [Ergodox](../../keyboards/ergodox_ez/keymaps/napoli1084/keymap.c)
 * [Viterbi](../../keyboards/keebio/viterbi/keymaps/napoli1084/keymap.c)
 
