@@ -135,6 +135,7 @@ static const char* napoli1084_get_td_state_str(td_state_t state) {
 }
 #endif
 
+//#define NAPOLI1084_TAP_HOLD_DANCE
 #ifdef NAPOLI1084_TAP_HOLD_DANCE
 typedef struct {
     uint16_t kc1tap;
@@ -145,20 +146,27 @@ typedef struct {
     uint16_t kc3hold;
 } nap_tap_hold_dance_data_t;
 
+static void napoli1084_register_code(uint16_t code) {
+    //extract_mod_bits(code);
+    //tap_code16
+}
+
 void napoli1084_tap_hold_dance_finished(qk_tap_dance_state_t *state, void *user_data) {
     key_tap_state.state = cur_dance(state);
     TD_DEBUG_STATE(key_tap_state.state);
     nap_tap_hold_dance_data_t* data = (nap_tap_hold_dance_data_t*)user_data;
 
     switch (key_tap_state.state) {
-        case TD_SINGLE_TAP:
-        case TD_SINGLE_HOLD:
+        case TD_SINGLE_TAP: break;
+        case TD_SINGLE_HOLD: break;
         case TD_DOUBLE_TAP: break;
         case TD_DOUBLE_HOLD: break;
-        // Last case is for fast typing. Assuming your key is `f`:
+        // This case is for fast typing. Assuming your key is `f`:
         // For example, when typing the word `buffer`, and you want to make sure that you send `ff` and not `Esc`.
         // In order to type `ff` when typing fast, the next character will have to be hit within the `TAPPING_TERM`, which by default is 200ms.
         //case TD_DOUBLE_SINGLE_TAP: tap_code(KC_X); register_code(KC_X);
+        case TD_TRIPLE_TAP: break;
+        case TD_TRIPLE_HOLD: break;
         default: break;
     }
 }
