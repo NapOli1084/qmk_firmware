@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "napoli1084_keycodeenums.h"
 #include "napoli1084_rgbmatrix_layers.h" // under keyboards/**/keymaps/napoli1084
 #include "napoli1084_rgbmatrix.h"
+#include "napoli1084_rgbmode.h"
 #include "napoli1084_utils.h"
 
 #include <stddef.h>
@@ -166,15 +167,6 @@ static void set_layer_color(int layer) {
     }
 }
 
-enum napoli1084_rgb_layer_modes {
-    NAP_RGB_MODE_LAYER, // Use layer colors
-    NAP_RGB_MODE_LAYER_EFFECT_DEFAULT, // Use layer colors except on default layer, play effect
-    NAP_RGB_MODE_EFFECT, // Use QMK's RGB matrix effects
-    NAP_RGB_MODE_COUNT
-};
-
-static uint8_t nap_rgb_mode = NAP_RGB_MODE_LAYER;
-
 void rgb_matrix_indicators_user(void) {
     if (rgb_matrix_get_suspend_state())
         return;
@@ -185,6 +177,7 @@ void rgb_matrix_indicators_user(void) {
         return;
 #endif
 
+    uint8_t nap_rgb_mode = napoli1084_get_rgb_mode();
     if (nap_rgb_mode >= NAP_RGB_MODE_EFFECT)
         return;
 
@@ -202,14 +195,6 @@ void rgb_matrix_indicators_user(void) {
     } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
         rgb_matrix_set_color_all(0, 0, 0);
     }
-}
-
-static void napoli1084_rgb_mode_forward(void) {
-    ++nap_rgb_mode;
-    nap_rgb_mode %= NAP_RGB_MODE_COUNT;
-    dprintf("nap rgb layer mode: %u\n", nap_rgb_mode);
-    dprintf("nap rgb layer highest layer: %u\n", get_highest_layer(layer_state));
-    dprintf("nap rgb layer default layer: %u\n", get_highest_layer(default_layer_state));
 }
 
 // from rgb_matrix.c

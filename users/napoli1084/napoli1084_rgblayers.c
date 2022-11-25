@@ -18,7 +18,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef RGBLIGHT_LAYERS
 #include "napoli1084_rgblayers.h"
 
+#include "napoli1084_colors.h"
 #include "napoli1084_keycodeenums.h"
+#include "napoli1084_rgbmode.h"
 
 #include <stddef.h>
 #include "quantum/rgblight/rgblight.h"
@@ -47,30 +49,30 @@ const rgblight_segment_t PROGMEM my_qwerty_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {13, 1, HSV_PURPLE}
 );
 const rgblight_segment_t PROGMEM my_qnavnum_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_BLUE}
+    {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_NAVNUM}
 );
 #endif // NAPOLI1084_QWERTY_ENABLE
 
 const rgblight_segment_t PROGMEM my_worknap_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_GREEN}
+    {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_WORKNAP}
 );
 const rgblight_segment_t PROGMEM my_game_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_RED}
+    {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_GAME}
 );
 const rgblight_segment_t PROGMEM my_navnum_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {RGBLED_NUM / 4, RGBLED_NUM - 2*(RGBLED_NUM / 4), HSV_BLUE}
+    {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_NAVNUM}
 );
 const rgblight_segment_t PROGMEM my_frsymbol_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_YELLOW}
+    {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_FRSYMBOL}
 );
 const rgblight_segment_t PROGMEM my_frcaps_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, 15, 255, 255} // orange
+    {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_FRCAPS}
 );
 const rgblight_segment_t PROGMEM my_fn_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, HSV_MAGENTA}
+    {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_FN}
 );
 const rgblight_segment_t PROGMEM my_f1f12_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
-    {0, RGBLED_NUM, 234, 255, 255} // pink
+    {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_F1F12}
 );
 const rgblight_segment_t PROGMEM my_windows_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM / 4, HSV_BLUE},

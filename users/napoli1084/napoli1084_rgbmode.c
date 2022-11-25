@@ -15,19 +15,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
+#include "napoli1084_rgbmode.h"
 
-#define USE_SERIAL
+#include "quantum/bitwise.h"
+#include "quantum/action_layer.h"
+#include "quantum/logging/debug.h"
 
-#define EE_HANDS
+static uint8_t nap_rgb_mode = NAP_RGB_MODE_LAYER;
 
-#define RGBLED_SPLIT { 6, 6 }
+uint8_t napoli1084_get_rgb_mode(void) {
+    return nap_rgb_mode;
+}
 
-#define RGBLIGHT_LAYERS
-
-#undef RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_EFFECT_RGB_TEST
-#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-
-//#define NAPOLI1084_HSV_LYR_WORKNAP 95, 255, 255
-#define NAPOLI1084_HSV_LYR_WORKNAP 85, 128, 255
+void napoli1084_rgb_mode_forward(void) {
+    ++nap_rgb_mode;
+    nap_rgb_mode %= NAP_RGB_MODE_COUNT;
+    dprintf("nap rgb layer mode: %u\n", nap_rgb_mode);
+    dprintf("nap rgb layer highest layer: %u\n", get_highest_layer(layer_state));
+    dprintf("nap rgb layer default layer: %u\n", get_highest_layer(default_layer_state));
+}

@@ -153,7 +153,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // 3 milliseconds seems enough (it worked well with 5 and 10 also).
 // More than 3 milliseconds slows down repetition with WinCompose unicode keys
 // since they end up tapping 7-11 keys and repetition is every 33ms.
-#define TAP_CODE_DELAY 3
+#define TAP_CODE_DELAY 6
 
 // https://docs.qmk.fm/#/tap_hold?id=ignore-mod-tap-interrupt
 // https://docs.qmk.fm/#/mod_tap?id=changing-hold-function
