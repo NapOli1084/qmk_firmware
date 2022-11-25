@@ -25,7 +25,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // HSV_ORANGE was too yellow to my taste
 #define NAPOLI1084_HSV_ORANGE 15, 255, 255
 
+#ifndef NAPOLI1084_HSV_LYR_WORKNAP
 #define NAPOLI1084_HSV_LYR_WORKNAP HSV_GREEN
+#endif
+
 #define NAPOLI1084_HSV_LYR_GAME HSV_RED
 #define NAPOLI1084_HSV_LYR_NAVNUM HSV_CYAN
 #define NAPOLI1084_HSV_LYR_FRSYMBOL HSV_YELLOW

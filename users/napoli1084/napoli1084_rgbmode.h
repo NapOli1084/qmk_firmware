@@ -17,17 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define USE_SERIAL
+#include "quantum/led.h"
+#include "quantum/action_layer.h"
 
-#define EE_HANDS
+enum napoli1084_rgb_layer_modes {
+    NAP_RGB_MODE_LAYER, // Use layer colors
+    NAP_RGB_MODE_LAYER_EFFECT_DEFAULT, // Use layer colors except on default layer, play effect
+    NAP_RGB_MODE_EFFECT, // Use QMK's RGB effects
+    NAP_RGB_MODE_COUNT
+};
 
-#define RGBLED_SPLIT { 6, 6 }
-
-#define RGBLIGHT_LAYERS
-
-#undef RGBLIGHT_ANIMATIONS
-#define RGBLIGHT_EFFECT_RGB_TEST
-#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-
-//#define NAPOLI1084_HSV_LYR_WORKNAP 95, 255, 255
-#define NAPOLI1084_HSV_LYR_WORKNAP 85, 128, 255
+uint8_t napoli1084_get_rgb_mode(void);
+void napoli1084_rgb_mode_forward(void);
