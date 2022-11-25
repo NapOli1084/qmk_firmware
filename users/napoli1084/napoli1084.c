@@ -77,7 +77,8 @@ uint8_t extract_mod_bits(uint16_t code);
 
 // Override register_code16() from quantum.c to add delay on mods.
 // I found myself often getting combos with mods not working in remote desktop,
-// adding a short delay between the mod and other key fixes it.
+// adding a short delay between the mod and other key attempts to fix it.
+// => doesn't seem to fix it... maybe the problem is only with VisualStudio...
 void register_code16(uint16_t code) {
     if (IS_MOD(code) || code == KC_NO) {
         do_code16(code, register_mods);
@@ -86,11 +87,26 @@ void register_code16(uint16_t code) {
         uint8_t mod_bits = extract_mod_bits(code);
         if (mod_bits != 0) {
             register_weak_mods(mod_bits);
-            wait_ms(TAP_CODE_DELAY);
+            wait_ms(10);
         }
         // NAPOLI1084 END
     }
     register_code(code);
+}
+
+void unregister_code16(uint16_t code) {
+    unregister_code(code);
+    if (IS_MOD(code) || code == KC_NO) {
+        do_code16(code, unregister_mods);
+    } else {
+        // NAPOLI1084 BEGIN
+        uint8_t mod_bits = extract_mod_bits(code);
+        if (mod_bits != 0) {
+            wait_ms(10);
+            unregister_weak_mods(mod_bits);
+        }
+        // NAPOLI1084 END
+    }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {

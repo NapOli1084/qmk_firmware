@@ -14,8 +14,10 @@ SRC += napoli1084_utils.c
 
 ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
   SRC += napoli1084_rgblayers.c
+  SRC += napoli1084_rgbmode.c
 endif
 
 ifeq ($(strip $(RGB_MATRIX_ENABLE)), yes)
   SRC += napoli1084_rgbmatrix.c
+  SRC += napoli1084_rgbmode.c
 endif
