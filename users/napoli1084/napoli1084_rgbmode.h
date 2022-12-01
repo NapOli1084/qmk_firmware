@@ -21,11 +21,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "quantum/action_layer.h"
 
 enum napoli1084_rgb_layer_modes {
+#if defined(RGBLIGHT_LAYERS) || defined(RGB_MATRIX_ENABLE)
     NAP_RGB_MODE_LAYER, // Use layer colors
     NAP_RGB_MODE_LAYER_EFFECT_DEFAULT, // Use layer colors except on default layer, play effect
+#endif
     NAP_RGB_MODE_EFFECT, // Use QMK's RGB effects
     NAP_RGB_MODE_COUNT
 };
 
-uint8_t napoli1084_get_rgb_mode(void);
+uint8_t napoli1084_rgb_mode_get(void);
 void napoli1084_rgb_mode_forward(void);

@@ -31,3 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_LAYERS_ONLY(...)
 #endif
 
+#ifdef RGBLIGHT_ENABLE
+    bool napoli1084_process_rgblight(uint16_t keycode, keyrecord_t *record);
+#endif
+

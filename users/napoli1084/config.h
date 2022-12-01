@@ -41,11 +41,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef LOCKING_RESYNC_ENABLE
 
 ///////////////////////////////////////////////////////////////////////////
-// RGB backlight
+// RGB backlight/underglow
 ///////////////////////////////////////////////////////////////////////////
+#define RGBLIGHT_LAYERS
 #define RGBLIGHT_MAX_LAYERS 12
 #undef RGBLIGHT_SLEEP
 #define RGBLIGHT_SLEEP
+
+// Using my own processing for rgb keycodes
+#define RGBLIGHT_DISABLE_KEYCODES
+
+#define RGBLIGHT_HUE_STEP 8
+#define RGBLIGHT_SAT_STEP 8
+#define RGBLIGHT_VAL_STEP 8
 
 //#undef RGBLIGHT_ANIMATIONS
 //#undef RGBLIGHT_EFFECT_BREATHING
