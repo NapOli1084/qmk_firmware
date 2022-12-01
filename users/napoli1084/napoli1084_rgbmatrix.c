@@ -177,7 +177,7 @@ void rgb_matrix_indicators_user(void) {
         return;
 #endif
 
-    uint8_t nap_rgb_mode = napoli1084_get_rgb_mode();
+    uint8_t nap_rgb_mode = napoli1084_rgb_mode_get();
     if (nap_rgb_mode >= NAP_RGB_MODE_EFFECT)
         return;
 

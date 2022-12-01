@@ -54,6 +54,7 @@ bool led_update_user(led_t led_state) {
     return true;
 }
 
+// Called when setting default (base) layer
 layer_state_t default_layer_state_set_user(layer_state_t state) {
     RGBLIGHT_LAYERS_ONLY(napoli1084_rgblayers_default_layer_state_set(state));
     return state;
@@ -63,6 +64,7 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
 layer_state_t napoli1084_ergodox_layer_state_set(layer_state_t state);
 #endif
 
+// Called when changing layer
 layer_state_t layer_state_set_user(layer_state_t state) {
     #ifdef NAPOLI1084_ERGODOX
     state = napoli1084_ergodox_layer_state_set(state);
@@ -133,8 +135,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #endif
 
         #ifdef RGBLIGHT_ENABLE
-        //TODO
-        //return napoli1084_process_rgblight(keycode, record);
+        return napoli1084_process_rgblight(keycode, record);
         #endif
         break;
     }
