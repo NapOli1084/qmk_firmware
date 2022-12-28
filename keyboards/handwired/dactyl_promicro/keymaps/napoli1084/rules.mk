@@ -1,3 +1,5 @@
 BOOTLOADER = atmel-dfu  # Elite-C
+COMMAND_ENABLE = no
+CONSOLE_ENABLE = yes
 RGBLIGHT_ENABLE = yes
 LTO_ENABLE = yes
