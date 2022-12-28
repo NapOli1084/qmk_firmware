@@ -43,7 +43,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ///////////////////////////////////////////////////////////////////////////
 // RGB backlight/underglow
 ///////////////////////////////////////////////////////////////////////////
+#ifdef RGBLIGHT_ENABLE
 #define RGBLIGHT_LAYERS
+#endif
 #define RGBLIGHT_MAX_LAYERS 12
 #undef RGBLIGHT_SLEEP
 #define RGBLIGHT_SLEEP
