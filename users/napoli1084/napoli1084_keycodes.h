@@ -230,6 +230,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GM_LWIN  KC_M
 #define GM_LALT  KC_LALT
 
+// NAVNUM Right middle finger
+#define NNRMDR5 _______
+#define NNRMDR4 KC_KP_SLASH
+#define NNRMDR3 KC_8
+#define NNRMDR2 KC_5
+#define NNRMDR1 KC_2
+#define NNRMDR0 KC_0
+
+// NAVNUM Right ring finger
+#define NNRRGR5 _______
+#define NNRRGR4 KC_KP_ASTERISK
+#define NNRRGR3 KC_9
+#define NNRRGR2 KC_6
+#define NNRRGR1 KC_3
+#define NNRRGR0 KC_DOT
+
 ////////////////////////////////////////////////////////////////////////////////
 /* GAME layer
 ,-----------------------------------------.                                      ,-----------------------------------------.
