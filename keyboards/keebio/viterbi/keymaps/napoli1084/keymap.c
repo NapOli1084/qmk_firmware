@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TODEFLT, KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT,OSQNVNUM, KC_SPC ,     KC_SPC , OSFN   , KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL
   ),
   [LYR_QNAVNUM] = LAYOUT_ortho_5x14(
-    _______, _______, KC_NO  , KC_PSCR, KC_SLCK, KC_PAUS, KC_INS ,     KC_CIRC, KC_NLCK, KC_PSLS, KC_ASTR,KC_MINUS, _______, _______,
+    _______, _______, KC_NO  , KC_PSCR, KC_SCRL, KC_PAUS, KC_INS ,     KC_CIRC, KC_NUM , KC_PSLS, KC_ASTR,KC_MINUS, _______, _______,
     _______, _______, KC_WH_L, KC_HOME, KC_UP  , KC_PGUP, KC_WH_R,     KC_PERC, KC_7   , KC_8   , KC_9   , KC_PLUS, _______, _______,
     _______, _______, KC_WH_U, KC_LEFT, KC_DOWN, KC_RGHT, KC_WH_U,     KC_DLR , KC_4   , KC_5   , KC_6   , KC_PLUS, _______, _______,
     _______, _______, KC_WH_L, KC_END , KC_WH_D, KC_PGDN, KC_WH_R,     KC_HASH, KC_1   , KC_2   , KC_3   , KC_EQL , _______, _______,
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, GMLPOR1, GMLPKR1, GMLRGR0, GMLMDR0, GMLTB1 , GMLTB2 ,     GMRTB2 , GMRTB1 , GMRMDR0, GMRRGR0, GMRPKR1, GMRPOR1, _______
   ),
   [LYR_NAVNUM] = LAYOUT_ortho_5x14(
-    _______, _______, KC_NO  , KC_PSCR, KC_SLCK, KC_PAUS, KC_INS ,     KC_CIRC, KC_NLCK, KC_PSLS, KC_ASTR,KC_MINUS, _______, _______,
+    _______, _______, KC_NO  , KC_PSCR, KC_SCRL, KC_PAUS, KC_INS ,     KC_CIRC, KC_NUM , KC_PSLS, KC_ASTR,KC_MINUS, _______, _______,
     _______, _______, KC_NO  , KC_HOME, KC_UP  , KC_PGUP, KC_WH_R,     KC_PERC, KC_7   , KC_8   , KC_9   ,KC_MINUS, _______, _______,
     _______, _______, KC_WH_L, KC_LEFT, KC_DOWN, KC_RGHT, KC_WH_U,     KC_DLR , KC_4   , KC_5   , KC_6   ,KC_MINUS, _______, _______,
     _______, _______, KC_WH_U, KC_END , KC_WH_D, KC_PGDN, KC_WH_R,     KC_HASH, KC_1   , KC_2   , KC_3   , KC_PLUS, _______, _______,

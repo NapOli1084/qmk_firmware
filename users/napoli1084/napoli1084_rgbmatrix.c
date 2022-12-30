@@ -59,7 +59,7 @@ enum nap_rgb_matrix_layer_id {
 #endif
 };
 
-const uint8_t PROGMEM nap_rgb_matrix_layer_map[][DRIVER_LED_TOTAL][3] = {
+const uint8_t PROGMEM nap_rgb_matrix_layer_map[][RGB_MATRIX_LED_COUNT][3] = {
 #ifdef NAPOLI1084_RGBMATRIX_LYR_WORKNAP
     [NAP_RGB_MATRIX_LYR_WORKNAP] = NAPOLI1084_RGBMATRIX_LYR_WORKNAP,
 #endif
@@ -151,7 +151,7 @@ static void set_layer_color(int layer) {
         hsv.v = pgm_read_byte(&nap_rgb_single_color_layer_map[layer_index][2]);
     }
 
-    for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+    for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
         if (!is_single_color_layer) {
             hsv.h = pgm_read_byte(&nap_rgb_matrix_layer_map[layer_index][i][0]);
             hsv.s = pgm_read_byte(&nap_rgb_matrix_layer_map[layer_index][i][1]);
@@ -167,26 +167,26 @@ static void set_layer_color(int layer) {
     }
 }
 
-void rgb_matrix_indicators_user(void) {
+bool rgb_matrix_indicators_user(void) {
     if (rgb_matrix_get_suspend_state())
-        return;
+        return PROCESS_STOP;
 
 #ifdef ORYX_CONFIGURATOR
     // ergodox_ez
     if (keyboard_config.disable_layer_led)
-        return;
+        return PROCESS_STOP;
 #endif
 
     uint8_t nap_rgb_mode = napoli1084_rgb_mode_get();
     if (nap_rgb_mode >= NAP_RGB_MODE_EFFECT)
-        return;
+        return PROCESS_STOP;
 
     uint8_t layer = get_highest_layer(layer_state);
 
     if (nap_rgb_mode == NAP_RGB_MODE_LAYER_EFFECT_DEFAULT) {
         uint8_t default_layer = get_highest_layer(default_layer_state);
         if (layer <= default_layer) {
-            return;
+            return PROCESS_STOP;
         }
     }
 
@@ -195,6 +195,8 @@ void rgb_matrix_indicators_user(void) {
     } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
         rgb_matrix_set_color_all(0, 0, 0);
     }
+
+    return PROCESS_STOP;
 }
 
 // from rgb_matrix.c

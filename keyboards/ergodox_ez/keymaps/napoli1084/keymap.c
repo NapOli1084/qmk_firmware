@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       GMLTB2 , GMLTB3 , GMLTB4 ,     GMRTB4 , GMRTB3 , GMRTB2
 ),
 [LYR_NAVNUM] = LAYOUT_ergodox_pretty(
-  _______, KC_NO  , KC_PSCR, KC_SLCK, KC_PAUS, KC_INS , _______,     _______, KC_CIRC, KC_NLCK, KC_PSLS, KC_ASTR,KC_MINUS, _______,
+  _______, KC_NO  , KC_PSCR, KC_SCRL, KC_PAUS, KC_INS , _______,     _______, KC_CIRC, KC_NUM , KC_PSLS, KC_ASTR,KC_MINUS, _______,
   _______, KC_NO  , KC_HOME, KC_UP  , KC_PGUP, KC_WH_R, _______,     _______, KC_PERC, KC_7   , KC_8   , KC_9   ,KC_MINUS, _______,
   _______, KC_WH_L, KC_LEFT, KC_DOWN, KC_RGHT, KC_WH_U,                       KC_DLR , KC_4   , KC_5   , KC_6   ,KC_MINUS, _______,
   _______, KC_WH_U, KC_END , KC_WH_D, KC_PGDN, KC_WH_R, _______,     _______, KC_HASH, KC_1   , KC_2   , KC_3   , KC_PLUS, _______,
