@@ -53,8 +53,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Using my own processing for rgb keycodes
 #define RGBLIGHT_DISABLE_KEYCODES
 
+#undef RGBLIGHT_HUE_STEP
 #define RGBLIGHT_HUE_STEP 8
+#undef RGBLIGHT_SAT_STEP
 #define RGBLIGHT_SAT_STEP 8
+#undef RGBLIGHT_VAL_STEP
 #define RGBLIGHT_VAL_STEP 8
 
 //#undef RGBLIGHT_ANIMATIONS
@@ -75,9 +78,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef RGB_DISABLE_WHEN_USB_SUSPENDED
 #define RGB_DISABLE_WHEN_USB_SUSPENDED
 
-#undef RGB_DISABLE_TIMEOUT
+#undef RGB_MATRIX_TIMEOUT
 // Turn off after 10 minutes
-#define RGB_DISABLE_TIMEOUT 600000
+#define RGB_MATRIX_TIMEOUT 600000
 
 // Startup animation speed
 //#define RGB_MATRIX_STARTUP_SPD 60
@@ -180,7 +183,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Unicode mode WinCompose with KC_APP as trigger key
 // https://docs.qmk.fm/#/feature_unicode?id=setting-the-input-mode
-#define UNICODE_SELECTED_MODES UC_WINC
+#define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE
 // https://docs.qmk.fm/#/feature_unicode?id=input-key-configuration
 #define UNICODE_KEY_WINC KC_APPLICATION
 

@@ -45,7 +45,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [LYR_NAVNUM] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                        _______,_______,NNRMDR5,NNRRGR5,_______,_______,
-        _______,KC_NO  ,KC_PSCR,KC_SLCK,KC_PAUS,KC_INS ,                        UN_CIRC,KC_NLCK,NNRMDR4,NNRRGR4,KC_MINUS,_______,
+        _______,KC_NO  ,KC_PSCR,KC_SCRL,KC_PAUS,KC_INS ,                        UN_CIRC,KC_NUM ,NNRMDR4,NNRRGR4,KC_MINUS,_______,
         _______,KC_WH_L,KC_HOME,KC_UP  ,KC_PGUP,KC_WH_R,                        KC_PERC, KC_7  ,NNRMDR3,NNRRGR3,KC_MINUS,_______,
         _______,KC_WH_U,KC_LEFT,KC_DOWN,KC_RGHT,KC_WH_U,                        KC_DLR , KC_4  ,NNRMDR2,NNRRGR2,KC_PLUS,_______,
         _______,KC_WH_L,KC_END ,KC_WH_D,KC_PGDN,KC_WH_R,                        UN_HASH, KC_1  ,NNRMDR1,NNRRGR1,KC_EQL ,_______,
