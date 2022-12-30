@@ -64,7 +64,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LCTL_Q LCTL_T(KC_Q)
 #define LSFT_A LSFT_T(KC_A)
 #define LCTL_Z LCTL_T(KC_Z)
-#define RCTL_SC RCTL_T(KC_SCOLON)
+#define RCTL_SC RCTL_T(KC_SEMICOLON)
 #define RSFT_I RSFT_T(KC_I)
 #define RCTL_SL RCTL_T(KC_SLASH)
 
