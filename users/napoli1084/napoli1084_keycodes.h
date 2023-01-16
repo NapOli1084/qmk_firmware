@@ -184,7 +184,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WN_SCOL RCTL_SC
 #define WN_BSPC KC_BSPC
 
-#define WN_LSFT KC_LSFT
+#define WN_LSFT OSM(MOD_LSFT)
 #define WN_A LSFT_A
 #define WN_S KC_S
 #define WN_H TD_H_ESC
@@ -196,9 +196,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WN_E KC_E
 #define WN_O KC_O
 #define WN_I RSFT_I
-#define WN_RSFT KC_RSFT
+#define WN_RSFT OSM(MOD_RSFT)
 
-#define WN_LCTL KC_LCTL
+#define WN_LCTL OSM(MOD_LCTL)
 #define WN_Z LCTL_Z
 #define WN_X KC_X
 #define WN_M KC_M
@@ -210,12 +210,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WN_COMM UN_COMM
 #define WN_DOT UN_DOT
 #define WN_SLSH UN_SLSH
-#define WN_RCTL KC_RCTL
+#define WN_RCTL OSM(MOD_RCTL)
 
 #define WN_LWIN KC_NO
-#define WN_LALT KC_LALT
+#define WN_LALT OSM(MOD_LALT)
 #define WN_RALT KC_APP
-#define WN_RWIN KC_LWIN
+#define WN_RWIN OSM(MOD_LGUI)
 
 // Thumb keys
 #define WN_LTB1 OSL(LYR_NAVNUM)
