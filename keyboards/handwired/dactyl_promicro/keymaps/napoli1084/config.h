@@ -32,4 +32,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //#define NAPOLI1084_HSV_LYR_WORKNAP 95, 255, 255
 //#define NAPOLI1084_HSV_LYR_WORKNAP 85, 128, 255
-#define NAPOLI1084_HSV_LYR_WORKNAP 80, 167, 255
+//#define NAPOLI1084_HSV_LYR_WORKNAP 80, 167, 255
+#define NAPOLI1084_HSV_LYR_WORKNAP 64, 223, 255
+//#define NAPOLI1084_HSV_LYR_WORKNAP 56, 231, 255

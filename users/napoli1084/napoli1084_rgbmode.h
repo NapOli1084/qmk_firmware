@@ -24,6 +24,7 @@ enum napoli1084_rgb_layer_modes {
 #if defined(RGBLIGHT_LAYERS) || defined(RGB_MATRIX_ENABLE)
     NAP_RGB_MODE_LAYER, // Use layer colors
     NAP_RGB_MODE_LAYER_EFFECT_DEFAULT, // Use layer colors except on default layer, play effect
+    NAP_RGB_MODE_LAYER_TEST, // Test layer
 #endif
     NAP_RGB_MODE_EFFECT, // Use QMK's RGB effects
     NAP_RGB_MODE_COUNT

@@ -26,12 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #error RGBLIGHT_ENABLE is not defined
 #endif
 
-#ifndef RGBLIGHT_LAYERS
-#error RGBLIGHT_LAYERS is not defined
-#endif
-
 #include <stddef.h>
 #include "quantum/rgblight/rgblight.h"
+
+#ifdef RGBLIGHT_LAYERS
 
 const rgblight_segment_t PROGMEM my_capslock_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM / 4, HSV_WHITE}       // Light 3 LEDs, starting with LED 0
@@ -88,6 +86,12 @@ const rgblight_segment_t PROGMEM my_windows_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS
     {RGBLED_NUM / 2, (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_YELLOW},
     {RGBLED_NUM - (RGBLED_NUM / 4), RGBLED_NUM / 4, HSV_GREEN}
 );
+const rgblight_segment_t PROGMEM my_test_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, RGBLED_NUM / 4, HSV_RED},
+    {RGBLED_NUM / 4, (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_GREEN},
+    {RGBLED_NUM / 2, (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_BLUE},
+    {RGBLED_NUM - (RGBLED_NUM / 4), RGBLED_NUM / 4, HSV_MAGENTA}
+);
 
 const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 #ifdef NAPOLI1084_QWERTY_ENABLE
@@ -102,7 +106,8 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     my_frcaps_rgblayer,
     my_fn_rgblayer,    // Overrides other layers
     my_f1f12_rgblayer,
-    my_windows_rgblayer
+    my_windows_rgblayer,
+    my_test_rgblayer
 );
 
 enum napoli1084_rgblayers {
@@ -119,25 +124,56 @@ enum napoli1084_rgblayers {
     RGBLYR_FN,
     RGBLYR_F1F12,
     RGBLYR_WINDOWS,
+    RGBLYR_TEST,
     RGBLYR_COUNT // not a layer, only serves to count number of layers
 };
 
-void napoli1084_rgblayers_enable(void) {
-    rgblight_layers = my_rgb_layers;
+static void napoli1084_rgblayers_set_rgblayers_state(layer_state_t state) {
+    _Static_assert(RGBLIGHT_MAX_LAYERS >= RGBLYR_COUNT,
+        "Max RGB layers must be greater or equal to number of layers");
+
+  #ifdef NAPOLI1084_QWERTY_ENABLE
+    rgblight_set_layer_state(RGBLYR_QWERTY, layer_state_cmp(state, LYR_QWERTY));
+    rgblight_set_layer_state(RGBLYR_QNAVNUM, layer_state_cmp(state, LYR_QNAVNUM));
+    rgblight_set_layer_state(RGBLYR_WORKNAP, layer_state_cmp(state, LYR_WORKNAP));
+  #endif
+    rgblight_set_layer_state(RGBLYR_WORKNAP, layer_state_cmp(state, LYR_WORKNAP));
+    rgblight_set_layer_state(RGBLYR_GAME, layer_state_cmp(state, LYR_GAME));
+    rgblight_set_layer_state(RGBLYR_NAVNUM, layer_state_cmp(state, LYR_NAVNUM));
+    rgblight_set_layer_state(RGBLYR_FRSYMBOL, layer_state_cmp(state, LYR_FRSYMBOL));
+    rgblight_set_layer_state(RGBLYR_FRCAPS, layer_state_cmp(state, LYR_FRCAPS));
+    rgblight_set_layer_state(RGBLYR_FN, layer_state_cmp(state, LYR_FN));
+    rgblight_set_layer_state(RGBLYR_F1F12, layer_state_cmp(state, LYR_F1F12));
+    rgblight_set_layer_state(RGBLYR_WINDOWS, layer_state_cmp(state, LYR_WINDOWS));
+
+    led_t led_state = host_keyboard_led_state();
+    rgblight_set_layer_state(RGBLYR_CAPSLOCK, led_state.caps_lock);
 }
 
-void napoli1084_rgblayers_disable(void) {
-    rgblight_layers = NULL;
+static bool napoli1084_rgblayers_enabled = false;
+
+static void napoli1084_rgblayers_enable(layer_state_t state) {
+    napoli1084_rgblayers_enabled = true;
+    napoli1084_rgblayers_set_rgblayers_state(state);
 }
 
-void napoli1084_rgblayers_keyboard_post_init(void) {
-    uint8_t nap_rgb_mode = napoli1084_rgb_mode_get();
-    if (nap_rgb_mode <= NAP_RGB_MODE_LAYER_EFFECT_DEFAULT) {
-        napoli1084_rgblayers_enable();
+static void napoli1084_rgblayers_disable(void) {
+    napoli1084_rgblayers_enabled = false;
+
+    for (uint8_t i = 0; i < RGBLYR_COUNT; ++i) {
+        rgblight_set_layer_state(i, false);
     }
 }
 
-void napoli1084_rgblayers_effect_default(layer_state_t state) {
+void napoli1084_rgblayers_keyboard_post_init(void) {
+    rgblight_layers = my_rgb_layers;
+    uint8_t nap_rgb_mode = napoli1084_rgb_mode_get();
+    if (nap_rgb_mode <= NAP_RGB_MODE_LAYER_EFFECT_DEFAULT) {
+        napoli1084_rgblayers_enable(layer_state);
+    }
+}
+
+static void napoli1084_rgblayers_effect_default(layer_state_t state) {
     // Must check if we're on default layer,
     // if so we disable RGB layers to let effect set RGB values.
     uint8_t layer = get_highest_layer(state);
@@ -146,14 +182,18 @@ void napoli1084_rgblayers_effect_default(layer_state_t state) {
         // Disable RGB layers to let effect set RGB values.
         napoli1084_rgblayers_disable();
     } else {
-        napoli1084_rgblayers_enable();
+        napoli1084_rgblayers_enable(state);
     }
 }
 
 void napoli1084_rgb_mode_on_set(uint8_t rgb_mode) {
+    bool is_test = rgb_mode == NAP_RGB_MODE_LAYER_TEST;
+    rgblight_set_layer_state(RGBLYR_TEST, is_test);
+
     switch (rgb_mode) {
         case NAP_RGB_MODE_LAYER:
-            napoli1084_rgblayers_enable();
+        case NAP_RGB_MODE_LAYER_TEST:
+            napoli1084_rgblayers_enable(layer_state);
             break;
         case NAP_RGB_MODE_LAYER_EFFECT_DEFAULT:
             napoli1084_rgblayers_effect_default(layer_state);
@@ -165,67 +205,36 @@ void napoli1084_rgb_mode_on_set(uint8_t rgb_mode) {
 }
 
 bool napoli1084_rgblayers_led_update(led_t led_state) {
-    rgblight_set_layer_state(RGBLYR_CAPSLOCK, led_state.caps_lock);
+    if (napoli1084_rgblayers_enabled) {
+        rgblight_set_layer_state(RGBLYR_CAPSLOCK, led_state.caps_lock);
+    }
     return true;
 }
 
 // Called when setting default (base) layer
 layer_state_t napoli1084_rgblayers_default_layer_state_set(layer_state_t state) {
    #ifdef NAPOLI1084_QWERTY_ENABLE
-     rgblight_set_layer_state(RGBLYR_QWERTY, layer_state_cmp(state, LYR_QWERTY));
+     //rgblight_set_layer_state(RGBLYR_QWERTY, layer_state_cmp(state, LYR_QWERTY));
    #else
-     rgblight_set_layer_state(RGBLYR_WORKNAP, layer_state_cmp(state, LYR_WORKNAP));
+     //rgblight_set_layer_state(RGBLYR_WORKNAP, layer_state_cmp(state, LYR_WORKNAP));
    #endif
     return state;
 }
 
 // Called when changing layer
 layer_state_t napoli1084_rgblayers_layer_state_set(layer_state_t state) {
-    _Static_assert(RGBLIGHT_MAX_LAYERS >= RGBLYR_COUNT,
-        "Max RGB layers must be greater or equal to number of layers");
 
     uint8_t nap_rgb_mode = napoli1084_rgb_mode_get();
     if (nap_rgb_mode == NAP_RGB_MODE_LAYER_EFFECT_DEFAULT) {
-        uint8_t layer = get_highest_layer(state);
-        uint8_t default_layer = get_highest_layer(default_layer_state);
-        if (layer == default_layer) {
-            // Disable RGB layers to let effect set RGB values.
-            napoli1084_rgblayers_disable();
-        } else {
-            napoli1084_rgblayers_enable();
-        }
+        napoli1084_rgblayers_effect_default(state);
+    } else if (napoli1084_rgblayers_enabled) {
+        napoli1084_rgblayers_set_rgblayers_state(state);
     }
 
-    switch (nap_rgb_mode) {
-        case NAP_RGB_MODE_LAYER:
-            // We're in layer mode, so RGB layers are already enabled
-            //napoli1084_rgblayers_enable();
-            break;
-        case NAP_RGB_MODE_LAYER_EFFECT_DEFAULT:
-            // Must check if we're on default layer, if so we disable RGB layers
-            // to let effect set RGB values.
-            //if (layer == default_layer) {
-            //}
-            break;
-        case NAP_RGB_MODE_EFFECT:
-            break;
-    }
-
-  #ifdef NAPOLI1084_QWERTY_ENABLE
-    rgblight_set_layer_state(RGBLYR_QNAVNUM, layer_state_cmp(state, LYR_QNAVNUM));
-    rgblight_set_layer_state(RGBLYR_WORKNAP, layer_state_cmp(state, LYR_WORKNAP));
-  #endif
-    rgblight_set_layer_state(RGBLYR_GAME, layer_state_cmp(state, LYR_GAME));
-    rgblight_set_layer_state(RGBLYR_NAVNUM, layer_state_cmp(state, LYR_NAVNUM));
-    rgblight_set_layer_state(RGBLYR_FRSYMBOL, layer_state_cmp(state, LYR_FRSYMBOL));
-    rgblight_set_layer_state(RGBLYR_FRCAPS, layer_state_cmp(state, LYR_FRCAPS));
-    rgblight_set_layer_state(RGBLYR_FN, layer_state_cmp(state, LYR_FN));
-    rgblight_set_layer_state(RGBLYR_F1F12, layer_state_cmp(state, LYR_F1F12));
-    rgblight_set_layer_state(RGBLYR_WINDOWS, layer_state_cmp(state, LYR_WINDOWS));
     return state;
 }
 
-//#endif // RGBLIGHT_LAYERS
+#endif // RGBLIGHT_LAYERS
 
 //#ifdef RGBLIGHT_ENABLE
 bool napoli1084_process_rgblight(uint16_t keycode, keyrecord_t *record) {
