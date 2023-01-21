@@ -19,6 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "napoli1084_keycodes.h" // users/napoli1084
 
+#ifdef RGBLIGHT_ANIMATIONS
+#error RGBLIGHT_ANIMATIONS is defined
+#endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LYR_QWERTY] = LAYOUT_ortho_5x14(

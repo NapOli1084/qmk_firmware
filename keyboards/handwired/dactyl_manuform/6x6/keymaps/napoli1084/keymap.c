@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     leftPinky3Row3, leftPinky2Row3, leftPinky1Row3, leftRingRow3, leftMiddleRow3, leftIndex1Row3, leftIndex2Row3, leftIndex3Row3, rightIndex3Row3, rightIndex2Row3, rightIndex1Row3, rightMiddleRow3, rightRingRow3, rightPinky1Row3, rightPinky2Row3, rightPinky3Row3, \
     leftPinky3Row4, leftPinky2Row4, leftPinky1Row4, leftRingRow4, leftMiddleRow4, leftIndex1Row4, leftIndex2Row4, leftIndex3Row4, rightIndex3Row4, rightIndex2Row4, rightIndex1Row4, rightMiddleRow4, rightRingRow4, rightPinky1Row4, rightPinky2Row4, rightPinky3Row4, \
     leftPinky3Row5, leftPinky2Row5, leftPinky1Row5, leftRingRow5, leftMiddleRow5, leftIndex1Row5, leftIndex2Row5, leftIndex3Row5, rightIndex3Row5, rightIndex2Row5, rightIndex1Row5, rightMiddleRow5, rightRingRow5, rightPinky1Row5, rightPinky2Row5, rightPinky3Row5, \
-    leftThumb1, leftThumb2, leftThumb3, leftThumb4, leftThumb5, leftThumb6, leftThumb7, leftThumb8, rightThumb8, rightThumb7, rightThumb6, rightThumb5, rightThumb4, rightThumb3, rightThumb2, rightThumb1 \
+    leftThumb0, leftThumb2, leftThumb3, leftThumb4, leftThumb5, leftThumb6, leftThumb7, rightThumb7, rightThumb6, rightThumb5, rightThumb4, rightThumb3, rightThumb2, rightThumb1, rightThumb0 \
 ) \
     LAYOUT_6X6( \
         leftPinky2Row0, leftPinky1Row0, leftRingRow0, leftMiddleRow0, leftIndex1Row0, leftIndex2Row0,                rightIndex2Row0, rightIndex1Row0, rightMiddleRow0, rightRingRow0, rightPinky1Row0, rightPinky2Row0, \
@@ -121,15 +121,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                  _______, _______,        _______, _______
     ),
     [LYR_F1F12] = LAYOUT_6x6(
-        NC_RSET,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,NC_RSET,
-        KC_F20 ,KC_F21 ,KC_F10 ,KC_F11 ,KC_F12 ,KC_F22 ,                        _______,KC_F10 ,KC_F11 ,KC_F12 ,_______,_______,
-        KC_F17 ,KC_F18 ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F19 ,                        _______,KC_F7  ,KC_F8  ,KC_F9  ,_______,_______,
-        _______,KC_F15 ,KC_F4  ,KC_F5  ,KC_F6  ,KC_F16 ,                        _______,HOLDLYR,KC_F5  ,KC_F6  ,_______,_______,
-        _______,KC_F14 ,KC_F1  ,KC_F2  ,KC_F3  ,KC_F13 ,                        _______,KC_F1  ,KC_F2  ,KC_F3  ,_______,_______,
-                        _______,_______,                                                        _______,_______,
-                                            _______,_______,                _______,_______,
-                                                _______,_______,        _______,_______,
-                                                HOLDLYR,_______,        _______,_______
+        NC_RSET, _______, _______, _______, _______, _______,                         _______, _______, _______, _______, _______, NC_RSET,
+        KC_F20 , KC_F21 , KC_F10 , KC_F11 , KC_F12 , KC_F22 ,                         _______, KC_F10 , KC_F11 , KC_F12 , _______, _______,
+        KC_F17 , KC_F18 , KC_F7  , KC_F8  , KC_F9  , KC_F19 ,                         _______, KC_F7  , KC_F8  , KC_F9  , _______, _______,
+        _______, KC_F15 , KC_F4  , KC_F5  , KC_F6  , KC_F16 ,                         _______, HOLDLYR, KC_F5  , KC_F6  , _______, _______,
+        _______, KC_F14 , KC_F1  , KC_F2  , KC_F3  , KC_F13 ,                         _______, KC_F1  , KC_F2  , KC_F3  , _______, _______,
+                        _______, _______,                                                         _______, _______,
+                                            _______, _______,                 _______, _______,
+                                                _______, _______,         _______, _______,
+                                                HOLDLYR, _______,         _______, _______
     ),
     [LYR_WINDOWS] = LAYOUT_6x6(
         NC_RSET,_______,_______,_______,_______,_______,                        _______,_______,_______,_______,_______,NC_RSET,
