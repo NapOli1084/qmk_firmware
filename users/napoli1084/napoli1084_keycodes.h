@@ -219,12 +219,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Thumb keys
 #define WN_LTB1 OSL(LYR_NAVNUM)
+#define OSL_NAV OSL(LYR_NAVNUM)
 #define WN_LTB2 KC_SPACE
 #define WN_LTB3 OSL(LYR_F1F12)
+#define OSL_F12 OSL(LYR_F12)
 #define WN_LTB4 TTGAME
 #define WN_RTB1 OSL(LYR_FRSYMBOL)
+#define OSL_FRS OSL(LYR_FRSYMBOL)
+#define OSL_FRC OSL(LYR_FRCAPS)
 #define WN_RTB2 KC_ENTER
 #define WN_RTB3 OSL(LYR_WINDOWS)
+#define OSL_WIN OSL(LYR_WINDOWS)
 #define WN_RTB4 TTMOUSE
 
 #define GM_LWIN  KC_M
