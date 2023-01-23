@@ -75,7 +75,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                 KC_P   ,        KC_PGDN
     ),*/
     [LYR_WORKNAP] = NAPOLI1084_LAYOUT_LYR_WORKNAP,
-    [_LOWER] = LAYOUT_6x6(
+    [LYR_GAME] = NAPOLI1084_LAYOUT_LYR_GAME,
+    /*[_LOWER] = LAYOUT_6x6(
         _______,KC_F1  ,KC_F2  ,KC_F3  ,KC_F4  ,KC_F5  ,                                       KC_F6  ,KC_F7  ,KC_F8  ,KC_F9  ,KC_F10 ,KC_F11 ,
         _______,KC_EXLM,KC_AT  ,KC_LBRC,KC_RBRC,KC_PIPE,                                       KC_UP  ,KC_P7  ,KC_P8  ,KC_P9  ,KC_PAST,KC_F12 ,
         _______,KC_HASH,KC_DLR ,KC_LPRN,KC_RPRN,KC_GRV ,                                       KC_DOWN,KC_P4  ,KC_P5  ,KC_P6  ,KC_PPLS,_______,
@@ -84,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 _______,_______,_______,       _______,_______,_______,
                                                                 _______,       _______,
                                                                 _______,       _______
-    ),
+    ),*/
     /*[_RAISE] = LAYOUT_6x6(
         _______,_______,_______,_______,_______,_______,                                       _______,_______,_______,_______,_______,_______,
         _______,_______,_______,KC_MS_U,_______,_______,                                       _______,_______,_______,_______,_______,_______,
