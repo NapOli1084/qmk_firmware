@@ -47,6 +47,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
+#define NAPOLI1084_LAYOUT_LYR_GAME NAPOLI1084_LAYOUT( \
+    _______, _______, KC_T   , _______, _______, KC_T   , _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, _______, KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,    _______, KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , _______, _______, \
+    _______, _______, KC_H   , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,    _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, KC_K   , KC_LSFT, KC_A   , KC_S   , KC_D   , KC_F   , _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, KC_P   , KC_LCTL, KC_Z   , KC_X   , KC_C   , KC_V   , _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, _______, _______, KC_M   , KC_LALT, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______,KC_SPACE, OSL_NAV, _______, _______, KC_G   , KC_B   , _______,    _______, _______, _______, _______, _______, _______, _______, _______ \
+)
+
+  //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
+  //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
 #define NAPOLI1084_LAYOUT_LYR_NAVNUM NAPOLI1084_LAYOUT( \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, _______, KC_NO  , KC_PSCR, KC_SCRL, KC_PAUS, KC_INS , _______,    _______, UN_CIRC, KC_NUM , KC_PSLS, KC_PAST, KC_MINUS,_______, _______, \
@@ -54,7 +66,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     _______, _______, KC_WH_U, KC_LEFT, KC_DOWN, KC_RGHT, KC_WH_U, _______,    _______, KC_DLR , KC_4   , KC_5   , KC_6   , KC_PLUS, _______, _______, \
     _______, _______, KC_WH_L, KC_END , KC_WH_D, KC_PGDN, KC_WH_R, _______,    _______, UN_HASH, KC_1   , KC_2   , KC_3   , KC_EQL , _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, KC_0   , KC_DOT , _______, _______, _______, \
-    _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______ \
+    _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, OSL_FN , _______ \
 )
 
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,

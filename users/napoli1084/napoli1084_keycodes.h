@@ -220,6 +220,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Thumb keys
 #define WN_LTB1 OSL(LYR_NAVNUM)
 #define OSL_NAV OSL(LYR_NAVNUM)
+#define OSL_FN OSL(LYR_FN)
 #define WN_LTB2 KC_SPACE
 #define WN_LTB3 OSL(LYR_F1F12)
 #define OSL_F12 OSL(LYR_F12)
