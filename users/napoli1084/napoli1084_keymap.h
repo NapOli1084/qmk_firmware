@@ -28,7 +28,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     KC_NO  , WN_ESC , WN_1   , WN_2   , WN_3   , WN_4   , WN_5   , NC_RSET,    NC_RSET, WN_6   , WN_7   , WN_8   , WN_9   , WN_0   , WN_DEL , KC_NO  , \
     KC_NO  , WN_TAB , WN_Q   , WN_D   , WN_R   , WN_W   , WN_B   , KC_NO  ,    KC_NO  , WN_J   , WN_F   , WN_U   , WN_P   , WN_SCOL, WN_BSPC, KC_NO  , \
     KC_NO  , WN_LSFT, WN_A   , WN_S   , WN_H   , WN_T   , WN_G   , KC_NO  ,    KC_NO  , WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , WN_RSFT, KC_NO  , \
-    KC_NO  , WN_LCTL, WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   , KC_NO  ,    KC_NO  , WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, WN_RCTL, KC_NO  , \
+    KC_NO  , WN_LCTL, WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   , TTGAME ,    KC_NO  , WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, WN_RCTL, KC_NO  , \
     KC_NO  , KC_NO  , KC_NO  , WN_LWIN, WN_LALT, KC_NO  , KC_NO  , KC_NO  ,    KC_NO  , KC_NO  , KC_NO  , WN_RALT, WN_RWIN, KC_NO  , KC_NO  , KC_NO  , \
     KC_NO  , WN_LTB1, WN_LTB2, WN_LTB3, WN_LTB4, KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, WN_RTB4, WN_RTB3, WN_RTB2, WN_RTB1, KC_NO \
 )
@@ -100,7 +100,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     _______, _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , _______,    _______, KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , _______, _______, \
     _______, _______, RGB_EEP, RGB_HUI, RGB_SAI, RGB_VAI, RGB_LYR, _______,    _______, BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_MPRV, _______, _______, \
     _______, _______, RGB_DBG, RGB_HUD, RGB_SAD, RGB_VAD, RGB_MOD, _______,    _______, BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MNXT, _______, _______, \
-    _______, _______, RGB_M_T, DB_TOGG, UC_MOD , NC_SYMD, RGB_TOG, _______,    _______, BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_NO  , _______, _______, \
+    _______, _______, OS_TOGG, DB_TOGG, UC_MOD , NC_SYMD, RGB_TOG, _______,    _______, BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_NO  , _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, HOLDLYR, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, HOLDLYR, _______ \
 )

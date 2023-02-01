@@ -2,125 +2,27 @@
 #include "version.h"
 #include "napoli1084_keycodes.h" // users/napoli1084
 
-// clang-format off
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+#define NAPOLI1084_LAYOUT( \
+    leftPinky3Row0, leftPinky2Row0, leftPinky1Row0, leftRingRow0, leftMiddleRow0, leftIndex1Row0, leftIndex2Row0, leftIndex3Row0, rightIndex3Row0, rightIndex2Row0, rightIndex1Row0, rightMiddleRow0, rightRingRow0, rightPinky1Row0, rightPinky2Row0, rightPinky3Row0, \
+    leftPinky3Row1, leftPinky2Row1, leftPinky1Row1, leftRingRow1, leftMiddleRow1, leftIndex1Row1, leftIndex2Row1, leftIndex3Row1, rightIndex3Row1, rightIndex2Row1, rightIndex1Row1, rightMiddleRow1, rightRingRow1, rightPinky1Row1, rightPinky2Row1, rightPinky3Row1, \
+    leftPinky3Row2, leftPinky2Row2, leftPinky1Row2, leftRingRow2, leftMiddleRow2, leftIndex1Row2, leftIndex2Row2, leftIndex3Row2, rightIndex3Row2, rightIndex2Row2, rightIndex1Row2, rightMiddleRow2, rightRingRow2, rightPinky1Row2, rightPinky2Row2, rightPinky3Row2, \
+    leftPinky3Row3, leftPinky2Row3, leftPinky1Row3, leftRingRow3, leftMiddleRow3, leftIndex1Row3, leftIndex2Row3, leftIndex3Row3, rightIndex3Row3, rightIndex2Row3, rightIndex1Row3, rightMiddleRow3, rightRingRow3, rightPinky1Row3, rightPinky2Row3, rightPinky3Row3, \
+    leftPinky3Row4, leftPinky2Row4, leftPinky1Row4, leftRingRow4, leftMiddleRow4, leftIndex1Row4, leftIndex2Row4, leftIndex3Row4, rightIndex3Row4, rightIndex2Row4, rightIndex1Row4, rightMiddleRow4, rightRingRow4, rightPinky1Row4, rightPinky2Row4, rightPinky3Row4, \
+    leftPinky3Row5, leftPinky2Row5, leftPinky1Row5, leftRingRow5, leftMiddleRow5, leftIndex1Row5, leftIndex2Row5, leftIndex3Row5, rightIndex3Row5, rightIndex2Row5, rightIndex1Row5, rightMiddleRow5, rightRingRow5, rightPinky1Row5, rightPinky2Row5, rightPinky3Row5, \
+    leftThumb0, leftThumb1, leftThumb2, leftThumb3, leftThumb4, leftThumb5, leftThumb6, leftThumb7, rightThumb7, rightThumb6, rightThumb5, rightThumb4, rightThumb3, rightThumb2, rightThumb1, rightThumb0 \
+) \
+    LAYOUT_ergodox_pretty( \
+        leftPinky2Row0, leftPinky1Row0, leftRingRow1, leftMiddleRow1, leftIndex1Row1, leftIndex2Row1, leftIndex3Row1,     rightIndex3Row1, rightIndex2Row1, rightIndex1Row1, rightMiddleRow1, rightRingRow1, rightPinky1Row0, rightPinky2Row0, \
+        leftPinky2Row1, leftPinky1Row1, leftRingRow2, leftMiddleRow2, leftIndex1Row2, leftIndex2Row2, leftIndex3Row2,     rightIndex3Row2, rightIndex2Row2, rightIndex1Row2, rightMiddleRow2, rightRingRow2, rightPinky1Row1, rightPinky2Row1, \
+        leftPinky2Row2, leftPinky1Row2, leftRingRow3, leftMiddleRow3, leftIndex1Row3, leftIndex2Row3,                                      rightIndex2Row3, rightIndex1Row3, rightMiddleRow3, rightRingRow3, rightPinky1Row2, rightPinky2Row2, \
+        leftPinky2Row3, leftPinky1Row3, leftRingRow4, leftMiddleRow4, leftIndex1Row4, leftIndex2Row4, leftIndex3Row4,     rightIndex3Row4, rightIndex2Row4, rightIndex1Row4, rightMiddleRow4, rightRingRow4, rightPinky1Row3, rightPinky2Row3, \
+        leftPinky2Row4, leftPinky1Row4, leftRingRow5, leftMiddleRow5, leftThumb1    ,                                                                       rightThumb1    , rightMiddleRow5, rightRingRow5, rightPinky1Row4, rightPinky2Row4, \
+                                                                                               leftThumb4, leftThumb7,   rightThumb7, rightThumb4, \
+                                                                                                           leftThumb6,   rightThumb6, \
+                                                                                   leftThumb2, leftThumb3, leftThumb5,   rightThumb5, rightThumb3, rightThumb2 \
+    )
 
-/* Keymap 0: WorkNap Layer
- *
- * ,---------------------------------------------------.           ,--------------------------------------------------.
- * |ToDefault|      |Ctrl+S|Ctrl+C|Ctrl+V|  F7  |Defalt|           |      |      |      |      |      |      |        |
- * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
- * |   Esc   |Ctrl+Z|   D  |   R  |   W  |   B  |Hyper |           |      |   J  |   F  |   U  |   P  |   0  |        |
- * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |   Tab   |   Q  |   S  |   H  |   T  |   G  |------|           |------|   Y  |   N  |   E  |   O  |   ;  | Backspc|
- * |---------+------+------+------+------+------| Game |           |      |------+------+------+------+------+--------|
- * | LShift  |   A  |   X  |   M  |   C  |   V  |      |           |      |   K  |   L  |   ,  |   .  |   I  | RShift |
- * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | LCtrl |   Z  |      | LAlt |NavNum|                                       |      |    . |   0  |   /  | RCtl |
- *   `-----------------------------------'                                       `----------------------------------'
- *                                        ,-------------.       ,-------------.
- *                                        |Animat|      |       |Toggle|  F5  |
- *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      |      |       |      |      |      |
- *                                 |Space |F1-F12|------|       |------|WinLyr|Enter |
- *                                 |      |      |      |       |      |      |      |
- *                                 `--------------------'       `--------------------'
- */
-[LYR_WORKNAP] = LAYOUT_ergodox_pretty(
-  TODEFLT, KC_NO  , WN_2   , WN_3   , WN_4   , WN_5   , TODEFLT,     TODEFLT, WN_6   , WN_7   , WN_8   , WN_9   , KC_NO  , WN_APP ,
-  WN_ESC , WN_1   , WN_D   , WN_R   , WN_W   , WN_B   , KC_HYPR,     KC_MEH , WN_J   , WN_F   , WN_U   , WN_P   , WN_0   , WN_DEL ,
-  WN_TAB , WN_Q   , WN_S   , WN_H   , WN_T   , WN_G   ,                       WN_Y   , WN_N   , WN_E   , WN_O   , WN_SCOL, WN_BSPC,
-  WN_LSFT, WN_A   , WN_X   , WN_M   , WN_C   , WN_V   , WN_LTB4,     WN_RTB4, WN_K   , WN_L   , WN_COMM, WN_DOT , WN_I   , WN_RSFT,
-  WN_LCTL, WN_Z   , WN_LWIN, WN_LALT, WN_LTB1,                                         WN_RTB1, WN_RALT, WN_RWIN, WN_SLSH, WN_RCTL,
-                                               RGB_MOD, _______,     RGB_TOG, KC_F5  ,
-                                                        KC_WH_U,     KC_PGUP,
-                                      WN_LTB2, WN_LTB3, KC_WH_D,     KC_PGDN, WN_RTB3, WN_RTB2
-),
-[LYR_GAME] = LAYOUT_ergodox_pretty(
-  GMLPOR5, GMLPKR5, GMLRGR4, GMLMDR4, GMLIDR4, GMLIOR4, _______,     _______, GMRIOR4, GMRIDR4, GMRMDR4, GMRRGR4, GMRPKR5, GMRPOR5,
-  GMLPOR4, GMLPKR4, GMLRGR3, GMLMDR3, GMLIDR3, GMLIOR3, _______,     _______, GMRIOR3, GMRIDR3, GMRMDR3, GMRRGR3, GMRPKR4, GMRPOR4,
-  GMLPOR3, GMLPKR3, GMLRGR2, GMLMDR2, GMLIDR2, GMLIOR2,                       GMRIOR2, GMRIDR2, GMRMDR2, GMRRGR2, GMRPKR3, GMRPOR3,
-  GMLPOR2, GMLPKR2, GMLRGR1, GMLMDR1, GMLIDR1, GMLIOR1, _______,     _______, GMRIOR1, GMRIDR1, GMRMDR1, GMRRGR1, GMRPKR2, GMRPOR2,
-  GMLPOR1, GMLPKR1, GMLRGR0, GMLMDR0, GMLTB1 ,                                         GMRTB1 , GMRMDR0, GMRRGR0, GMRPKR1, GMRPOR1,
-                                               _______, GMLTB6 ,     GMRTB6 , _______,
-                                                        GMLTB5 ,     GMRTB5 ,
-                                      GMLTB2 , GMLTB3 , GMLTB4 ,     GMRTB4 , GMRTB3 , GMRTB2
-),
-[LYR_NAVNUM] = LAYOUT_ergodox_pretty(
-  _______, KC_NO  , KC_PSCR, KC_SCRL, KC_PAUS, KC_INS , _______,     _______, KC_CIRC, KC_NUM , KC_PSLS, KC_ASTR,KC_MINUS, _______,
-  _______, KC_NO  , KC_HOME, KC_UP  , KC_PGUP, KC_WH_R, _______,     _______, KC_PERC, KC_7   , KC_8   , KC_9   ,KC_MINUS, _______,
-  _______, KC_WH_L, KC_LEFT, KC_DOWN, KC_RGHT, KC_WH_U,                       KC_DLR , KC_4   , KC_5   , KC_6   ,KC_MINUS, _______,
-  _______, KC_WH_U, KC_END , KC_WH_D, KC_PGDN, KC_WH_R, _______,     _______, KC_HASH, KC_1   , KC_2   , KC_3   , KC_PLUS, _______,
-  _______, KC_WH_L, _______, _______, HOLDLYR,                                         OSFN   , KC_0   , KC_DOT , KC_EQL , _______,
-                                               _______, _______,     _______, _______,
-                                                        _______,     _______,
-                                      _______, _______, _______,     _______, _______, _______
-),
-[LYR_FRSYMBOL] = LAYOUT_ergodox_pretty(
-  _______, KC_NO  , UN_AT  , UN_HASH, KC_DLR , KC_PERC, _______,     _______, y_DIAER, u_DIAER, e_DIAER, o_DIAER, KC_NO  , NC_RSET,
-  n_TILDE, a_DIAER, UN_RCBR, UN_LCBR, UN_GRAV, UN_CIRC, _______,     _______, KC_PERC, u_CIRCM, e_CIRCM, o_CIRCM, i_DIAER, _______,
-  s_SHARP, a_CIRCM, KC_RPRN, KC_LPRN, KC_UNDS, KC_AMPR,                       KC_DLR , u_GRAVE, e_ACUTE, UN_DQUO, i_CIRCM, _______,
-  _______, a_GRAVE, UN_RBRC, UN_LBRC, c_CEDIL, UN_TILD, _______,     _______, UN_HASH, KC_ASTR, e_GRAVE, UN_BSLS, UN_APOS, _______,
-  _______, KC_EXLM, _______, _______,OSFRCAPS,                                         HOLDLYR, _______, _______, UN_PIPE, _______,
-                                               _______, _______,     _______, _______,
-                                                        _______,     _______,
-                                      _______, _______, _______,     _______, _______, _______
-),
-[LYR_FRCAPS] = LAYOUT_ergodox_pretty(
-  _______, _______, _______, _______, _______, _______, _______,     _______, Y_DIAER, U_DIAER, E_DIAER, O_DIAER, _______, _______,
-  N_TILDE, A_DIAER, _______, _______, _______, _______, _______,     _______, _______, U_CIRCM, E_CIRCM, O_CIRCM, I_DIAER, _______,
-  S_SHARP, A_CIRCM, _______, _______, _______, _______,                       _______, U_GRAVE, E_ACUTE, _______, I_CIRCM, _______,
-  _______, A_GRAVE, _______, _______, C_CEDIL, _______, _______,     _______, _______, _______, E_GRAVE, _______, _______, _______,
-  _______, _______, _______, _______, HOLDLYR,                                         _______, _______, _______, _______, _______,
-                                               _______, _______,     _______, _______,
-                                                        _______,     _______,
-                                      _______, _______, _______,     _______, _______, _______
-),
-[LYR_FN] = LAYOUT_ergodox_pretty(
-  NC_RSET, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , _______,     _______, KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , NC_RSET,
-  _______, KC_F1  , RGB_HUI, RGB_SAI, RGB_VAI, RGB_LYR, _______,     _______, BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_F10 , _______,
-  _______, RGB_EEP, RGB_HUD, RGB_SAD, RGB_VAD, RGB_MOD,                       BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MPRV, _______,
-  _______, RGB_DBG, DB_TOGG, UC_MOD , NC_SYMD, RGB_TOG, _______,     _______, BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_MNXT, _______,
-  _______, RGB_M_T, _______, _______, HOLDLYR,                                         HOLDLYR, _______, _______, _______, _______,
-                                               _______, _______,     _______, _______,
-                                                        _______,     _______,
-                                      _______, _______, _______,     _______, _______, _______
-),
-[LYR_F1F12] = LAYOUT_ergodox_pretty(
-  NC_RSET, KC_NO  , KC_F10 , KC_F11 , KC_F12 , KC_F22 , _______,     _______, _______, KC_F10 , KC_F11 , KC_F12 , _______, _______,
-  KC_F20 , KC_F21 , KC_F7  , KC_F8  , KC_F9  , KC_F19 , _______,     _______, _______, KC_F7  , KC_F8  , KC_F9  , _______, _______,
-  KC_F17 , KC_F18 , KC_F4  , KC_F5  , KC_F6  , KC_F16 ,                       _______, HOLDLYR, KC_F5  , KC_F6  , _______, _______,
-  _______, KC_F15 , KC_F1  , KC_F2  , KC_F3  , KC_F13 , _______,     _______, _______, KC_F1  , KC_F2  , KC_F3  , _______, _______,
-  _______, KC_F14 , _______, _______, _______,                                         _______, _______, _______, _______, _______,
-                                               _______, _______,     _______, _______,
-                                                        _______,     _______,
-                                      _______, HOLDLYR, _______,     _______, _______, _______
-),
-[LYR_WINDOWS] = LAYOUT_ergodox_pretty(
-  NC_RSET, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, NC_RSET,
-  _______, _______, KC_MPRV, KC_VOLU, _______, _______, _______,     _______, KC_WAKE, WINLEFT, WINUP  , WINRGHT, _______, _______,
-  _______, _______, KC_MNXT, KC_VOLD, HOLDLYR, _______,                       KC_SLEP, WINSFTL, WINDOWN, WINSFTR, _______, _______,
-  _______, _______, KC_MPLY, KC_MUTE, _______, _______, _______,     _______, KC_PWR , WINCTLL, _______, WINCTLR, ALT_F4 , _______,
-  _______, _______, _______, _______, _______,                                         _______, _______, _______, _______, _______,
-                                               _______, _______,     _______, _______,
-                                                        _______,     _______,
-                                      _______, _______, _______,     _______, HOLDLYR, _______
-),
-/*
-[LYR_] = LAYOUT_ergodox_pretty(
-  _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______,                       _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______, _______, _______,     _______, _______, _______, _______, _______, _______, _______,
-  _______, _______, _______, _______, _______,                                         _______, _______, _______, _______, _______,
-                                               _______, _______,     _______, _______,
-                                                        _______,     _______,
-                                      _______, _______, _______,     _______, _______, _______
-),
-*/
-};
-// clang-format on
-
+#include "napoli1084_keymap.h"
 
 // Runs whenever there is a layer state change.
 layer_state_t napoli1084_ergodox_layer_state_set(layer_state_t state) {
