@@ -60,17 +60,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef RGBLIGHT_VAL_STEP
 #define RGBLIGHT_VAL_STEP 8
 
-//#undef RGBLIGHT_ANIMATIONS
-//#undef RGBLIGHT_EFFECT_BREATHING
-//#undef RGBLIGHT_EFFECT_RAINBOW_MOOD
-//#undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
-//#undef RGBLIGHT_EFFECT_SNAKE
-//#undef RGBLIGHT_EFFECT_KNIGHT
-//#undef RGBLIGHT_EFFECT_CHRISTMAS
-//#undef RGBLIGHT_EFFECT_STATIC_GRADIENT
-//#undef RGBLIGHT_EFFECT_RGB_TEST
-//#undef RGBLIGHT_EFFECT_ALTERNATING
-//#undef RGBLIGHT_EFFECT_TWINKLE
 
 ///////////////////////////////////////////////////////////////////////////
 // RGB Matrix
@@ -151,6 +140,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // how many taps before oneshot toggle is triggered
 // https://docs.qmk.fm/#/one_shot_keys?id=one-shot-keys
 #define ONESHOT_TAP_TOGGLE 2
+#define ONESHOT_TIMEOUT 5000
 
 // how many taps before triggering the toggle with layer Tap-Toggle function TT(layer)
 // https://docs.qmk.fm/#/feature_layers?id=switching-and-toggling-layers
