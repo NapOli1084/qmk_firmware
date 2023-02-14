@@ -21,6 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #error NAPOLI1084_LAYOUT() not defined
 #endif
 
+#ifndef NAPOLI1084_LAYOUT_STD
+#define NAPOLI1084_LAYOUT_STD NAPOLI1084_LAYOUT
+#endif
+
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
 #define NAPOLI1084_LAYOUT_LYR_WORKNAP NAPOLI1084_LAYOUT( \
@@ -30,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     KC_NO  , WN_LSFT, WN_A   , WN_S   , WN_H   , WN_T   , WN_G   , KC_NO  ,    KC_NO  , WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , WN_RSFT, KC_NO  , \
     KC_NO  , WN_LCTL, WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   , TTGAME ,    KC_NO  , WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, WN_RCTL, KC_NO  , \
     KC_NO  , KC_NO  , KC_NO  , WN_LWIN, WN_LALT, KC_NO  , KC_NO  , KC_NO  ,    KC_NO  , KC_NO  , KC_NO  , WN_RALT, WN_RWIN, KC_NO  , KC_NO  , KC_NO  , \
-    KC_NO  , WN_LTB1, WN_LTB2, WN_LTB3, WN_LTB4, KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, WN_RTB4, WN_RTB3, WN_RTB2, WN_RTB1, KC_NO \
+    KC_NO  , OSL_NAV, WN_LTB2, WN_LTB3, WN_LTB4, KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, WN_RTB4, WN_RTB3, WN_RTB2, WN_RTB1, KC_NO \
 )
 
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
@@ -54,7 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     _______, KC_G   , KC_LSFT, KC_A   , KC_S   , KC_D   , KC_F   , _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, KC_B   , KC_LCTL, KC_Z   , KC_X   , KC_C   , KC_V   , _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, KC_M   , KC_LALT, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
-    _______,KC_SPACE, OSL_NAV, _______, _______, KC_H   , KC_5   , _______,    _______, _______, _______, _______, _______, _______, _______, _______ \
+    _______,KC_SPACE, SH_OS  , _______, _______, KC_H   , KC_5   , _______,    _______, _______, _______, _______, _______, _______, _______, _______ \
 )
 
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
