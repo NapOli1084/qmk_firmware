@@ -27,6 +27,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
+#define NAPOLI1084_LAYOUT_LYR_QWERTY NAPOLI1084_LAYOUT_STD( \
+    KC_NO  , NC_RSET, KC_NO  , KC_NO  , TTGAME , KC_HYPR, NC_RSET, KC_NO  ,    KC_NO  , NC_RSET, TTNVNUM, KC_MEH , KC_NO  , KC_NO  , NC_RSET, KC_NO  , \
+    KC_ESC , KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , NC_RSET,    NC_RSET, KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_BSPC, \
+    KC_BSLS, KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_NO  ,    KC_NO  , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, \
+    TTWRKNP, KC_CAPS, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_NO  ,    KC_NO  , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT, KC_ENT , \
+    KC_F2  , KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , TTGAME ,    KC_NO  , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, KC_EQL , \
+    TODEFLT, KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT, KC_NO  , KC_NO  , KC_NO  ,    KC_NO  , KC_NO  , KC_NO  , KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL , \
+    KC_NO  ,OSL_QNAV,KC_SPACE, KC_NO  , KC_NO  , KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, KC_NO  , KC_NO  , KC_SPC , OSL_FN , KC_NO \
+)
+
+
+  //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
+  //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
+#define NAPOLI1084_LAYOUT_LYR_QNAVNUM NAPOLI1084_LAYOUT_STD( \
+    _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, _______, KC_NO  , KC_PSCR, KC_SCRL, KC_PAUS, KC_INS , _______,    _______, KC_CIRC, KC_NUM , KC_PSLS, KC_ASTR,KC_MINUS, _______, _______, \
+    _______, _______, KC_WH_L, KC_HOME, KC_UP  , KC_PGUP, KC_WH_R, _______,    _______, KC_PERC, KC_7   , KC_8   , KC_9   , KC_PLUS, _______, _______, \
+    _______, _______, KC_WH_U, KC_LEFT, KC_DOWN, KC_RGHT, KC_WH_U, _______,    _______, KC_DLR , KC_4   , KC_5   , KC_6   , KC_PLUS, _______, _______, \
+    _______, _______, KC_WH_L, KC_END , KC_WH_D, KC_PGDN, KC_WH_R, _______,    _______, KC_HASH, KC_1   , KC_2   , KC_3   , KC_EQL , _______, _______, \
+    _______, _______, KC_NUBS, KC_LGUI, KC_LALT, KC_NO  , KC_NO  , _______,    _______, KC_NO  , KC_NO  , KC_0   , KC_DOT , KC_EQL , _______, _______, \
+    _______, HOLDLYR, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, KC_0   , _______ \
+)
+
+  //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
+  //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
 #define NAPOLI1084_LAYOUT_LYR_WORKNAP NAPOLI1084_LAYOUT( \
     KC_NO  , NC_RSET, KC_NO  , KC_NO  , TTGAME , KC_HYPR, NC_RSET, KC_NO  ,    KC_NO  , NC_RSET, TTNVNUM, KC_MEH , KC_NO  , KC_NO  , NC_RSET, KC_NO  , \
     KC_NO  , WN_ESC , WN_1   , WN_2   , WN_3   , WN_4   , WN_5   , NC_RSET,    NC_RSET, WN_6   , WN_7   , WN_8   , WN_9   , WN_0   , WN_DEL , KC_NO  , \
@@ -34,7 +59,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     KC_NO  , WN_LSFT, WN_A   , WN_S   , WN_H   , WN_T   , WN_G   , KC_NO  ,    KC_NO  , WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , WN_RSFT, KC_NO  , \
     KC_NO  , WN_LCTL, WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   , TTGAME ,    KC_NO  , WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, WN_RCTL, KC_NO  , \
     KC_NO  , KC_NO  , KC_NO  , WN_LWIN, WN_LALT, KC_NO  , KC_NO  , KC_NO  ,    KC_NO  , KC_NO  , KC_NO  , WN_RALT, WN_RWIN, KC_NO  , KC_NO  , KC_NO  , \
-    KC_NO  , OSL_NAV, WN_LTB2, WN_LTB3, WN_LTB4, KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, WN_RTB4, WN_RTB3, WN_RTB2, WN_RTB1, KC_NO \
+    KC_NO  , OSL_NAV,KC_SPACE, WN_LTB3, WN_LTB4, KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, WN_RTB4, WN_RTB3, WN_RTB2, WN_RTB1, KC_NO \
 )
 
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
@@ -45,7 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     _______, _______, WN_Q   , WN_D   , WN_R   , WN_W   , WN_B   , _______,    _______, WN_J   , WN_F   , WN_U   , WN_P   , WN_SCOL, _______, _______, \
     _______, _______, WN_A   , WN_S   , WN_H   , WN_T   , WN_G   , _______,    _______, WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , _______, _______, \
     _______, _______, WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   , _______,    _______, WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, _______, _______, \
-    _______, _______, _______, WN_LWIN, WN_LALT, _______, _______, _______,    _______, _______, _______, WN_RALT, WN_RWIN, _______, _______, _______, \
+    _______, _______, _______, KC_LGUI, WN_LALT, _______, _______, _______,    _______, _______, _______, WN_RALT, WN_RWIN, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______ \
 )
 
@@ -113,8 +138,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
 #define NAPOLI1084_LAYOUT_LYR_F1F12 NAPOLI1084_LAYOUT( \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, NC_RSET, _______, \
-    _______, KC_F20 , KC_F21 , KC_F10 , KC_F11 , KC_F12 , KC_F22 , _______,    _______, _______, KC_F10 , KC_F11 , KC_F12 , _______, _______, _______, \
-    _______, KC_F17 , KC_F18 , KC_F7  , KC_F8  , KC_F9  , KC_F19 , _______,    _______, _______, KC_F7  , KC_F8  , KC_F9  , _______, _______, _______, \
+    _______, _______, KC_F21 , KC_F10 , KC_F11 , KC_F12 , KC_F22 , _______,    _______, _______, KC_F10 , KC_F11 , KC_F12 , _______, _______, _______, \
+    _______, _______, KC_F18 , KC_F7  , KC_F8  , KC_F9  , KC_F19 , _______,    _______, _______, KC_F7  , KC_F8  , KC_F9  , _______, _______, _______, \
     _______, _______, KC_F15 , KC_F4  , KC_F5  , KC_F6  , KC_F16 , _______,    _______, _______, HOLDLYR, KC_F5  , KC_F6  , _______, _______, _______, \
     _______, _______, KC_F14 , KC_F1  , KC_F2  , KC_F3  , KC_F13 , _______,    _______, _______, KC_F1  , KC_F2  , KC_F3  , _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
@@ -133,7 +158,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, HOLDLYR, _______, _______, _______ \
 )
 
+#ifndef NAPOLI1084_KEYMAPS_DISABLE
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+#ifdef NAPOLI1084_QWERTY_ENABLE
+    [LYR_QWERTY] = NAPOLI1084_LAYOUT_LYR_QWERTY,
+    [LYR_QNAVNUM] = NAPOLI1084_LAYOUT_LYR_QNAVNUM,
+#endif
     [LYR_WORKNAP] = NAPOLI1084_LAYOUT_LYR_WORKNAP,
     [LYR_GAME] = NAPOLI1084_LAYOUT_LYR_GAME,
     [LYR_NAVNUM] = NAPOLI1084_LAYOUT_LYR_NAVNUM,
@@ -143,3 +173,4 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LYR_F1F12] = NAPOLI1084_LAYOUT_LYR_F1F12,
     [LYR_WINDOWS] = NAPOLI1084_LAYOUT_LYR_WINDOWS
 };
+#endif
