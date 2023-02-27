@@ -224,7 +224,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define WN_RWIN KC_LGUI
 
 // Thumb keys
-#define WN_LTB1 OSL(LYR_NAVNUM)
+#define OSL_QNAV OSL(LYR_QNAVNUM)
 #define OSL_NAV OSL(LYR_NAVNUM)
 #define OSL_FN OSL(LYR_FN)
 #define WN_LTB2 KC_SPACE
