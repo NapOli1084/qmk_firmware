@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     KC_BSLS, KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_NO  ,    KC_NO  , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, \
     TTWRKNP, KC_CAPS, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_NO  ,    KC_NO  , KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOT, KC_ENT , \
     KC_F2  , KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , TTGAME ,    KC_NO  , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, KC_EQL , \
-    TODEFLT, KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT, KC_NO  , KC_NO  , KC_NO  ,    KC_NO  , KC_NO  , KC_NO  , KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL , \
+    NC_RSET, KC_LCTL, KC_NUBS, KC_LGUI, KC_LALT, KC_NO  , KC_NO  , KC_NO  ,    KC_NO  , KC_NO  , KC_NO  , KC_RALT, KC_RGUI, KC_APP , KC_RCTL, KC_DEL , \
     KC_NO  ,OSL_QNAV,KC_SPACE, KC_NO  , KC_NO  , KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, KC_NO  , KC_NO  , KC_SPC , OSL_FN , KC_NO \
 )
 
@@ -53,11 +53,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
 #define NAPOLI1084_LAYOUT_LYR_WORKNAP NAPOLI1084_LAYOUT( \
-    KC_NO  , NC_RSET, KC_NO  , KC_NO  , TTGAME , KC_HYPR, NC_RSET, KC_NO  ,    KC_NO  , NC_RSET, TTNVNUM, KC_MEH , KC_NO  , KC_NO  , NC_RSET, KC_NO  , \
-    KC_NO  , WN_ESC , WN_1   , WN_2   , WN_3   , WN_4   , WN_5   , NC_RSET,    NC_RSET, WN_6   , WN_7   , WN_8   , WN_9   , WN_0   , WN_DEL , KC_NO  , \
-    KC_NO  , WN_TAB , WN_Q   , WN_D   , WN_R   , WN_W   , WN_B   , KC_NO  ,    KC_NO  , WN_J   , WN_F   , WN_U   , WN_P   , WN_SCOL, WN_BSPC, KC_NO  , \
-    KC_NO  , WN_LSFT, WN_A   , WN_S   , WN_H   , WN_T   , WN_G   , KC_NO  ,    KC_NO  , WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , WN_RSFT, KC_NO  , \
-    KC_NO  , WN_LCTL, WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   , TTGAME ,    KC_NO  , WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, WN_RCTL, KC_NO  , \
+    _______, NC_RSET, KC_NO  , KC_NO  , TTGAME , KC_HYPR, NC_RSET, KC_NO  ,    KC_NO  , NC_RSET, TTNVNUM, KC_MEH , KC_NO  , KC_NO  , NC_RSET, _______, \
+    WN_LTB4, WN_ESC , WN_1   , WN_2   , WN_3   , WN_4   , WN_5   , NC_RSET,    NC_RSET, WN_6   , WN_7   , WN_8   , WN_9   , WN_0   , WN_DEL , WN_RTB4, \
+    HOLDLYR, WN_TAB , WN_Q   , WN_D   , WN_R   , WN_W   , WN_B   , KC_NO  ,    KC_NO  , WN_J   , WN_F   , WN_U   , WN_P   , WN_SCOL, WN_BSPC, _______, \
+    WN_LTB3, WN_LSFT, WN_A   , WN_S   , WN_H   , WN_T   , WN_G   , KC_NO  ,    KC_NO  , WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , WN_RSFT, WN_RTB3, \
+    NC_RSET, WN_LCTL, WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   , TTGAME ,    KC_NO  , WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, WN_RCTL, _______, \
     KC_NO  , KC_NO  , KC_NO  , WN_LWIN, WN_LALT, KC_NO  , KC_NO  , KC_NO  ,    KC_NO  , KC_NO  , KC_NO  , WN_RALT, WN_RWIN, KC_NO  , KC_NO  , KC_NO  , \
     KC_NO  , OSL_NAV,KC_SPACE, WN_LTB3, WN_LTB4, KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, WN_RTB4, WN_RTB3, WN_RTB2, WN_RTB1, KC_NO \
 )
