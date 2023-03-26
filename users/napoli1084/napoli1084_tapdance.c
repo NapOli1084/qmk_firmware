@@ -44,6 +44,7 @@ static td_tap_t key_tap_state = {
     .state = TD_NONE
 };
 
+#if 0
 static bool napoli1084_is_tap_dance_double(td_state_t state) {
     switch (state) {
     case TD_DOUBLE_TAP:
@@ -54,6 +55,7 @@ static bool napoli1084_is_tap_dance_double(td_state_t state) {
         return false;
     }
 }
+#endif
 
 // See https://docs.qmk.fm/#/feature_tap_dance
 /* Return an integer that corresponds to what kind of tap dance should be executed.
@@ -214,7 +216,7 @@ void napoli1084_h_esc_key_finished(qk_tap_dance_state_t *state, void *user_data)
     key_tap_state.state = cur_dance(state);
     TD_DEBUG_STATE(key_tap_state.state);
 
-    #ifdef CAPS_WORD_ENABLE
+    #if 0 //def CAPS_WORD_ENABLE
     if (napoli1084_is_tap_dance_double(key_tap_state.state)) {
         caps_word_off();
     } else {
@@ -223,13 +225,27 @@ void napoli1084_h_esc_key_finished(qk_tap_dance_state_t *state, void *user_data)
     #endif
 
     switch (key_tap_state.state) {
-        case TD_SINGLE_HOLD: register_code(KC_H); break;
-        case TD_DOUBLE_TAP: tap_code(KC_ESC); break;
-        case TD_DOUBLE_HOLD: register_code(KC_ESC); break;
+        case TD_SINGLE_HOLD:
+            caps_word_off();
+            register_code(KC_LCTL);
+            tap_code(KC_ESC);
+            break;
+        case TD_DOUBLE_SINGLE_TAP:
+            // Since I often double-tap H for ESC and then type another key rapidly,
+            // I'll tap ESC even for double-single tap.
+            // This is what I want most of the time, I rarely want to type 2 H in a row.
+        case TD_DOUBLE_TAP:
+            caps_word_off();
+            tap_code(KC_ESC);
+            break;
+        case TD_DOUBLE_HOLD:
+            caps_word_off();
+            register_code(KC_ESC);
+            break;
         //case TD_TRIPLE_TAP: tap_code(KC_H); // fallthrough
-        //case TD_DOUBLE_SINGLE_TAP: tap_code(KC_H); // fallthrough
         //case TD_SINGLE_TAP: tap_code(KC_H); break;
         default:
+            napoli1084_shift_if_caps_word_on();
             for (uint8_t i = 0; i < state->count; ++i) {
                 tap_code(KC_H);
             }
@@ -242,7 +258,7 @@ void napoli1084_h_esc_key_reset(qk_tap_dance_state_t *state, void *user_data) {
 
     switch (key_tap_state.state) {
         case TD_SINGLE_TAP: break;//unregister_code(KC_H); break;
-        case TD_SINGLE_HOLD: unregister_code(KC_H); break;
+        case TD_SINGLE_HOLD: unregister_code(KC_LCTL); break;//unregister_code(KC_H); break;
         case TD_DOUBLE_TAP: break;//unregister_code(KC_ESC); break;
         case TD_DOUBLE_HOLD: unregister_code(KC_ESC);
         //case TD_DOUBLE_SINGLE_TAP: unregister_code(KC_H);
