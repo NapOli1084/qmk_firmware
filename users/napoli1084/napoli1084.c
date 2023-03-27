@@ -82,7 +82,7 @@ uint8_t extract_mod_bits(uint16_t code);
 // adding a short delay between the mod and other key attempts to fix it.
 // => doesn't seem to fix it... maybe the problem is only with VisualStudio...
 void register_code16(uint16_t code) {
-    if (IS_MOD(code) || code == KC_NO) {
+    if (IS_MODIFIER_KEYCODE(code) || code == KC_NO) {
         do_code16(code, register_mods);
     } else {
         // NAPOLI1084 BEGIN
@@ -98,7 +98,7 @@ void register_code16(uint16_t code) {
 
 void unregister_code16(uint16_t code) {
     unregister_code(code);
-    if (IS_MOD(code) || code == KC_NO) {
+    if (IS_MODIFIER_KEYCODE(code) || code == KC_NO) {
         do_code16(code, unregister_mods);
     } else {
         // NAPOLI1084 BEGIN
