@@ -85,7 +85,7 @@ static bool napoli1084_is_tap_dance_double(td_state_t state) {
  * For the third point, there does exist the 'TD_DOUBLE_SINGLE_TAP', however this is not fully tested
  *
  */
-td_state_t cur_dance(qk_tap_dance_state_t *state) {
+td_state_t cur_dance(tap_dance_state_t *state) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
         // Key has not been interrupted, but the key is still held. Means you want to send a 'HOLD'.
@@ -153,7 +153,7 @@ static void napoli1084_register_code(uint16_t code) {
     //tap_code16
 }
 
-void napoli1084_tap_hold_dance_finished(qk_tap_dance_state_t *state, void *user_data) {
+void napoli1084_tap_hold_dance_finished(tap_dance_state_t *state, void *user_data) {
     key_tap_state.state = cur_dance(state);
     TD_DEBUG_STATE(key_tap_state.state);
     nap_tap_hold_dance_data_t* data = (nap_tap_hold_dance_data_t*)user_data;
@@ -175,11 +175,11 @@ void napoli1084_tap_hold_dance_finished(qk_tap_dance_state_t *state, void *user_
 
 // The _reset function gets called when releasing the key after held,
 // or right after finished when tapped.
-void napoli1084_tap_hold_dance_reset(qk_tap_dance_state_t *state, void *user_data) {
+void napoli1084_tap_hold_dance_reset(tap_dance_state_t *state, void *user_data) {
 }
 #endif
 
-void napoli1084_reset_key_finished(qk_tap_dance_state_t *state, void *user_data) {
+void napoli1084_reset_key_finished(tap_dance_state_t *state, void *user_data) {
     key_tap_state.state = cur_dance(state);
     TD_DEBUG_STATE(key_tap_state.state);
 
@@ -198,7 +198,7 @@ void napoli1084_reset_key_finished(qk_tap_dance_state_t *state, void *user_data)
 
 // The _reset function gets called when releasing the key after held,
 // or right after finished when tapped.
-void napoli1084_reset_key_reset(qk_tap_dance_state_t *state, void *user_data) {
+void napoli1084_reset_key_reset(tap_dance_state_t *state, void *user_data) {
     TD_DEBUG_STATE(key_tap_state.state);
 
     switch (key_tap_state.state) {
@@ -212,7 +212,7 @@ void napoli1084_reset_key_reset(qk_tap_dance_state_t *state, void *user_data) {
     key_tap_state.state = TD_NONE;
 }
 
-void napoli1084_h_esc_key_finished(qk_tap_dance_state_t *state, void *user_data) {
+void napoli1084_h_esc_key_finished(tap_dance_state_t *state, void *user_data) {
     key_tap_state.state = cur_dance(state);
     TD_DEBUG_STATE(key_tap_state.state);
 
@@ -253,7 +253,7 @@ void napoli1084_h_esc_key_finished(qk_tap_dance_state_t *state, void *user_data)
     }
 }
 
-void napoli1084_h_esc_key_reset(qk_tap_dance_state_t *state, void *user_data) {
+void napoli1084_h_esc_key_reset(tap_dance_state_t *state, void *user_data) {
     TD_DEBUG_STATE(key_tap_state.state);
 
     switch (key_tap_state.state) {
@@ -270,7 +270,7 @@ void napoli1084_h_esc_key_reset(qk_tap_dance_state_t *state, void *user_data) {
 // Tap Dance definitions
 // Limited to 256, see #define TD(n) (QK_TAP_DANCE | ((n)&0xFF))
 _Static_assert(tap_dance_count <= 0x00FF+1, "Number of tap dances cannot exceed 256, see TD()");
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [tap_dance_reset] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, napoli1084_reset_key_finished, napoli1084_reset_key_reset),
     [tap_dance_h_esc] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, napoli1084_h_esc_key_finished, napoli1084_h_esc_key_reset),
     [tap_dance_ctl_z_ctl_a] = ACTION_TAP_DANCE_DOUBLE(CTL_Z, CTL_A),
