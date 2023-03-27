@@ -127,9 +127,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NAPOLI1084_LAYOUT_LYR_FN NAPOLI1084_LAYOUT( \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, NC_RSET, _______, \
     _______, _______, KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , _______,    _______, KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , _______, _______, \
-    _______, _______, RGB_EEP, RGB_HUI, RGB_SAI, RGB_VAI, RGB_LYR, _______,    _______, BL_INC , KC_BRIU, KC_VOLU, KC_MSTP, KC_MPRV, _______, _______, \
-    _______, _______, RGB_DBG, RGB_HUD, RGB_SAD, RGB_VAD, RGB_MOD, _______,    _______, BL_DEC , KC_BRID, KC_VOLD, KC_MPLY, KC_MNXT, _______, _______, \
-    _______, _______, OS_TOGG, DB_TOGG, UC_MOD , NC_SYMD, RGB_TOG, _______,    _______, BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_NO  , _______, _______, \
+    _______, _______, RGB_EEP, RGB_HUI, RGB_SAI, RGB_VAI, RGB_LYR, _______,    _______, BL_UP  , KC_BRIU, KC_VOLU, KC_MSTP, KC_MPRV, _______, _______, \
+    _______, _______, RGB_DBG, RGB_HUD, RGB_SAD, RGB_VAD, RGB_MOD, _______,    _______, BL_DOWN, KC_BRID, KC_VOLD, KC_MPLY, KC_MNXT, _______, _______, \
+    _______, _______, OS_TOGG, DB_TOGG, UC_NEXT, NC_SYMD, RGB_TOG, _______,    _______, BL_TOGG, KC_NO  , KC_MUTE, KC_NO  , KC_NO  , _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, HOLDLYR, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, HOLDLYR, _______ \
 )

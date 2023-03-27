@@ -17,6 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #pragma once
 
+#include <stdint.h>
+
 // Return values for key process functions like `process_record_user()`
 #define PROCESS_CONTINUE true
 #define PROCESS_STOP false
