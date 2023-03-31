@@ -63,6 +63,7 @@ enum napoli1084_tap_dance_id {
     tap_dance_F7_ctl_F7,
     tap_dance_ctl_f_F3,
     tap_dance_ctl_p_ctl_o,
+    tap_dance_game_w,
     tap_dance_count
 };
 
