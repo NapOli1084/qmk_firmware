@@ -111,15 +111,16 @@ void unregister_code16(uint16_t code) {
     }
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef TAP_DANCE_ENABLE
+extern bool napoli1084_game_w_process(uint16_t keycode, keyrecord_t *record);
+#endif
 
-#ifdef CONSOLE_ENABLE
-    dprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, "
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    nap_dprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, "
             "interrupt: %b, count: %u\n",
             keycode, record->event.key.col, record->event.key.row,
             record->event.pressed, record->event.time,
             record->tap.interrupted, record->tap.count);
-#endif
 
     switch (keycode) {
     case NC_SYMD:
@@ -138,6 +139,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return napoli1084_process_rgblight(keycode, record);
         #endif
         break;
+    #ifdef TAP_DANCE_ENABLE
+    case KC_S:
+    case TD_GAMW:
+        return napoli1084_game_w_process(keycode, record);
+    #endif
     }
     return PROCESS_CONTINUE;
 }

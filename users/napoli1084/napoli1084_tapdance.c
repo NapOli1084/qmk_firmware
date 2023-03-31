@@ -179,6 +179,96 @@ void napoli1084_tap_hold_dance_reset(tap_dance_state_t *state, void *user_data) 
 }
 #endif
 
+////////////////////////////////////////////////////////////////////////////////
+enum napoli1084_game_w_state {
+    GAME_W_HOLD_DISABLED,
+    GAME_W_HOLD_INACTIVE,
+    GAME_W_HOLD_ACTIVE,
+};
+
+uint8_t game_w_state = GAME_W_HOLD_INACTIVE;
+bool game_w_registered = false;
+
+void napoli1084_game_w_each_tap(tap_dance_state_t *state, void *user_data) {
+    nap_dprintf("TD GAME W each tap count=%u game_w_state=%u\n", state->count, game_w_state);
+
+    switch (state->count) {
+        case 1:
+            register_code(KC_W);
+            game_w_registered = true;
+
+            if (game_w_state == GAME_W_HOLD_ACTIVE) {
+                // if held and press again, deactivate hold
+                game_w_state = GAME_W_HOLD_INACTIVE;
+            }
+            break;
+        case 2: // activate hold unless disabled
+            if (game_w_state != GAME_W_HOLD_DISABLED) {
+                game_w_state = GAME_W_HOLD_ACTIVE;
+            } else {
+                if (game_w_registered)
+                    unregister_code(KC_W);
+                register_code(KC_W);
+                game_w_registered = true;
+            }
+            break;
+        case 3: // toggle disable
+            if (game_w_state != GAME_W_HOLD_DISABLED) {
+                game_w_state = GAME_W_HOLD_DISABLED;
+            } else {
+                game_w_state = GAME_W_HOLD_ACTIVE;
+            }
+            break;
+    }
+}
+
+void napoli1084_game_w_finished(tap_dance_state_t *state, void *user_data) {
+}
+
+void napoli1084_game_w_reset(tap_dance_state_t *state, void *user_data) {
+    if (game_w_registered) {
+        switch (game_w_state) {
+            case GAME_W_HOLD_DISABLED:
+            case GAME_W_HOLD_INACTIVE:
+                unregister_code(KC_W);
+                game_w_registered = false;
+                break;
+        }
+    }
+}
+
+bool napoli1084_game_w_process(uint16_t keycode, keyrecord_t *record) {
+    nap_dprintf("TD GAME W process keycode=%u pressed=%u registered=%u game_w_state=%u\n",
+        keycode, record->event.pressed, game_w_registered, game_w_state);
+
+    switch (keycode) {
+    case KC_S: // move back cancels move forward hold
+        if (record->event.pressed && game_w_registered) {
+            unregister_code(KC_W);
+            game_w_registered = false;
+            switch (game_w_state) {
+                case GAME_W_HOLD_ACTIVE: game_w_state = GAME_W_HOLD_INACTIVE; break;
+                case GAME_W_HOLD_DISABLED: break;
+                case GAME_W_HOLD_INACTIVE: break;
+            }
+        }
+        break;
+    case TD_GAMW:
+        if (!record->event.pressed && game_w_registered) {
+            switch (game_w_state) {
+                case GAME_W_HOLD_DISABLED:
+                    unregister_code(KC_W);
+                    game_w_registered = false;
+                    break;
+            }
+        }
+        break;
+    }
+    return PROCESS_CONTINUE;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
 void napoli1084_reset_key_finished(tap_dance_state_t *state, void *user_data) {
     key_tap_state.state = cur_dance(state);
     TD_DEBUG_STATE(key_tap_state.state);
@@ -186,8 +276,15 @@ void napoli1084_reset_key_finished(tap_dance_state_t *state, void *user_data) {
     switch (key_tap_state.state) {
         case TD_SINGLE_TAP:
         case TD_SINGLE_HOLD:
-        case TD_DOUBLE_TAP: layer_move(LYR_DEFAULT); break;
-        case TD_DOUBLE_HOLD: reset_keyboard(); break;
+        case TD_DOUBLE_TAP:
+            clear_keyboard();
+            layer_move(LYR_DEFAULT);
+            napoli1084_game_w_reset(NULL, NULL);
+            break;
+        case TD_DOUBLE_HOLD:
+            // enter keyboard flash state
+            reset_keyboard();
+            break;
         // Last case is for fast typing. Assuming your key is `f`:
         // For example, when typing the word `buffer`, and you want to make sure that you send `ff` and not `Esc`.
         // In order to type `ff` when typing fast, the next character will have to be hit within the `TAPPING_TERM`, which by default is 200ms.
@@ -267,6 +364,8 @@ void napoli1084_h_esc_key_reset(tap_dance_state_t *state, void *user_data) {
     key_tap_state.state = TD_NONE;
 }
 
+
+
 // Tap Dance definitions
 // Limited to 256, see #define TD(n) (QK_TAP_DANCE | ((n)&0xFF))
 _Static_assert(tap_dance_count <= 0x00FF+1, "Number of tap dances cannot exceed 256, see TD()");
@@ -279,5 +378,6 @@ tap_dance_action_t tap_dance_actions[] = {
     [tap_dance_F7_ctl_F7] = ACTION_TAP_DANCE_DOUBLE(CTL_F7, KC_F7),
     [tap_dance_ctl_f_F3] = ACTION_TAP_DANCE_DOUBLE(KC_F3, CTL_F),
     [tap_dance_ctl_p_ctl_o] = ACTION_TAP_DANCE_DOUBLE(CTL_P, CTL_O),
+    [tap_dance_game_w] = ACTION_TAP_DANCE_FN_ADVANCED(napoli1084_game_w_each_tap, napoli1084_game_w_finished, napoli1084_game_w_reset),
 };
 //#endif // TAP_DANCE_ENABLE

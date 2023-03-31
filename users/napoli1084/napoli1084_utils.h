@@ -30,3 +30,10 @@ void napoli1084_register_mods(uint8_t mods);
 #ifdef CAPS_WORD_ENABLE
 void napoli1084_shift_if_caps_word_on(void);
 #endif
+
+#ifdef CONSOLE_ENABLE
+#define nap_dprintf(fmt, ...) dprintf(fmt, ##__VA_ARGS__)
+#else
+#define nap_dprintf(fmt, ...)
+#endif
+
