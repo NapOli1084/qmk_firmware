@@ -54,24 +54,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
 #define NAPOLI1084_LAYOUT_LYR_WORKNAP NAPOLI1084_LAYOUT( \
     _______, NC_RSET, KC_NO  , KC_NO  , TTGAME , KC_HYPR, NC_RSET, KC_NO  ,    KC_NO  , NC_RSET, TTNVNUM, KC_MEH , KC_NO  , KC_NO  , NC_RSET, _______, \
-    WN_LTB4, WN_ESC , WN_1   , WN_2   , WN_3   , WN_4   , WN_5   , NC_RSET,    NC_RSET, WN_6   , WN_7   , WN_8   , WN_9   , WN_0   , WN_DEL , WN_RTB4, \
-    HOLDLYR, WN_TAB , WN_Q   , WN_D   , WN_R   , WN_W   , WN_B   , KC_NO  ,    KC_NO  , WN_J   , WN_F   , WN_U   , WN_P   , WN_SCOL, WN_BSPC, _______, \
-    WN_LTB3, WN_LSFT, WN_A   , WN_S   , WN_H   , WN_T   , WN_G   , KC_NO  ,    KC_NO  , WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , WN_RSFT, WN_RTB3, \
-    NC_RSET, WN_LCTL, WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   , TTGAME ,    KC_NO  , WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, WN_RCTL, _______, \
-    KC_NO  , KC_NO  , KC_NO  , WN_LWIN, WN_LALT, KC_NO  , KC_NO  , KC_NO  ,    KC_NO  , KC_NO  , KC_NO  , WN_RALT, WN_RWIN, KC_NO  , KC_NO  , KC_NO  , \
-    KC_NO  , OSL_NAV,KC_SPACE, WN_LTB3, WN_LTB4, KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, WN_RTB4, WN_RTB3, WN_RTB2, WN_RTB1, KC_NO \
-)
-
-  //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
-  //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
-#define NAPOLI1084_LAYOUT_LYR_TEMPLATE NAPOLI1084_LAYOUT( \
-    _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
-    _______, _______, WN_1   , WN_2   , WN_3   , WN_4   , WN_5   , _______,    _______, WN_6   , WN_7   , WN_8   , WN_9   , WN_0   , _______, _______, \
-    _______, _______, WN_Q   , WN_D   , WN_R   , WN_W   , WN_B   , _______,    _______, WN_J   , WN_F   , WN_U   , WN_P   , WN_SCOL, _______, _______, \
-    _______, _______, WN_A   , WN_S   , WN_H   , WN_T   , WN_G   , _______,    _______, WN_Y   , WN_N   , WN_E   , WN_O   , WN_I   , _______, _______, \
-    _______, _______, WN_Z   , WN_X   , WN_M   , WN_C   , WN_V   , _______,    _______, WN_K   , WN_L   , WN_COMM, WN_DOT , WN_SLSH, _______, _______, \
-    _______, _______, _______, KC_LGUI, WN_LALT, _______, _______, _______,    _______, _______, _______, WN_RALT, WN_RWIN, _______, _______, _______, \
-    _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______ \
+    TTGAME , KC_ESC , TD_CTLZ, TD_CTLS, TD_CTLC, CTL_V  , TD_F7  , NC_RSET,    NC_RSET, KC_TAB , TD_CTLF, KC_SPC , TD_CTLP, KC_0   , KC_DEL , TTMOUSE, \
+    HOLDLYR, KC_TAB , LCTL_Q , KC_D   , KC_R   , KC_W   , KC_B   , KC_NO  ,    KC_NO  , KC_J   , KC_F   , KC_U   , KC_P   , RCTL_SC, KC_BSPC, _______, \
+    OSL_F12, WN_LSFT, LSFT_A , KC_S   ,TD_H_ESC, LTWIN_T, KC_G   , KC_NO  ,    KC_NO  , KC_Y   , LTF1_N , KC_E   , KC_O   , RSFT_I , WN_RSFT, OSL_WIN, \
+    NC_RSET, WN_LCTL, LCTL_Z , KC_X   , KC_M   , KC_C   , KC_V   , TTGAME ,    KC_NO  , KC_K   , KC_L   , UN_COMM, UN_DOT , UN_SLSH, WN_RCTL, _______, \
+    KC_NO  , KC_NO  , KC_NO  , KC_LGUI, KC_LALT, KC_NO  , KC_NO  , KC_NO  ,    KC_NO  , KC_NO  , KC_NO  , KC_APP , KC_LGUI, KC_NO  , KC_NO  , KC_NO  , \
+    KC_NO  , OSL_NAV,KC_SPACE, OSL_F12, TTGAME , KC_WH_D, KC_WH_U, NC_RSET,    NC_RSET, KC_PGUP, KC_PGDN, TTMOUSE, OSL_WIN,KC_ENTER, OSL_FRS, KC_NO \
 )
 
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
