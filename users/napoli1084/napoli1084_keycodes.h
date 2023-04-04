@@ -22,9 +22,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 // One-shot layer keys
-#define OSQNVNUM OSL(LYR_QNAVNUM)
-#define OSFN OSL(LYR_FN)
-#define OSFRCAPS OSL(LYR_FRCAPS)
+#define OSL_QNAV OSL(LYR_QNAVNUM)
+#define OSL_NAV OSL(LYR_NAVNUM)
+#define OSL_FN OSL(LYR_FN)
+#define OSL_F12 OSL(LYR_F1F12)
+#define OSL_FRS OSL(LYR_FRSYMBOL)
+#define OSL_FRC OSL(LYR_FRCAPS)
+#define OSL_WIN OSL(LYR_WINDOWS)
 
 // Layer TO keys
 #define TODEFLT TO(LYR_DEFAULT)
@@ -48,6 +52,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Placeholder for key being held to toggle current layer.
 #define HOLDLYR KC_TRANSPARENT
+
+// One shot mods
+#define OSM_LSFT OSM(MOD_LSFT)
+#define OSM_RSFT OSM(MOD_RSFT)
 
 #define CTL_A LCTL(KC_A)
 #define CTL_S LCTL(KC_S)
@@ -155,28 +163,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ////////////////////////////////////////////////////////////////////////////////
 
 // Worknap Keys
-
-//#define WN_LSFT OSM(MOD_LSFT)
-#define WN_LSFT KC_LSFT
-
-//#define WN_RSFT OSM(MOD_RSFT)
-#define WN_RSFT KC_RSFT
-
-//#define WN_LCTL OSM(MOD_LCTL)
-#define WN_LCTL KC_LCTL
-
-//#define WN_RCTL OSM(MOD_RCTL)
-#define WN_RCTL KC_RCTL
-
-//#define WN_RWIN OSM(MOD_LGUI)
-#define WN_RWIN KC_LGUI
-
-// Thumb keys
-#define OSL_QNAV OSL(LYR_QNAVNUM)
-#define OSL_NAV OSL(LYR_NAVNUM)
-#define OSL_FN OSL(LYR_FN)
-#define OSL_F12 OSL(LYR_F1F12)
-#define OSL_FRS OSL(LYR_FRSYMBOL)
-#define OSL_FRC OSL(LYR_FRCAPS)
-#define OSL_WIN OSL(LYR_WINDOWS)
+#ifdef NAPOLI1084_ONE_SHOT_MODS
+    #define WN_LSFT OSM(MOD_LSFT)
+    #define WN_RSFT OSM(MOD_RSFT)
+    #define WN_LCTL OSM(MOD_LCTL)
+    #define WN_RCTL OSM(MOD_RCTL)
+    #define WN_RWIN OSM(MOD_LGUI)
+#else
+    #define WN_LSFT KC_LSFT
+    #define WN_RSFT KC_RSFT
+    #define WN_LCTL KC_LCTL
+    #define WN_RCTL KC_RCTL
+    #define WN_RWIN KC_LGUI
+#endif
 
