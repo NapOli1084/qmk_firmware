@@ -92,7 +92,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, NC_RSET, _______, \
     _______, n_TILDE, a_DIAER, UN_AT  , UN_HASH, KC_DLR , KC_PERC, _______,    _______, y_DIAER, u_DIAER, e_DIAER, o_DIAER, i_DIAER, _______, _______, \
     _______, s_SHARP, a_CIRCM, UN_RCBR, UN_LCBR, UN_GRAV, UN_CIRC, _______,    _______, KC_PERC, u_CIRCM, e_CIRCM, o_CIRCM, i_CIRCM, _______, _______, \
-    _______, _______, a_GRAVE, KC_RPRN, KC_LPRN, KC_UNDS, KC_AMPR, _______,    _______, KC_DLR , u_GRAVE, e_ACUTE, UN_DQUO, UN_APOS, _______, _______, \
+    _______,OSM_LSFT, a_GRAVE, KC_RPRN, KC_LPRN, KC_UNDS, KC_AMPR, _______,    _______, KC_DLR , u_GRAVE, e_ACUTE, UN_DQUO, UN_APOS,OSM_RSFT, _______, \
     _______, _______, KC_EXLM, UN_RBRC, UN_LBRC, c_CEDIL, UN_TILD, _______,    _______, UN_HASH, KC_ASTR, e_GRAVE, UN_BSLS, UN_PIPE, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, OSL_FRC, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, HOLDLYR, _______ \
