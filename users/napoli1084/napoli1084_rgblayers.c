@@ -71,9 +71,11 @@ const rgblight_segment_t PROGMEM my_navnum_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t PROGMEM my_frsymbol_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_FRSYMBOL}
 );
+#ifdef NAPOLI1084_FRCAPS_ENABLE
 const rgblight_segment_t PROGMEM my_frcaps_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_FRCAPS}
 );
+#endif
 const rgblight_segment_t PROGMEM my_fn_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_FN}
 );
@@ -103,7 +105,9 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
     my_capslock_rgblayer,
     my_navnum_rgblayer,
     my_frsymbol_rgblayer,
+#ifdef NAPOLI1084_FRCAPS_ENABLE
     my_frcaps_rgblayer,
+#endif
     my_fn_rgblayer,    // Overrides other layers
     my_f1f12_rgblayer,
     my_windows_rgblayer,
@@ -120,7 +124,9 @@ enum napoli1084_rgblayers {
     RGBLYR_CAPSLOCK,
     RGBLYR_NAVNUM,
     RGBLYR_FRSYMBOL,
+#ifdef NAPOLI1084_FRCAPS_ENABLE
     RGBLYR_FRCAPS,
+#endif
     RGBLYR_FN,
     RGBLYR_F1F12,
     RGBLYR_WINDOWS,
@@ -141,7 +147,9 @@ static void napoli1084_rgblayers_set_rgblayers_state(layer_state_t state) {
     rgblight_set_layer_state(RGBLYR_GAME, layer_state_cmp(state, LYR_GAME));
     rgblight_set_layer_state(RGBLYR_NAVNUM, layer_state_cmp(state, LYR_NAVNUM));
     rgblight_set_layer_state(RGBLYR_FRSYMBOL, layer_state_cmp(state, LYR_FRSYMBOL));
+  #ifdef NAPOLI1084_FRCAPS_ENABLE
     rgblight_set_layer_state(RGBLYR_FRCAPS, layer_state_cmp(state, LYR_FRCAPS));
+  #endif
     rgblight_set_layer_state(RGBLYR_FN, layer_state_cmp(state, LYR_FN));
     rgblight_set_layer_state(RGBLYR_F1F12, layer_state_cmp(state, LYR_F1F12));
     rgblight_set_layer_state(RGBLYR_WINDOWS, layer_state_cmp(state, LYR_WINDOWS));
