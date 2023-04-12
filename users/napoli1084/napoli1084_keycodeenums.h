@@ -28,7 +28,9 @@ enum napoli1084_layers {
     LYR_GAME, // Game layer
     LYR_NAVNUM, // Navigation (arrows, home/end, page up/down) / numpad layer
     LYR_FRSYMBOL, // French symbols layer
+#ifdef NAPOLI1084_FRCAPS_ENABLE
     LYR_FRCAPS, // Capital french symbols layer
+#endif
 #ifdef NAPOLI1084_MOUSE_LAYER_ENABLE
     LYR_MOUSE, // Mouse layer
 #endif
