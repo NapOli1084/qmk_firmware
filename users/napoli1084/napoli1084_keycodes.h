@@ -27,7 +27,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define OSL_FN OSL(LYR_FN)
 #define OSL_F12 OSL(LYR_F1F12)
 #define OSL_FRS OSL(LYR_FRSYMBOL)
+#ifdef NAPOLI1084_FRCAPS_ENABLE
 #define OSL_FRC OSL(LYR_FRCAPS)
+#else
+#define OSL_FRC OSM(MOD_LSFT)
+#endif
 #define OSL_WIN OSL(LYR_WINDOWS)
 
 // Layer TO keys
