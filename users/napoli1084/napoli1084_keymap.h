@@ -98,6 +98,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     _______, OSL_FRC, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, HOLDLYR, _______ \
 )
 
+#ifdef NAPOLI1084_FRCAPS_ENABLE
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
 #define NAPOLI1084_LAYOUT_LYR_FRCAPS NAPOLI1084_LAYOUT( \
@@ -109,6 +110,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, HOLDLYR, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______ \
 )
+#endif
 
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
@@ -126,14 +128,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
 #define NAPOLI1084_LAYOUT_LYR_F1F12 NAPOLI1084_LAYOUT( \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, NC_RSET, _______, \
-    _______, _______, KC_F21 , KC_F10 , KC_F11 , KC_F12 , KC_F22 , _______,    _______, _______, KC_F10 , KC_F11 , KC_F12 , _______, _______, _______, \
-    _______, _______, KC_F18 , KC_F7  , KC_F8  , KC_F9  , KC_F19 , _______,    _______, _______, KC_F7  , KC_F8  , KC_F9  , _______, _______, _______, \
-    _______, _______, KC_F15 , KC_F4  , KC_F5  , KC_F6  , KC_F16 , _______,    _______, _______, HOLDLYR, KC_F5  , KC_F6  , _______, _______, _______, \
-    _______, _______, KC_F14 , KC_F1  , KC_F2  , KC_F3  , KC_F13 , _______,    _______, _______, KC_F1  , KC_F2  , KC_F3  , _______, _______, _______, \
+    _______, _______, KC_F21 , KC_F10 , KC_F11 , KC_F12 , KC_F22 , _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, _______, KC_F18 , KC_F7  , KC_F8  , KC_F9  , KC_F19 , _______,    _______, KC_WAKE, WINLEFT, WINUP  , WINRGHT, _______, _______, _______, \
+    _______, _______, KC_F15 , KC_F4  , KC_F5  , KC_F6  , KC_F16 , _______,    _______, KC_SLEP, WINSFTL, WINDOWN, WINSFTR, ALT_F4 , _______, _______, \
+    _______, _______, KC_F14 , KC_F1  , KC_F2  , KC_F3  , KC_F13 , _______,    _______, KC_PWR , WINCTLL, _______, WINCTLR, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
-    _______, _______, _______, HOLDLYR, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______ \
+    _______, _______, _______, HOLDLYR, _______, _______, _______, _______,    _______, _______, _______, _______, HOLDLYR, _______, _______, _______ \
 )
 
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
   //lPinky3, lPinky2, lPinky1, lRing  , lMiddle, lIndex1, lIndex2, lIndex3,    rIndex3, rIndex2, rIndex1, rMiddle, rRing  , rPinky1, rPinky2, rPinky3,
   //lThumb0, lThumb1, lThumb2, lThumb3, lThumb4, lThumb5, lThumb6, lThumb7,    rThumb7, rThumb6, rThumb5, rThumb4, rThumb3, rThumb2, rThumb1, rThumb0
 #define NAPOLI1084_LAYOUT_LYR_WINDOWS NAPOLI1084_LAYOUT( \
@@ -145,6 +148,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______,    _______, _______, _______, _______, HOLDLYR, _______, _______, _______ \
 )
+#endif
 
 #ifndef NAPOLI1084_KEYMAPS_DISABLE
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -161,6 +165,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #endif
     [LYR_FN] = NAPOLI1084_LAYOUT_LYR_FN,
     [LYR_F1F12] = NAPOLI1084_LAYOUT_LYR_F1F12,
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
     [LYR_WINDOWS] = NAPOLI1084_LAYOUT_LYR_WINDOWS
+#endif
 };
 #endif

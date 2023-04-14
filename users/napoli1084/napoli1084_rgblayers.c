@@ -82,12 +82,14 @@ const rgblight_segment_t PROGMEM my_fn_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
 const rgblight_segment_t PROGMEM my_f1f12_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM, NAPOLI1084_HSV_LYR_F1F12}
 );
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
 const rgblight_segment_t PROGMEM my_windows_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM / 4, HSV_BLUE},
     {RGBLED_NUM / 4, (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_RED},
     {RGBLED_NUM / 2, (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_YELLOW},
     {RGBLED_NUM - (RGBLED_NUM / 4), RGBLED_NUM / 4, HSV_GREEN}
 );
+#endif
 const rgblight_segment_t PROGMEM my_test_rgblayer[] = RGBLIGHT_LAYER_SEGMENTS(
     {0, RGBLED_NUM / 4, HSV_RED},
     {RGBLED_NUM / 4, (RGBLED_NUM / 2) - (RGBLED_NUM / 4), HSV_GREEN},
@@ -110,7 +112,9 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 #endif
     my_fn_rgblayer,    // Overrides other layers
     my_f1f12_rgblayer,
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
     my_windows_rgblayer,
+#endif
     my_test_rgblayer
 );
 
@@ -129,7 +133,9 @@ enum napoli1084_rgblayers {
 #endif
     RGBLYR_FN,
     RGBLYR_F1F12,
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
     RGBLYR_WINDOWS,
+#endif
     RGBLYR_TEST,
     RGBLYR_COUNT // not a layer, only serves to count number of layers
 };
@@ -152,7 +158,9 @@ static void napoli1084_rgblayers_set_rgblayers_state(layer_state_t state) {
   #endif
     rgblight_set_layer_state(RGBLYR_FN, layer_state_cmp(state, LYR_FN));
     rgblight_set_layer_state(RGBLYR_F1F12, layer_state_cmp(state, LYR_F1F12));
+  #ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
     rgblight_set_layer_state(RGBLYR_WINDOWS, layer_state_cmp(state, LYR_WINDOWS));
+  #endif
 
     led_t led_state = host_keyboard_led_state();
     rgblight_set_layer_state(RGBLYR_CAPSLOCK, led_state.caps_lock);

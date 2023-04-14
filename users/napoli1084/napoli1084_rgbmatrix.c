@@ -56,8 +56,10 @@ enum nap_rgb_matrix_layer_id {
 #ifdef NAPOLI1084_RGBMATRIX_LYR_F1F12
     NAP_RGB_MATRIX_LYR_F1F12,
 #endif
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
 #ifdef NAPOLI1084_RGBMATRIX_LYR_WINDOWS
     NAP_RGB_MATRIX_LYR_WINDOWS,
+#endif
 #endif
 };
 
@@ -85,8 +87,10 @@ const uint8_t PROGMEM nap_rgb_matrix_layer_map[][RGB_MATRIX_LED_COUNT][3] = {
 #ifdef NAPOLI1084_RGBMATRIX_LYR_F1F12
     [NAP_RGB_MATRIX_LYR_F1F12] = NAPOLI1084_RGBMATRIX_LYR_F1F12,
 #endif
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
 #ifdef NAPOLI1084_RGBMATRIX_LYR_WINDOWS
     [NAP_RGB_MATRIX_LYR_WINDOWS] = NAPOLI1084_RGBMATRIX_LYR_WINDOWS,
+#endif
 #endif
 };
 
@@ -100,7 +104,9 @@ const uint8_t PROGMEM nap_rgb_single_color_layer_map[][3] = {
 #endif
     [LYR_FN] = { NAPOLI1084_HSV_LYR_FN },
     [LYR_F1F12] = { NAPOLI1084_HSV_LYR_F1F12 },
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
     [LYR_WINDOWS] = { NAPOLI1084_HSV_LYR_WINDOWS },
+#endif
 };
 
 const uint8_t PROGMEM nap_rgb_layer_index_map[] = {
@@ -141,10 +147,12 @@ const uint8_t PROGMEM nap_rgb_layer_index_map[] = {
 #else
     [LYR_F1F12] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_F1F12,
 #endif
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
 #ifdef NAPOLI1084_RGBMATRIX_LYR_WINDOWS
     [LYR_WINDOWS] = NAP_RGB_MATRIX_LAYER_MAP | NAP_RGB_MATRIX_LYR_WINDOWS,
 #else
     [LYR_WINDOWS] = NAP_RGB_SINGLE_COLOR_LAYER_MAP | LYR_WINDOWS,
+#endif
 #endif
 };
 

@@ -28,11 +28,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define OSL_F12 OSL(LYR_F1F12)
 #define OSL_FRS OSL(LYR_FRSYMBOL)
 #ifdef NAPOLI1084_FRCAPS_ENABLE
-#define OSL_FRC OSL(LYR_FRCAPS)
+    #define OSL_FRC OSL(LYR_FRCAPS)
 #else
-#define OSL_FRC OSM(MOD_LSFT)
+    #define OSL_FRC OSM(MOD_LSFT)
 #endif
-#define OSL_WIN OSL(LYR_WINDOWS)
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
+    #define OSL_WIN OSL(LYR_WINDOWS)
+#else
+    #define OSL_WIN OSL(LYR_F1F12)
+#endif
 
 // Layer TO keys
 #define TODEFLT TO(LYR_DEFAULT)
@@ -40,8 +44,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Layer Tap-Toggle keys
 #define TTGAME TT(LYR_GAME)
 #define TTNVNUM TT(LYR_NAVNUM)
-#define TTF1F12 TT(LYR_F1F12)
-#define TTWIN TT(LYR_WINDOWS)
 #define TTWRKNP TT(LYR_WORKNAP)
 
 #ifdef NAPOLI1084_MOUSE_LAYER_ENABLE
@@ -51,8 +53,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 // Layer-tap (layer when held, key code when tapped)
-#define LTWIN_T LT(LYR_WINDOWS,KC_T)
-#define LTF1_N LT(LYR_F1F12,KC_N)
+#ifdef NAPOLI1084_LYR_WINDOWS_ENABLE
+    #define LTWIN_T LT(LYR_WINDOWS,KC_T)
+    #define LTF1_N LT(LYR_F1F12,KC_N)
+#else
+    #define LTWIN_T KC_T
+    #define LTF1_N KC_N
+#endif
 
 // Placeholder for key being held to toggle current layer.
 #define HOLDLYR KC_TRANSPARENT
