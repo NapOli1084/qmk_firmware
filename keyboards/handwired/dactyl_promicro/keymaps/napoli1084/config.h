@@ -21,6 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define EE_HANDS
 
+#define LAYER_STATE_8BIT
+
 #define RGBLED_SPLIT { 6, 6 }
 
 #define RGBLIGHT_LAYERS
@@ -44,3 +46,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define NAPOLI1084_HSV_LYR_WORKNAP 64, 223, 255
 //#define NAPOLI1084_HSV_LYR_WORKNAP 56, 231, 255
 #define NAPOLI1084_HSV_LYR_WORKNAP 88, 200, 255
+
+#define NAPOLI1084_SYMD_KB_CAFR_DISABLE
+#define NAPOLI1084_SYMD_KB_US_DISABLE
