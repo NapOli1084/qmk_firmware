@@ -23,16 +23,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "quantum/quantum.h"
 
 enum napoli1084_symbol_mode {
+    #ifndef NAPOLI1084_SYMD_KB_CAFR_DISABLE
     SYMD_KB_CAFR, // Canadian French
+    #endif
+    #ifndef NAPOLI1084_SYMD_KB_CMS_DISABLE
     SYMD_KB_CMS, // Canadian Multilingual Standard
+    #endif
+    #ifndef NAPOLI1084_SYMD_KB_US_DISABLE
     SYMD_KB_US, // US QWERTY
+    #endif
     SYMD_KB_COUNT, // Number of keyboard symbol modes (not a mode)
     SYMD_UNICODE = SYMD_KB_COUNT, // Default, uses currently selected Unicode mode as per get_unicode_input_mode()
-#ifdef UNICODEMAP_ENABLE
+    #ifdef UNICODEMAP_ENABLE
     SYMD_COUNT // Number of symbol modes (not a mode)
-#else
+    #else
     SYMD_COUNT = SYMD_KB_COUNT
-#endif
+    #endif
 };
 
 #ifdef UNICODEMAP_ENABLE
@@ -46,20 +52,26 @@ void napoli1084_cycle_symbol_mode(void) {
 
     switch (symbol_mode)
     {
+    #ifndef NAPOLI1084_SYMD_KB_CAFR_DISABLE
     case SYMD_KB_CAFR:
         SEND_STRING("CAFR");
         break;
+    #endif
+    #ifndef NAPOLI1084_SYMD_KB_CMS_DISABLE
     case SYMD_KB_CMS:
         SEND_STRING("CMS");
         break;
+    #endif
+    #ifndef NAPOLI1084_SYMD_KB_US_DISABLE
     case SYMD_KB_US:
         SEND_STRING("US");
         break;
-#ifdef UNICODEMAP_ENABLE
+    #endif
+    #ifdef UNICODEMAP_ENABLE
     case SYMD_UNICODE:
         SEND_STRING("UNI");
         break;
-#endif
+    #endif
     }
 }
 

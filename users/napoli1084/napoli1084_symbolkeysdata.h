@@ -86,6 +86,7 @@ const uint32_t PROGMEM unicode_map[] = {
 
 ////////////////////////////////////////////////////////////////////////////////
 
+#ifndef NAPOLI1084_SYMD_KB_CAFR_DISABLE
 
 #define CAFR_CEDILLA_DEAD_KEY KC_RIGHT_BRACKET
 #define CAFR_CIRCUMFLEX_DEAD_KEY KC_LEFT_BRACKET
@@ -160,7 +161,9 @@ static const napoli1084_symbol_keys_t PROGMEM cafr_symbol_keys_map[uni_COUNT] = 
     // Use default unicode processing.
     [uni_Y_DIAERESIS] = {{KC_NO, KC_NO}}, // Ÿ
 };
+#endif // #ifndef NAPOLI1084_SYMD_KB_CAFR_DISABLE
 
+#ifndef NAPOLI1084_SYMD_KB_CMS_DISABLE
 
 #define CMS_CIRCUMFLEX_DEAD_KEY KC_LEFT_BRACKET
 #define CMS_DIAERESIS_DEAD_KEY LSFT(KC_LEFT_BRACKET)
@@ -231,7 +234,9 @@ static const napoli1084_symbol_keys_t PROGMEM cms_symbol_keys_map[uni_COUNT] = {
     [uni_U_GRAVE] = {{LSFT(CMS_U_GRAVE), KC_NO}},
     [uni_Y_DIAERESIS] = {{CMS_DIAERESIS_DEAD_KEY, LSFT(KC_Y)}}, // Ÿ
 };
+#endif // #ifndef NAPOLI1084_SYMD_KB_CMS_DISABLE
 
+#ifndef NAPOLI1084_SYMD_KB_US_DISABLE
 static const napoli1084_symbol_keys_t PROGMEM us_symbol_keys_map[uni_COUNT] = {
     [uni_QUOTATION] = {{KC_DOUBLE_QUOTE, KC_NO}}, // "
     [uni_HASH] = {{KC_HASH, KC_NO}}, // #
@@ -289,10 +294,17 @@ static const napoli1084_symbol_keys_t PROGMEM us_symbol_keys_map[uni_COUNT] = {
     [uni_U_GRAVE] = {{KC_NO, KC_NO}},
     [uni_Y_DIAERESIS] = {{KC_NO, KC_NO}}, // Ÿ
 };
+#endif // #ifndef NAPOLI1084_SYMD_KB_US_DISABLE
 
 static const napoli1084_symbol_keys_t* const PROGMEM nap_symbol_keys_maps[] = {
+    #ifndef NAPOLI1084_SYMD_KB_CAFR_DISABLE
     cafr_symbol_keys_map,
+    #endif
+    #ifndef NAPOLI1084_SYMD_KB_CMS_DISABLE
     cms_symbol_keys_map,
+    #endif
+    #ifndef NAPOLI1084_SYMD_KB_US_DISABLE
     us_symbol_keys_map,
+    #endif
 };
 
