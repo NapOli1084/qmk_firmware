@@ -6,6 +6,7 @@ MOUSEKEY_ENABLE = yes
 SPACE_CADET_ENABLE = no
 TAP_DANCE_ENABLE = yes
 UNICODEMAP_ENABLE = yes
+AVR_USE_MINIMAL_PRINTF = yes
 
 SRC += napoli1084.c
 SRC += napoli1084_symbolkeys.c

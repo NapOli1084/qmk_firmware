@@ -35,3 +35,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // https://docs.qmk.fm/#/feature_rgblight?id=effects-and-animations
 // RGBLIGHT_ANIMATIONS is deprecated and animation modes should be explicitly defined.
 //#define RGBLIGHT_ANIMATIONS
+
+#define LAYER_STATE_8BIT

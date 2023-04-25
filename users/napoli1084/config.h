@@ -25,7 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Layers
 ///////////////////////////////////////////////////////////////////////////
 // I don't expect using more than 16 layers, so using 16 bits saves some space.
-#define LAYER_STATE_16BIT
+// Moved to keyboard
+//#define LAYER_STATE_16BIT
 
 ///////////////////////////////////////////////////////////////////////////
 // Locking

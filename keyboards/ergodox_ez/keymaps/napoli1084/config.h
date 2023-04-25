@@ -6,3 +6,4 @@
 
 #define NAPOLI1084_ERGODOX
 
+#define LAYER_STATE_8BIT
