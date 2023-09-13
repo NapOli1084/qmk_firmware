@@ -61,6 +61,7 @@ enum nap_rgb_matrix_layer_id {
     NAP_RGB_MATRIX_LYR_WINDOWS,
 #endif
 #endif
+    NAP_RGB_MATRIX_LYR_COUNT
 };
 
 const uint8_t PROGMEM nap_rgb_matrix_layer_map[][RGB_MATRIX_LED_COUNT][3] = {
