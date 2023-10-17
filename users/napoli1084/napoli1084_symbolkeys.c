@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "napoli1084_utils.h"
 
 #include "quantum/quantum.h"
+#include "quantum/process_keycode/process_unicodemap.h"
 
 enum napoli1084_symbol_mode {
     #ifndef NAPOLI1084_SYMD_KB_CAFR_DISABLE
