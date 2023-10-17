@@ -26,8 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #error RGBLIGHT_ENABLE is not defined
 #endif
 
-#include <stddef.h>
-#include "quantum/rgblight/rgblight.h"
+#include "quantum/quantum.h"
 
 #ifdef RGBLIGHT_LAYERS
 
